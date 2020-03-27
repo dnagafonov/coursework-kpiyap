@@ -1,0 +1,15 @@
+@import '../../constants.scss';
+
+.App {
+    min-width: 430px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: $font;
+
+    color: $text-color;
+}
+
+.main {
+    display: flex;
+    flex-flow: row wrap;
+}
