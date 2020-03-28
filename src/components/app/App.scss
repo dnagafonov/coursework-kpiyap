@@ -1,4 +1,4 @@
-@import '../../constants.scss';
+@import '../../scss/constants.scss';
 
 .App {
     min-width: 430px;
@@ -7,9 +7,13 @@
     font-family: $font;
 
     color: $text-color;
+
+    box-sizing: border-box;
 }
 
 .main {
     display: flex;
     flex-flow: row wrap;
+
+    background-color: $container-bg;
 }

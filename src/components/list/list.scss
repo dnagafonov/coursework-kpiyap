@@ -1,0 +1,12 @@
+@import '../../scss/general-classes.scss';
+
+.list {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.list__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}

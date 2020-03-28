@@ -8,20 +8,20 @@ import {
 const Header = () => {
     return (
         <Router>
-            <nav className="header">
-                <Link to="/" className="logo">
-                    <i class="fa fa-car-crash"></i>
-                    <div className="logo__name"> autoservice</div>
-                </Link>
-                <ul className="header__navigation">
-                    <li><Link to="/about-us">about us</Link></li>
-                    <li><Link to="spares">spares</Link></li>
-                    <li><Link to="services">services</Link></li>
-                    <li className="cart">
+            <div className="header">
+                <div className="wrapper header__wrapper">
+                    <Link to="/" className="logo">
+                        <i class="fa fa-car-crash"></i>
+                        <div className="logo__name"> autoservice</div>
+                    </Link>
+                    <nav className="header__navigation">
+                        <Link to="/about-us">about us</Link>
+                        <Link to="spares">spares</Link>
+                        <Link to="services">services</Link>
                         <Link to="cart"><i class="fas fa-shopping-cart"></i></Link>
-                    </li>
-                </ul>
-            </nav>
+                    </nav>
+                </div>
+            </div>
         </Router>
     );
 }

@@ -1,15 +1,20 @@
-@import '../../constants.scss';
+@import '../../scss/constants.scss';
+@import '../../scss/general-classes.scss';
 
 .header {
     position: sticky;
+    top: 0;
     height: 60px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
     
-    box-shadow: 0 0 6px 0 $text-color;
-    background-color: $bc;
+    box-shadow: 0 5px 10px 0 rgba(0,64,128,.05);
+    background-color: $general-bg;
+}
+
+.header__wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .logo {
@@ -26,22 +31,20 @@
 }
 
 .header__navigation {
-    height: 100%;
     display: flex;
     list-style: none;
 }
 
-.header__navigation li{
-    height: 100%;
+.header__navigation a{
     display: flex;
     align-items: center;
     padding: 0 10px;  
     text-transform: uppercase;
 }
 
-.header__navigation li:hover{
-    transition: ease-in 400ms;
-    background-color: #ffb42d;
+.header__navigation a:hover{
+    transition: ease-in 300ms;
+    color: $text-color-selected;
 }
 
 .cart {
@@ -53,8 +56,11 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-@media(max-width: 700px){
+@media screen and (max-width: 550px){
     .logo__name {
         display: none;
+    }
+    .logo {
+        margin-left: 20px;
     }
 }

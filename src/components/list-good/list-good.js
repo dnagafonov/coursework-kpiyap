@@ -4,7 +4,7 @@ import './list-good.scss'
 const ListGood = props => {
     const { name, price } = props;
     return (
-        <div className="list-good">
+        <div className="list-good shadow">
             <div className="list-good__image">
                 <img src="" alt="" />
             </div>
