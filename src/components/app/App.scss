@@ -6,7 +6,7 @@
     font-weight: 500;
     font-family: $font;
 
-    color: $text-color;
+    color: $color-primary;
 
     box-sizing: border-box;
 }
@@ -15,5 +15,5 @@
     display: flex;
     flex-flow: row wrap;
 
-    background-color: $container-bg;
+    background-color: $bg-secondary;
 }
