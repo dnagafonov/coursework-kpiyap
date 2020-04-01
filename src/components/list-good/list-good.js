@@ -6,11 +6,11 @@ const ListGood = props => {
     return (
         <div className="list-good shadow">
             <div className="list-good__image">
-                <img src="" alt="" />
+                <div className="list-good__name text-container">{name}</div>
             </div>
             <div className="list-good__description">
-                <div className="list-good__name">{name}</div>
                 <div className="list-good__price">{price}</div>
+                <button className="btn-general">Add to cart!</button>
             </div>
         </div>
     );

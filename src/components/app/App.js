@@ -12,11 +12,12 @@ import {
 const servicesStub = require(`./services-stub.json`);
 const spiresStub = require(`./spires-stub.json`);
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="App">
         <Header />
+        <div className="divider"></div>
         <Switch>
           <Route exact path="/" children={<div>Welcome!</div>} />
           <Route path="/about-us" children={<div>about us</div>} />
