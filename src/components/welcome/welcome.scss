@@ -1,0 +1,10 @@
+@import '../../scss/general-classes.scss';
+
+.welcome__wrapper {
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.5rem;
+}
