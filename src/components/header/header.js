@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { switchActivePage } from '../../actions/actions';
 
-const Header = ({switchActive}) => {
-    let links = [
+const Header = ({ switchActive }) => {
+    let topics = [
         {
             url: "about-us",
             name: "about us"
@@ -21,7 +21,8 @@ const Header = ({switchActive}) => {
         {
             url: "cart",
             name: <i class="fas fa-shopping-cart"></i>
-        }]
+        }];
+    const links = topics.map(link => <Link to={link.url} onClick={() => switchActive(link.url)}>{link.name}</Link>)
     return (
         <div className="header">
             <div className="wrapper header__wrapper">
@@ -30,7 +31,7 @@ const Header = ({switchActive}) => {
                     <div className="logo__name"> autoservice</div>
                 </Link>
                 <nav className="header__navigation">
-                    {links.map(link => <Link to={link.url} onClick={() => switchActive(link.url)}>{link.name}</Link>)}
+                    {links}
                 </nav>
             </div>
         </div>
