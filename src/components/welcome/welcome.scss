@@ -1,4 +1,4 @@
-@import '../../scss/general-classes.scss';
+@import "../../scss/general-classes.scss";
 
 .welcome__wrapper {
     font-size: 1.5rem;
@@ -33,9 +33,17 @@
 .welcome__layout a {
     width: 250px;
     height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     text-transform: capitalize;
     border-radius: 8px;
-    background-color: #f4f4ff;
+    @for $i from 0 to 4 {
+        &:nth-child(#{$i}) {
+            @include random-color("background-color");
+        }
+    }
 }
 
 .arrow-down {
@@ -53,7 +61,7 @@
     50% {
         bottom: 20px;
     }
-    100%{
+    100% {
         bottom: 30px;
     }
 }
