@@ -8,6 +8,8 @@
     flex-flow: column nowrap;
     border-radius: 8px;
     background-color: $bg-primary;
+    animation-name: list-good;
+    animation-duration: 0.7s;
 }
 
 .list-good__image {
@@ -43,4 +45,11 @@
 
 @mixin random-bg() {
     background-color: rgba(random(255),random(255),random(255));
+}
+
+@keyframes list-good {
+    0%{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 }

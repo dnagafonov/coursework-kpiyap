@@ -13,7 +13,7 @@ const Welcome = () => {
                         className="arrow-down" 
                         to="down"
                         smooth={true}
-                        offset={-90}
+                        offset={-60}
                     >
                         <i className="fas fa-angle-double-down"></i>
                     </ScrollLink>
@@ -23,7 +23,7 @@ const Welcome = () => {
                     <Link to="/spares"><h4>spares</h4></Link>
                     <Link to="/services"><h4>Services</h4></Link>
                 </div>
-            </div>
+            </div>s  
         </div>
     )
 }

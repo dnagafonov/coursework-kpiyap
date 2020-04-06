@@ -6,6 +6,7 @@
 
 .welcome__header {
     min-height: 100vh;
+    width: 100%;
 }
 
 .welcome__wrapper,
@@ -31,15 +32,19 @@
 }
 
 .welcome__layout a {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff,
+        1px -1px 0 #fff, -1px 1px 0 #fff;
     text-transform: capitalize;
     border-radius: 8px;
-    @for $i from 0 to 4 {
+    @for $i from 1 to 4 {
         &:nth-child(#{$i}) {
             @include random-color("background-color");
         }
@@ -48,10 +53,16 @@
 
 .arrow-down {
     position: absolute;
-    bottom: 40px;
     font-size: 3rem;
     opacity: 0.6;
     animation: down-arrow 1s ease-in-out infinite normal;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 550px) {
+    .welcome__layout {
+        flex-flow: column nowrap;
+    }
 }
 
 @keyframes down-arrow {
