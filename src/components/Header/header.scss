@@ -1,0 +1,62 @@
+@import '../../scss/general-classes.scss';
+
+.header {
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 3;
+    box-shadow: 0 5px 10px 0 $color-shadow;
+    background-color: $bg-primary;
+}
+
+.header__wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    word-wrap: pre;
+}
+
+.logo__name {
+    margin-left: 15px;
+}
+
+.header__navigation {
+    display: flex;
+    list-style: none;
+}
+
+.header__navigation a{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;  
+    text-transform: uppercase;
+}
+
+.header__navigation a:hover{
+    transition: ease-in 300ms;
+    color: $color-secondary;
+}
+
+.cart {
+    font-size: 1.5rem;
+}
+
+a:link, a:visited {
+    color: $color-primary;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 550px){
+    .logo__name {
+        display: none;
+    }
+}

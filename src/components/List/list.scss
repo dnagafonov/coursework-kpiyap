@@ -1,0 +1,11 @@
+@import '../../scss/general-classes.scss';
+
+.list {
+    width: 100%;
+}
+
+.list__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
