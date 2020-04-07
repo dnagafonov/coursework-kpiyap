@@ -8,7 +8,7 @@ const AboutUs = () => {
         <div className="about-us">
             <div className="wrapper about-us__wrapper">
                 <div className="about-us__header">
-                    <h1>Welcome</h1>
+                    <h1>About Us</h1>
                     <ScrollLink 
                         className="arrow-down" 
                         to="down"

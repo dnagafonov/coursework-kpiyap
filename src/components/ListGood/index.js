@@ -1,2 +1,2 @@
 import ListGood from './ListGood';
-export {ListGood};
+export { ListGood };

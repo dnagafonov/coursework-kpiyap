@@ -23,7 +23,7 @@ const Welcome = () => {
                     <Link to="/spares"><h4>spares</h4></Link>
                     <Link to="/services"><h4>Services</h4></Link>
                 </div>
-            </div>s  
+            </div>
         </div>
     )
 }
