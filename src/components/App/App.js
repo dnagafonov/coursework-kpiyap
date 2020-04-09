@@ -18,7 +18,6 @@ const App = () => {
     <Router>
       <div className="App">
         <Header />
-        <div className="divider"></div>
         <Switch>
           <Route exact path="/" children={<Welcome />} />
           <Route path="/about-us" children={<AboutUs />} />

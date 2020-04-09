@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { switchActivePage } from '../../actions/actions';
 
 const Header = ({ switchActive }) => {
-    let topics = [
+    const topics = [
         {
             url: "about-us",
             name: "about us"
@@ -20,14 +20,22 @@ const Header = ({ switchActive }) => {
         },
         {
             url: "cart",
-            name: <i class="fas fa-shopping-cart"></i>
+            name: <i className="fas fa-shopping-cart"></i>
         }];
-    const links = topics.map(link => <Link to={link.url} onClick={() => switchActive(link.url)}>{link.name}</Link>)
+
+    const links = topics.map(link => {
+        const linkProps = {
+            key: link.name,
+            to: link.url,
+            onClick: switchActive(link.url)
+        };
+        return (<Link {...linkProps}>{link.name}</Link>)
+    });
     return (
         <div className="header">
             <div className="wrapper header__wrapper">
                 <Link to="/" className="logo">
-                    <i class="fa fa-car-crash"></i>
+                    <i className="fa fa-car-crash"></i>
                     <div className="logo__name"> autoservice</div>
                 </Link>
                 <nav className="header__navigation">

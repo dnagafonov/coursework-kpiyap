@@ -1,4 +1,4 @@
-@import '../../scss/general-classes.scss';
+@import '../../scss/constants.scss';
 
 .list {
     width: 100%;
@@ -8,4 +8,5 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    padding-top: 80px !important;
 }
