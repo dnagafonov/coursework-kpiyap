@@ -10,7 +10,6 @@ const ListGood = props => {
             </div>
             <div className="list-good__description">
                 <div className="list-good__price">{price}</div>
-                <button className="btn-general">compare</button>
             </div>
         </div>
     );

@@ -2,12 +2,14 @@ import React from 'react';
 import './welcome.scss'
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
+import { ScrollToTop } from '../ScrollToTop';
 
 const Welcome = () => {
     return (
         <div className="welcome">
             <div className="wrapper welcome__wrapper">
                 <div className="welcome__header">
+                    <ScrollToTop/>
                     <h1>Welcome</h1>
                     <ScrollLink 
                         className="arrow-down" 

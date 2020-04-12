@@ -1,0 +1,1 @@
+export const randomId = () => Math.random().toString(28).slice(-8);

@@ -10,7 +10,7 @@
     border-radius: 8px;
     background-color: $bg-primary;
     animation-name: list-good;
-    animation-duration: 0.7s;
+    animation-duration: 0.6s;
 }
 
 .list-good__image {
@@ -42,10 +42,6 @@
     display: flex;
     justify-content: space-between;
     padding: 0 10px 0 20px;
-}
-
-@mixin random-bg() {
-    background-color: rgba(random(255),random(255),random(255));
 }
 
 @keyframes list-good {
