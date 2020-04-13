@@ -1,16 +1,15 @@
 import React from 'react';
 import './not-found.scss'
-import { ScrollToTop } from '../ScrollToTop';
+import { InfoContainer } from '../InfoContainer';
 
 const NotFound = () => {
     return (
         <div className="not-found">
-            <div className="wrapper not-found__wrapper">
-                <ScrollToTop/>
-                <h1 className="not-found__header">
+            <InfoContainer>
+                <h1 className="not-found">
                     Ooops, that page not found...
                 </h1>
-            </div>
+            </InfoContainer>
         </div>
     )
 }

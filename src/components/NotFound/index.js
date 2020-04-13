@@ -1,2 +1,2 @@
-import AboutUs from './AboutUs';
-export { AboutUs };
+import NotFound from './NotFound';
+export { NotFound };

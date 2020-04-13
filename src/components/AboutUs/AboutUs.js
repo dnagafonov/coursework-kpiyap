@@ -1,21 +1,15 @@
 import React from 'react';
 import './about-us.scss'
-import { ScrollToTop } from '../ScrollToTop';
+import { InfoContainer } from '../InfoContainer';
 
 const AboutUs = () => {
     return (
         <div className="about-us">
-            <div className="wrapper about-us__wrapper">
-                <ScrollToTop/>
+            <InfoContainer>
                 <h1 className="about-us__header">
                     We are hight quality autoservice team
                 </h1>
-                <div className="about-us__road">
-                    <div className="road">
-
-                    </div>
-                </div>
-            </div>
+            </InfoContainer>
         </div>
     )
 }

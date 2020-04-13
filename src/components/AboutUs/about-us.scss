@@ -1,39 +1,9 @@
 @import "../../scss/constants.scss";
 
-.about-us__wrapper {
-    position: relative;
-    display: flex;
-    flex-flow: column;
-    animation: about-us;
-    animation-duration: 0.6s;
-
-}
-
 .about-us__header {
-    position: absolute;
-    top: calc(10px + 46vmin);
     margin: 0;
-    align-self: center;
-
-    font-size: calc(12px + 2vmin);
+    font-size: $fs;
     text-transform: uppercase;
-    text-align: center;
-}
-
-.about-us__road {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-end;
-}
-
-.road  {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    font-size: calc(10px + 4.6vmax);
 }
 
 @keyframes about-us {
