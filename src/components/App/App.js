@@ -12,10 +12,12 @@ import { Welcome } from '../Welcome';
 import { AboutUs } from '../AboutUs';
 import NotFound from '../NotFound/NotFound';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import Good from '../Good/Good';
+import { connect } from 'react-redux';
 const servicesStub = require(`./services-stub.json`);
 const spiresStub = require(`./spires-stub.json`);
 
-const App = () => {
+const App = props => {
   return (
     <Router>
       <div className="App">
@@ -41,6 +43,16 @@ const App = () => {
               <List items={servicesStub} />
             </ErrorBoundary>
           </Route>
+          <Route path="/services/:id">
+            <ErrorBoundary>
+              <Good />
+            </ErrorBoundary>
+          </Route>
+          <Route path="/spares/:id">
+            <ErrorBoundary>
+              <Good />
+            </ErrorBoundary>
+          </Route>
           <Route path="*">
             <ErrorBoundary>
               <NotFound />
@@ -53,4 +65,8 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  good: state.goodReducer.good
+})
+
+export default connect(mapStateToProps)(App);

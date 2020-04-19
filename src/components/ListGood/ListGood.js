@@ -1,10 +1,12 @@
 import React from 'react';
-import './list-good.scss'
+import './list-good.scss';
+import { openGood } from '../../actions/actions';
+import { connect } from 'react-redux';
 
 const ListGood = props => {
-    const { name, price } = props;
+    const { name, price, openGood} = props;
     return (
-        <div className="list-good shadow">
+        <div className="list-good shadow" onClick={() => openGood(props)}>
             <div className="list-good__image">
                 <div className="list-good__name text-container">{name}</div>
             </div>
@@ -15,4 +17,10 @@ const ListGood = props => {
     );
 }
 
-export default ListGood;
+const mapDispatchToProps = dispatch => ({
+    openGood(good){
+        dispatch(openGood(good));
+    }
+})
+
+export default connect(null, mapDispatchToProps)(ListGood);
