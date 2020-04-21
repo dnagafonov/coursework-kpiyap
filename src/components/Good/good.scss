@@ -1,0 +1,36 @@
+@import '../../scss/constants.scss';
+
+.good__wrapper {
+    height: 100vh;
+    padding-top: 60px;
+
+    display: flex;
+    flex-flow: row, nowrap;;
+    box-sizing: border-box;
+}
+.good__image {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image__wrapper {
+    height: 70vmin;
+    width: 70vmin;
+    border-radius: 8px;
+}
+.good__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info__wrapper {
+    height: 70vmin;
+}
+.good__info {
+    width: 30%;
+}
+
+.good__name {
+    font-size: $fs-b;
+}

@@ -1,25 +1,27 @@
 import React from 'react';
+import './good.scss';
 
-const Good = ({ name, price, description }) => {
+const Good = ({ _id, name, price, description, currency, amount, url_name, type }) => {
 
     return (
         <div className="good">
             <div className="wrapper good__wrapper">
                 <div className="good__image">
-                    <img src="#" alt="#" />
+                    <div className="image__wrapper shadow">
+                        <img src="#" alt="#" />
+                    </div>
                 </div>
                 <div className="good__info">
-                    <h3 className="good__name">{name}</h3>
-                    <div className="good__discription">{description}</div>
-                    <div className="good__price">{price}</div>
-                    <div className="good__operation">
-                        <button className="btn-general">btn1</button>
-                        <button className="btn-general">btn2</button>
-                        <button className="btn-general">btn3</button>
+                    <div className="info__wrapper">
+                        <h3 className="good__name">{name}</h3>
+                        <div className="good__discription">{description}</div>
+                        <div className="good__price">{price} {currency}</div>
+                        <div className="good__operation">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

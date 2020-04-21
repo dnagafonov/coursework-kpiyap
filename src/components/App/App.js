@@ -33,24 +33,31 @@ const App = props => {
               <AboutUs />
             </ErrorBoundary>
           </Route>
-          <Route path="/spares">
+          <Route exact path="/spares">
             < ErrorBoundary >
               <List items={spiresStub} />
             </ErrorBoundary>
           </Route>
-          <Route path="/services">
+          <Route exact path="/services">
             <ErrorBoundary>
               <List items={servicesStub} />
             </ErrorBoundary>
           </Route>
           <Route path="/services/:id">
             <ErrorBoundary>
-              <Good />
+              <Good name="Back view mirrors"
+                    price={200}
+                    currency="usd"
+                    _id="dsad12d21d443t"
+                    description="2 mirror for audi q5, black color, without mirrors"
+                    amount={20}
+                    url_name="back-view-mirrors-audi-q5"
+                    type="spire" />
             </ErrorBoundary>
           </Route>
           <Route path="/spares/:id">
             <ErrorBoundary>
-              <Good />
+              <Good {...props.good} />
             </ErrorBoundary>
           </Route>
           <Route path="*">
