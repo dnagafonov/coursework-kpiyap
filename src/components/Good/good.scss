@@ -20,17 +20,34 @@
     border-radius: 8px;
 }
 .good__info {
+    width: 30%;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 .info__wrapper {
     height: 70vmin;
 }
-.good__info {
-    width: 30%;
+
+.good__name,
+.good__operation,
+.good__discription {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
 }
 
 .good__name {
     font-size: $fs-b;
+}
+
+.good__price {
+    margin-right: 20px;
+}
+
+.good__operation {
+    display: flex;
+    flex-flow: row wrap;
 }

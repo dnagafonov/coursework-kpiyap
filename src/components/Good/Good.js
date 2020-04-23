@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './good.scss';
+import { getCurrentPrice } from '../../tools/get-current-price';
 
-const Good = ({ _id, name, price, description, currency, amount, url_name, type }) => {
-
-    return (
+function Good ({ _id, name, price, description, currency, amount, url_name, type }) {
+    const [loading, setLoading] = useState(true);
+    const [priceData, setPriceData] = useState({});
+    const notReady = <div></div>;
+    const ready = (
         <div className="good">
             <div className="wrapper good__wrapper">
                 <div className="good__image">
@@ -15,13 +18,19 @@ const Good = ({ _id, name, price, description, currency, amount, url_name, type 
                     <div className="info__wrapper">
                         <h3 className="good__name">{name}</h3>
                         <div className="good__discription">{description}</div>
-                        <div className="good__price">{price} {currency}</div>
-                        <div className="good__operation">
-                        </div>
+                        <form className="good__operation">
+                            <div className="good__price">{price} {}</div>
+                            <button className="btn-general">Add to cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div >
+    );
+    return (
+        <>
+        {loading ? notReady : ready}
+        </>
     );
 }
 
