@@ -14,8 +14,8 @@ import NotFound from '../NotFound/NotFound';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Good from '../Good/Good';
 import { connect } from 'react-redux';
-const servicesStub = require(`./services-stub.json`);
-const spiresStub = require(`./spires-stub.json`);
+import servicesStub from './services-stub.json';
+import spiresStub from './spires-stub.json';
 
 const App = props => {
   return (
@@ -44,16 +44,14 @@ const App = props => {
             </ErrorBoundary>
           </Route>
           <Route path="/services/:id">
-            <ErrorBoundary>
               <Good name="Back view mirrors"
-                    price={200}
-                    currency="usd"
+                    price={2000}
+                    currency="rub"
                     _id="dsad12d21d443t"
                     description="2 mirror for audi q5, black color, without mirrors"
                     amount={20}
                     url_name="back-view-mirrors-audi-q5"
                     type="spire" />
-            </ErrorBoundary>
           </Route>
           <Route path="/spares/:id">
             <ErrorBoundary>

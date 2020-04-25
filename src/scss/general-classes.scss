@@ -29,3 +29,17 @@
 .divider {
     margin-top: 70px;
 }
+
+.loading-row {
+    background-color: $color-primary;
+    border-radius: 5px;
+    animation-name: loading-row;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes loading-row {
+    50% { background-color: #666;}
+    100% {background-color: $color-primary;}
+}
