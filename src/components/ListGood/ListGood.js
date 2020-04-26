@@ -1,26 +1,44 @@
 import React from 'react';
 import './list-good.scss';
-import { openGood } from '../../actions/actions';
 import { connect } from 'react-redux';
+import { openGood, setGoodData } from '../../actions/actions';
 
-const ListGood = props => {
-    const { name, price, openGood} = props;
-    return (
-        <div className="list-good shadow" onClick={() => openGood(props)}>
-            <div className="list-good__image">
-                <div className="list-good__name text-container">{name}</div>
+function ListGood(props) {
+    const { name, price, currency, setGoodData, loading } = props;
+    const notReady = (
+        <div className="list-good shadow" >
+            <div className="list-good__image loading-row">
+                <div className="list-good__name text-container"></div>
             </div>
             <div className="list-good__description">
-                <div className="list-good__price">{price}</div>
+                <div className="list-good__price loading-row"></div>
             </div>
         </div>
     );
+    return (
+        <>
+            {loading ? notReady : (
+                <div className="list-good shadow">
+                    <div className="list-good__image">
+                        <div className="list-good__name text-container">{name}</div>
+                    </div>
+                    <div className="list-good__description">
+                        <div className="list-good__price">{price}</div>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
 
-const mapDispatchToProps = dispatch => ({
-    openGood(good){
-        dispatch(openGood(good));
+const mapDispatch = dispatch => ({
+    setGoodData(goodInfo, currentPrice) {
+        dispatch(setGoodData(goodInfo, currentPrice));
     }
-})
+});
 
-export default connect(null, mapDispatchToProps)(ListGood);
+const mapState = state => ({
+    exchangeRate: state.goodRouter.exchangeRate
+});
+
+export default connect(null, mapDispatch)(ListGood);

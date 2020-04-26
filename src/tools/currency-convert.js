@@ -1,0 +1,1 @@
+export const currencyConvert = (price, rate, scale) => (price / rate * scale).toFixed(2);

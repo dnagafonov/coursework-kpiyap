@@ -1,4 +1,5 @@
-const {type} = require('../actions/constants');
+import { setRate } from '../actions/actions';
+const { type } = require('../actions/constants');
 
 const initialState = {
     good: null
@@ -6,9 +7,17 @@ const initialState = {
 
 const goodReducer = (state = initialState, action) => {
     switch (action.type) {
-        case type.OPEN_GOOD:
+        case type.SET_GOOD_DATA:
             return {
-                good: action.good 
+                good: action.good
+            };
+        case type.SET_RATE:
+            return {
+                exchangeRate: action.rate
+            };
+        case type.FETCH_RATE_DATA:
+            return {
+                fetched: action.rate
             }
         default:
             return state;

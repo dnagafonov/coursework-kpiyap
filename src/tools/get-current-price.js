@@ -1,22 +1,22 @@
-import axios from 'axios';
+import { currencyConvert } from './currency-convert';
 
-export const getCurrentPrice = async (abbreviation, price) => {
-    return await axios.get("https://www.nbrb.by/api/exrates/rates?periodicity=0")
-        .then(json => {
-            const index = json.data.findIndex(obj => obj.Cur_Abbreviation === abbreviation.toUpperCase());
-            switch (abbreviation) {
-                case "rub":
-                    return {
-                        symbol: "₽",
-                        price: (price / json.data[index].Cur_OfficialRate * 100).toFixed(2)
-                    }
-
-                default:
-                    return {
-                        symbol: "$",
-                        price: (price / json.data[index].Cur_OfficialRate).toFixed(2)
-                    };
+export const getCurrentPrice = (currency, price, exchangeRates) => {
+    const index = exchangeRates.findIndex(obj => obj.Cur_Abbreviation === currency.toUpperCase());
+    switch (currency) {
+        case "rub":
+            const rub_rate = exchangeRates[index].Cur_OfficialRate;
+            const rub_scale = exchangeRates[index].Cur_Scale;
+            return {
+                symbol: "₽",
+                price: currencyConvert(price, rub_rate, rub_scale)
             }
-        })
-        .catch(e => console.error(`Error: ${e.message}`));
-};
+
+        default:
+            const usd_rate = exchangeRates[index].Cur_OfficialRate;
+            const usd_scale = exchangeRates[index].Cur_Scale;
+            return {
+                symbol: "$",
+                price: currencyConvert(price, usd_rate, usd_scale)
+            };
+    }
+}
