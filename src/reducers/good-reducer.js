@@ -1,4 +1,5 @@
 import { setRate } from '../actions/actions';
+import { getCurrentPrice } from '../tools/get-current-price';
 const { type } = require('../actions/constants');
 
 const initialState = {
@@ -18,6 +19,17 @@ const goodReducer = (state = initialState, action) => {
         case type.FETCH_RATE_DATA:
             return {
                 fetched: action.rate
+            }
+        case type.SET_LIST:
+            const list = action.list.map(el => {
+                const currentPrice = getCurrentPrice(action.currency, el.price, action.exchangeRate);
+                return {
+                    ...el,
+                    currentPrice
+                }
+            });
+            return {
+                list
             }
         default:
             return state;

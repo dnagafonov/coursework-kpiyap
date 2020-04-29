@@ -14,7 +14,6 @@ import NotFound from '../NotFound/NotFound';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Good from '../Good/Good';
 import { connect } from 'react-redux';
-import servicesStub from './services-stub.json';
 import spiresStub from './spires-stub.json';
 
 const App = props => {
@@ -40,7 +39,7 @@ const App = props => {
           </Route>
           <Route exact path="/services">
             <ErrorBoundary>
-              <List items={servicesStub} />
+              <List />
             </ErrorBoundary>
           </Route>
           <Route path="/services/:id">

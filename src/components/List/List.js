@@ -4,41 +4,46 @@ import { ListGood } from '../ListGood';
 import { ScrollToTop } from '../ScrollToTop';
 import { randomId } from '../../tools/randomId';
 import { connect } from 'react-redux';
-import { fetchRateData, setRate } from '../../actions/actions';
-import { getExchangeRate } from '../../tools/get-exchange-rate';
+import { setList } from '../../actions/actions';
+import listStub from './listStub.json';
+import stub from '../App/services-stub.json';
 
 function List(props) {
-    const { items, setRate, fetchRateData } = props;
-    const listStub = require('./listStub.json');
+    const { setList, list } = props;
     const [loading, setLoading] = useState(true);
+    const [items, setItems] = useState(null);
     useEffect(() => {
-        fetchRateData();
-        setLoading(false);
-    }, []);
-    const list = items.map(el => <ListGood name={el.name} price={el.price} key={randomId()} />);
+        (async () => {
+            await setList(stub, "rub");
+        })();
+        setLoading(false);}, []);
     return (
         <>
             {loading ?
                 <div className="list">
                     <ScrollToTop />
                     <div className="wrapper list__wrapper">
-                        {listStub.map(e => <ListGood loading={true}/>)}
+                        {listStub.map(e => <ListGood loading={true} />)}
                     </div>
                 </div> :
                 <div className="list">
                     <ScrollToTop />
                     <div className="wrapper list__wrapper">
-                        {list}
-                    </div>
+                    {listStub.map(e => <ListGood loading={true} />)}
+                </div>
                 </div>}
         </>
     );
 }
 
+const mapState = state => ({
+    list: state.goodReducer.list
+});
+
 const mapDisp = dispatch => ({
-    fetchRateData() {
-        dispatch(fetchRateData());
+    setList(list, currency) {
+        dispatch(setList(list, currency));
     }
 })
 
-export default connect(null, mapDisp)(List);
+export default connect(mapState, mapDisp)(List);

@@ -40,6 +40,7 @@
 }
 
 @keyframes loading-row {
+    0% {background-color: $color-primary;}
     50% { background-color: #666;}
     100% {background-color: $color-primary;}
 }

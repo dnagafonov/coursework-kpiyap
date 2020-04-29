@@ -1,6 +1,5 @@
 import { getExchangeRate } from '../tools/get-exchange-rate';
-
-const {type} = require('./constants');
+import { type } from './constants';
 
 export const switchActivePage = page => ({
     type: type.SWITCH_ACTIVE_PAGE,
@@ -19,4 +18,18 @@ export const setRate = rate => ({
 
 export const fetchRateData = () => async dispatch => {
     return getExchangeRate().then(rate => dispatch(setRate(rate)));
+}
+
+export const setList = (list, currency) => async dispatch => {
+    return getExchangeRate().then(rate => {
+        dispatch(setRate(rate));
+        return rate;
+    }).then(rate => {
+        dispatch({
+            type: type.SET_LIST,
+            list,
+            currency,
+            exchangeRate: rate
+        })
+    });
 }

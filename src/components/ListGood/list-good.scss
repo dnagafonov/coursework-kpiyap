@@ -45,6 +45,17 @@
     padding: 0 10px 0 20px;
 }
 
+.list-good__price.loading-row {
+    width: 70px;
+    height: 20px;
+}
+
+.list-good__image.loading-row div {
+    height: 20px;
+    min-width: 70px;
+    margin: 5px;
+}
+
 @keyframes list-good {
     0%{
         opacity: 0;
