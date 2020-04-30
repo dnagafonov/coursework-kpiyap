@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './good.scss';
-import { getCurrentPrice } from '../../tools/get-current-price';
 
 function Good ({ _id, name, price, description, currency, amount, url_name, type, colors }) {
     const [priceData, setPriceData] = useState();

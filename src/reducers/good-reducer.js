@@ -29,7 +29,8 @@ const goodReducer = (state = initialState, action) => {
                 }
             });
             return {
-                list
+                list,
+                exchangeRate: action.exchangeRate
             }
         default:
             return state;

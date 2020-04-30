@@ -22,9 +22,6 @@ export const fetchRateData = () => async dispatch => {
 
 export const setList = (list, currency) => async dispatch => {
     return getExchangeRate().then(rate => {
-        dispatch(setRate(rate));
-        return rate;
-    }).then(rate => {
         dispatch({
             type: type.SET_LIST,
             list,
