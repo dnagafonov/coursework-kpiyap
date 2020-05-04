@@ -9,20 +9,22 @@ import stub from '../App/services-stub.json';
 
 function List(props) {
     const { setList, list } = props;
-    const [items, setItems] = useState(null);
+    const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
-        (async() => {
-            await setList(stub, "usd");
-            setItems(list);
-        })();
-    }, [list, setList]);
+        if(toLoad){
+            (async() => {
+                await setList(stub, "rub");
+            })();
+            setToLoad(false);
+        }   
+    }, [list]);
     return (
         <>
-            {items ?
+            {list ?
                 <div className="list">
                     <ScrollToTop />
                     <div className="wrapper list__wrapper">
-                        {items.map(e => <ListGood name={e.name} price={e.currentPrice.price + " " + e.currentPrice.symbol} />)}
+                        {list.map(e => <ListGood name={e.name} price={e.currentPrice.price + " " + e.currentPrice.symbol} />)}
                     </div>
                 </div> :
                 <div className="list">

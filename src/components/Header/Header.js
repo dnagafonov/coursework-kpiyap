@@ -17,10 +17,6 @@ const Header = ({ switchActive }) => {
         {
             url: "services",
             name: "services"
-        },
-        {
-            url: "cart",
-            name: <i className="fas fa-shopping-cart"></i>
         }];
 
     const links = topics.map(link => {
@@ -40,6 +36,14 @@ const Header = ({ switchActive }) => {
                 </Link>
                 <nav className="header__navigation">
                     {links}
+                    <Link className="account">
+                        <i className="fas fa-user"></i>
+                        <ul className="account__components shadow">
+                            <li>account<i class="far fa-user"></i></li>
+                            <li>cart<i className="fas fa-shopping-cart"></i></li>
+                            <li>log out<i className="fas fa-sign-out-alt"></i></li>
+                        </ul>
+                    </Link>
                 </nav>
             </div>
         </div>

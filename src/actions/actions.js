@@ -28,5 +28,5 @@ export const setList = (list, currency) => async dispatch => {
             currency,
             exchangeRate: rate
         })
-    });
+    }).catch(e => console.error(`Faidet to set list: ${e.message}`));
 }

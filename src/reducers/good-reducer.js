@@ -1,4 +1,3 @@
-import { setRate } from '../actions/actions';
 import { getCurrentPrice } from '../tools/get-current-price';
 const { type } = require('../actions/constants');
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import './list-good.scss';
 import { connect } from 'react-redux';
-import { openGood, setGoodData } from '../../actions/actions';
+import { setGoodData } from '../../actions/actions';
 
 function ListGood(props) {
-    const { name, price, currency, setGoodData, loading } = props;
+    const { name, price, loading } = props;
     const notReady = (
         <div className="list-good shadow" >
             <div className="list-good__image loading-row">
@@ -37,8 +37,5 @@ const mapDispatch = dispatch => ({
     }
 });
 
-const mapState = state => ({
-    exchangeRate: state.goodRouter.exchangeRate
-});
 
 export default connect(null, mapDispatch)(ListGood);

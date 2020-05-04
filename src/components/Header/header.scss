@@ -36,7 +36,9 @@
 
 .header__navigation a{
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0 10px;  
     text-transform: uppercase;
 }
@@ -46,13 +48,78 @@
     color: $color-secondary;
 }
 
-.cart {
-    font-size: 1.5rem;
-}
-
 a:link, a:visited {
     color: $color-primary;
     text-decoration: none;
+}
+
+.account {
+    width: 30px;
+}
+
+.account:hover .account__components {
+    display: flex;
+    flex-flow: column wrap,
+}
+
+.account .account__components {
+    position: absolute;
+    top: 52px;
+    display: none;
+    align-self: flex-end;
+    list-style: none;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+    background-color: $bg-primary;
+    border: $border;
+    border-radius: $br;
+}
+
+.account__components::after,
+.account__components::before {
+    position: absolute;
+    pointer-events: none;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    bottom: 100%;
+    right: 15px;
+}
+
+.account__components::before {
+    border-width: 6px;
+    margin: 0 -6px;
+    border-bottom-color: $border-color;
+}
+
+.account__components::after {
+    border-width: 5px;
+    margin: 0 -5px;
+    border-bottom-color: $bg-primary;
+}
+
+.account__components li {
+    text-align: left;
+    padding: 15px 30px;
+    transition: 0.5s ease-in-out;
+}
+
+.account__components li:first-child {
+    border-radius: $br $br 0 0;
+}
+
+.account__components li:last-child {
+    border-radius: 0 0 $br $br;
+}
+
+.account__components li:hover {
+    background-color: $bg-secondary;
+}
+
+.account__components li i {
+    margin-left: 5px;
 }
 
 @media screen and (max-width: 550px){
