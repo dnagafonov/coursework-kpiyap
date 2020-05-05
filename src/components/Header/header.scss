@@ -85,7 +85,7 @@ a:link, a:visited {
     height: 0;
     width: 0;
     bottom: 100%;
-    right: 15px;
+    right: 14px;
 }
 
 .account__components::before {
@@ -100,25 +100,27 @@ a:link, a:visited {
     border-bottom-color: $bg-primary;
 }
 
-.account__components li {
-    text-align: left;
+.account__components a {
+    display: inline;
     padding: 15px 30px;
+    text-align: right;
     transition: 0.5s ease-in-out;
+    white-space: nowrap;
 }
 
-.account__components li:first-child {
+.account__components a:first-child {
     border-radius: $br $br 0 0;
 }
 
-.account__components li:last-child {
+.account__components a:last-child {
     border-radius: 0 0 $br $br;
 }
 
-.account__components li:hover {
+.account__components a:hover {
     background-color: $bg-secondary;
 }
 
-.account__components li i {
+.account__components a i {
     margin-left: 5px;
 }
 

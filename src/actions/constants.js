@@ -3,5 +3,6 @@ export const type = {
     SET_GOOD_DATA: "SET_GOOD_DATA",
     FETCH_RATE_DATA: "FETCH_RATE_DATA",
     SET_RATE: "SET_RATE",
-    SET_LIST: "SET_LIST"
+    SET_LIST: "SET_LIST",
+    LOG_IN: "LOG_IN"
 }
