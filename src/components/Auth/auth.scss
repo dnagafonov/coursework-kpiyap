@@ -1,0 +1,12 @@
+@import '../../scss/constants.scss';
+
+.auth {
+    width: 100%;
+}
+
+.auth__wrapper {
+    height: 100vh;
+    padding-top: 70px;
+    display: flex;
+    flex-flow: row wrap;
+}

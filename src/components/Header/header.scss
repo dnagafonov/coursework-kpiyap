@@ -53,16 +53,16 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-.account {
+.nav-account {
     width: 30px;
 }
 
-.account:hover .account__components {
+.nav-account:hover .nav-account__components {
     display: flex;
     flex-flow: column wrap,
 }
 
-.account .account__components {
+.nav-account .nav-account__components {
     position: absolute;
     top: 52px;
     display: none;
@@ -76,8 +76,8 @@ a:link, a:visited {
     border-radius: $br;
 }
 
-.account__components::after,
-.account__components::before {
+.nav-account__components::after,
+.nav-account__components::before {
     position: absolute;
     pointer-events: none;
     border: solid transparent;
@@ -88,19 +88,19 @@ a:link, a:visited {
     right: 14px;
 }
 
-.account__components::before {
+.nav-account__components::before {
     border-width: 6px;
     margin: 0 -6px;
     border-bottom-color: $border-color;
 }
 
-.account__components::after {
+.nav-account__components::after {
     border-width: 5px;
     margin: 0 -5px;
     border-bottom-color: $bg-primary;
 }
 
-.account__components a {
+.nav-account__components a {
     display: inline;
     padding: 15px 30px;
     text-align: right;
@@ -108,19 +108,19 @@ a:link, a:visited {
     white-space: nowrap;
 }
 
-.account__components a:first-child {
+.nav-account__components a:first-child {
     border-radius: $br $br 0 0;
 }
 
-.account__components a:last-child {
+.nav-account__components a:last-child {
     border-radius: 0 0 $br $br;
 }
 
-.account__components a:hover {
+.nav-account__components a:hover {
     background-color: $bg-secondary;
 }
 
-.account__components a i {
+.nav-account__components a i {
     margin-left: 5px;
 }
 

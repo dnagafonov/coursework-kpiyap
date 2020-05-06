@@ -3,6 +3,7 @@ import './header.scss';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { switchActivePage } from '../../actions/actions';
+import NavAccount from './NavAccount';
 
 const Header = ({ switchActive }) => {
     const topics = [
@@ -36,14 +37,7 @@ const Header = ({ switchActive }) => {
                 </Link>
                 <nav className="header__navigation">
                     {links}
-                    <Link className="account" to="/account">
-                        <i className="fas fa-user"></i>
-                        <nav className="account__components shadow">
-                            <Link to="/account">account<i class="far fa-user"></i></Link>
-                            <Link to="/cart">cart<i className="fas fa-shopping-cart"></i></Link>
-                            <Link>log out<i className="fas fa-sign-out-alt"></i></Link>
-                        </nav>
-                    </Link>
+                    <NavAccount />
                 </nav>
             </div>
         </div>

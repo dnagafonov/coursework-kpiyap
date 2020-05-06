@@ -30,3 +30,11 @@ export const setList = (list, currency) => async dispatch => {
         })
     }).catch(e => console.error(`Faidet to set list: ${e.message}`));
 }
+
+export const logOut = () => ({
+    type: type.LOG_OUT
+});
+
+export const logIn = (login, password) => async dispatch => {
+    
+}

@@ -1,0 +1,12 @@
+@import '../../scss/constants.scss';
+
+.account {
+    width: 100%;
+}
+
+.account__wrapper {
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    
+}

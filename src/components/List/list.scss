@@ -5,6 +5,7 @@
 }
 
 .list__wrapper {
+    min-height: 100vh;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;

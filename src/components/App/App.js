@@ -10,11 +10,13 @@ import {
 } from 'react-router-dom';
 import { Welcome } from '../Welcome';
 import { AboutUs } from '../AboutUs';
-import NotFound from '../NotFound/NotFound';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import Good from '../Good/Good';
+import { NotFound } from '../NotFound';
+import { ErrorBoundary } from '../ErrorBoundary';
+import { Good } from '../Good';
 import { connect } from 'react-redux';
 import spiresStub from './spires-stub.json';
+import { Account } from '../Account';
+import { Auth } from '../Auth';
 
 const App = props => {
   return (
@@ -42,15 +44,25 @@ const App = props => {
               <List />
             </ErrorBoundary>
           </Route>
+          <Route exact path="/account">
+            <ErrorBoundary>
+              <Account />
+            </ErrorBoundary>
+          </Route>
+          <Route exact path="/auth">
+            <ErrorBoundary>
+              <Auth />
+            </ErrorBoundary>
+          </Route>
           <Route path="/services/:id">
-              <Good name="Back view mirrors"
-                    price={2000}
-                    currency="rub"
-                    _id="dsad12d21d443t"
-                    description="2 mirror for audi q5, black color, without mirrors"
-                    amount={20}
-                    url_name="back-view-mirrors-audi-q5"
-                    type="spire" />
+            <Good name="Back view mirrors"
+              price={2000}
+              currency="rub"
+              _id="dsad12d21d443t"
+              description="2 mirror for audi q5, black color, without mirrors"
+              amount={20}
+              url_name="back-view-mirrors-audi-q5"
+              type="spire" />
           </Route>
           <Route path="/spares/:id">
             <ErrorBoundary>
