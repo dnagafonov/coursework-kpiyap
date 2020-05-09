@@ -20,7 +20,7 @@ const NavAccount = ({ name }) => {
         <Link className="nav-account" to="/account">
             <i className="fas fa-user"></i>
             <nav className="nav-account__components shadow">
-                <Link to="/auth">log in<i class="far fa-user"></i></Link>
+                <Link to="/auth">log in<i className="far fa-user"></i></Link>
             </nav>
         </Link>
     );

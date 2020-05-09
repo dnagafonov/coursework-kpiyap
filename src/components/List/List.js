@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { setList } from '../../actions/actions';
 import listStub from './listStub.json';
 import stub from '../App/services-stub.json';
+import { randomId } from '../../tools/randomId';
 
 function List(props) {
-    const { setList, list } = props;
+    const { list } = props;
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         if(toLoad){
@@ -16,21 +17,22 @@ function List(props) {
                 await setList(stub, "rub");
             })();
             setToLoad(false);
-        }   
-    }, [list]);
+        }  
+    }, [list, toLoad]);
+    
     return (
         <>
             {list ?
                 <div className="list">
                     <ScrollToTop />
                     <div className="wrapper list__wrapper">
-                        {list.map(e => <ListGood name={e.name} price={e.currentPrice.price + " " + e.currentPrice.symbol} />)}
+                        {list.map(e => <ListGood key = {randomId()} name={e.name} price={e.currentPrice.price + " " + e.currentPrice.symbol} />)}
                     </div>
                 </div> :
                 <div className="list">
                     <ScrollToTop />
                     <div className="wrapper list__wrapper">
-                        {listStub.map(e => <ListGood loading={true} />)}
+                        {listStub.map(e => <ListGood loading={true} key = {randomId()}/>)}
                     </div>
                 </div>}
         </>

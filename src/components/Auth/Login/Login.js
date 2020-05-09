@@ -9,12 +9,12 @@ function Login({ logIn }) {
             <div className="login__header shadow">sing in</div>
             <div className="login__body">
                 <div className="login__body_login">
-                    <label for="login">Login:</label><br />
-                    <input id="login" type="email" autoSave />
+                    <label htmlFor="login-username">Login:</label><br />
+                    <input id="login-username" type="email" />
                 </div>
                 <div className="login__body_password">
-                    <label for="password">Password:</label><br />
-                    <input id="password" type="password" min={8} />
+                    <label htmlFor="login-password">Password:</label><br />
+                    <input id="login-password" type="password" min={8} />
                 </div>
             </div>
             <div className="login__footer">

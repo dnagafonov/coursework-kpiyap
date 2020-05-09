@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const auth = async (url, login, password) => {
+export const authorization = async (url, login, password) => {
     await axios.post(url, {
         login,
         password

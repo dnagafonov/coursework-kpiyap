@@ -1,0 +1,1 @@
+export const checkPasswordValid = pas => /^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)(?=\S*[^\w\s])\S{8,}$/.test(pas);   

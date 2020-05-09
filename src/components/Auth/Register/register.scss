@@ -25,18 +25,24 @@
     align-items: center;
 }
 
+.register__body__wrapper {
+    width: 187px;
+}
+
+.register__body__wrapper i {
+    margin-left: 5px;
+}
+
 .register__body_login,
-.register__body_password {
-    padding: 5px;
+.register__body_password, 
+.register__body_email {
+    padding-top: 5px;
 }
 
 .register__footer {
+    padding: 0 20px;
     height: 60px;
     display: flex;
-    flex-direction: row-reverse;
+    flex-flow: row-reverse wrap;
     align-items: center;
-}
-
-.register__footer input {
-    margin-right: 20px;
 }
