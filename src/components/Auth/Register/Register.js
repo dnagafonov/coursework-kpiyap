@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './register.scss';
 import { connect } from 'react-redux';
-import { checkPasswordsValidation } from '../../../tools/checkPasswordsValidation';
+import { checkPasswordsValidation } from '../../../tools/check-passwords-validation';
 import { authorization } from '../../../tools/authorization';
-import { checkPasswordValid } from '../../../tools/checkPasswordValid';
+import { checkPasswordValid } from '../../../tools/check-password-valid';
 
 function Register(props) {
     const [password, setPassword] = useState({

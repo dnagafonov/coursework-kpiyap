@@ -76,6 +76,9 @@ const account = (state = initialState, action) => {
         case type.LOG_IN:
             return {
             }
+        case type.LOG_OUT: 
+        return {}
+        
         default:
             return state;
     }

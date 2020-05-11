@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './header.scss';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import { logOut } from '../../actions/actions';
 
-const NavAccount = ({ name }) => {
+const NavAccount = ({ name, logOut }) => {
     if (name) {
         return (
             <Link className="nav-account" to="/account">
@@ -11,7 +12,7 @@ const NavAccount = ({ name }) => {
                 <nav className="nav-account__components shadow">
                     <Link to="/account">{name}<i class="far fa-user"></i></Link>
                     <Link to="/cart">cart<i className="fas fa-shopping-cart"></i></Link>
-                    <Link>log out<i className="fas fa-sign-out-alt"></i></Link>
+                    <Link onClick={() => logOut()}>log out<i className="fas fa-sign-out-alt"></i></Link>
                 </nav>
             </Link>
         );
@@ -27,7 +28,13 @@ const NavAccount = ({ name }) => {
 }
 
 const mapState = state => ({
-    name: state.account.name
+    name: state.account.username
 });
 
-export default connect(mapState)(NavAccount);
+const mapDispatch = dispatch => ({
+    logOut(){
+        dispatch(logOut())
+    }
+})
+
+export default connect(mapState, mapDispatch)(NavAccount);

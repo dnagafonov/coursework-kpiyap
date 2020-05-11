@@ -21,15 +21,31 @@ export const fetchRateData = () => async dispatch => {
 }
 
 export const setList = (list, currency) => async dispatch => {
-    return getExchangeRate().then(rate => {
+    return await getExchangeRate().then(rate => {
         dispatch({
             type: type.SET_LIST,
             list,
             currency,
             exchangeRate: rate
         })
-    }).catch(e => console.error(`Faidet to set list: ${e.message}`));
+    }).catch(e => console.error(`Failed to set list: ${e.message}`));
 }
+
+export const updateCurrencyInCart = (list, currency) => async dispatch => {
+    return await getExchangeRate().then(rate => {
+        dispatch({
+            type: type.UPDATE_CURRENCY_IN_CART,
+            list,
+            currency,
+            exchangeRate: rate
+        })
+    }).catch(e => console.error(`Failed to update currency in cart: ${e.message}`));
+}
+
+export const updateCurrency = currency => ({
+    type: type.UPDATE_CURRENCY,
+    currency
+});
 
 export const logOut = () => ({
     type: type.LOG_OUT

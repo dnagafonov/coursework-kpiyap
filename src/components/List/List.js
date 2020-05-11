@@ -9,14 +9,15 @@ import stub from '../App/services-stub.json';
 import { randomId } from '../../tools/randomId';
 
 function List(props) {
-    const { list, setList} = props;
+    const { list, currency, setList} = props;
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         if(toLoad){
-            setList(stub, "usd");
+            setList(stub, currency);
             setToLoad(false);
-        }  
-    }, [list]);
+        }
+    // eslint-disable-next-line
+    }, [list, currency]);
     
     return (
         <>
@@ -38,7 +39,8 @@ function List(props) {
 }
 
 const mapState = state => ({
-    list: state.goodReducer.list
+    list: state.goodReducer.list,
+    currency: state.goodReducer.currency
 });
 
 const mapDisp = dispatch => ({
