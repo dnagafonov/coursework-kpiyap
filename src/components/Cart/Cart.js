@@ -16,7 +16,7 @@ function List(props) {
             setList(stub, "usd");
             setToLoad(false);
         }  
-    }, [list]);
+    }, [list, toLoad, setList]);
     
     return (
         <>

@@ -43,10 +43,14 @@
 
     text-transform: capitalize;
     border-radius: 8px;
+    transition: ease-in-out 0.3s;
     @for $i from 1 to 4 {
         &:nth-child(#{$i}) {
             @include random-color("background-color");
         }
+    }
+    &:hover {
+        transform: translateY(-10px);
     }
 }
 

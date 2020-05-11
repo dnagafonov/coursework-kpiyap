@@ -6,7 +6,42 @@
 
 .account__wrapper {
     height: 100vh;
+    padding-top: 70px;
     display: flex;
     flex-flow: row nowrap;
+}
+
+.account__header {
+    margin: 0;
+}
+
+.account__info {
+    width: 30%;
+}
+
+.account__cart {
+    width: 70%;
+}
+
+@media (max-width: 1000px){
+    .account__info {
+        width: 40%;
+    }
     
+    .account__cart {
+        width: 60%;
+    }
+}
+
+@media (max-width: 700px){
+    .account__info {
+        width: 100%;
+    }
+    
+    .account__cart {
+        width: 100%;
+    }
+    .account__wrapper {
+        flex-flow: column wrap;
+    }
 }

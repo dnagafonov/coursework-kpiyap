@@ -5,8 +5,8 @@
     top: 0;
     height: 60px;
     width: 100%;
+    min-width: 500px;
     z-index: 3;
-    box-shadow: 0 5px 10px 0 $color-shadow;
     background-color: $bg-primary;
 }
 

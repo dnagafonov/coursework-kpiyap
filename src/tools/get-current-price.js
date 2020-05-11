@@ -10,6 +10,11 @@ export const getCurrentPrice = (currency, price, exchangeRates) => {
                 symbol: "₽",
                 price: currencyConvert(price, rub_rate, rub_scale)
             }
+        case "Br":
+            return {
+                symbol: "Br",
+                price
+            }
 
         default:
             const usd_rate = exchangeRates[index].Cur_OfficialRate;

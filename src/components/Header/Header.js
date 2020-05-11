@@ -24,13 +24,13 @@ const Header = ({ switchActive }) => {
         const linkProps = {
             key: link.name,
             to: link.url,
-            onClick: switchActive(link.url)
+            onClick: () => switchActive(link.url)
         };
         return (<Link {...linkProps}>{link.name}</Link>)
     });
     return (
-        <div className="header">
-            <div className="wrapper header__wrapper">
+        <div className="header shadow">
+            <div className="header__wrapper wrapper">
                 <Link to="/" className="logo">
                     <i className="fa fa-car-crash"></i>
                     <div className="logo__name"> autoservice</div>

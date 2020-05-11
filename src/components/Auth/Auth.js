@@ -3,12 +3,14 @@ import './auth.scss';
 import { connect } from 'react-redux';
 import { Login } from './Login';
 import { Register } from './Register';
+import { ScrollToTop } from '../ScrollToTop';
 
 function Auth (props) {
     
     return (
        <div className="auth">
-           <div className="wrapper auth__wrapper">
+           <div className="auth__wrapper wrapper">
+               <ScrollToTop />
                <Login />
                <Register />
            </div>

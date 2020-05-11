@@ -7,7 +7,7 @@ import { ScrollToTop } from '../ScrollToTop';
 const Welcome = () => {
     return (
         <div className="welcome">
-            <div className="wrapper welcome__wrapper">
+            <div className="welcome__wrapper wrapper">
                 <div className="welcome__header">
                     <ScrollToTop/>
                     <h1>Welcome</h1>
@@ -21,9 +21,9 @@ const Welcome = () => {
                     </ScrollLink>
                 </div>
                 <div className="welcome__layout" id="down">
-                    <Link to="/about-us"><h4>About us</h4></Link>
-                    <Link to="/spares"><h4>spares</h4></Link>
-                    <Link to="/services"><h4>Services</h4></Link>
+                    <Link to="/about-us" className="shadow"><h4>About us</h4></Link>
+                    <Link to="/spares" className="shadow"><h4>spares</h4></Link>
+                    <Link to="/services" className="shadow"><h4>Services</h4></Link>
                 </div>
             </div>
         </div>

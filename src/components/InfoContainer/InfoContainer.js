@@ -5,8 +5,8 @@ import { ScrollToTop } from '../ScrollToTop';
 const InfoContainer = props => {
     return (
         <div className="info-container">
-            <div className="wrapper info-container__wrapper">
-                <ScrollToTop/>
+            <ScrollToTop />
+            <div className="info-container__wrapper wrapper">
                 {props.children}
             </div>
         </div>

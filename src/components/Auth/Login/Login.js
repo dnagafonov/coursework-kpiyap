@@ -18,7 +18,7 @@ function Login({ logIn }) {
                 </div>
             </div>
             <div className="login__footer">
-                <input className="btn-general" type="submit" />
+                <input className="btn-general" type="submit" value="Confirm"/>
             </div>
         </form>
     );

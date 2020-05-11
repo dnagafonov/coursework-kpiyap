@@ -2,7 +2,8 @@ import { getCurrentPrice } from '../tools/get-current-price';
 const { type } = require('../actions/constants');
 
 const initialState = {
-    good: null
+    good: null,
+    currency: "Br"
 };
 
 const goodReducer = (state = initialState, action) => {

@@ -6,7 +6,9 @@ import { authorization } from '../../../tools/authorization';
 import { checkPasswordValid } from '../../../tools/checkPasswordValid';
 
 function Register(props) {
-    const [password, setPassword] = useState();
+    const [password, setPassword] = useState({
+        symbol: <i className="far fa-times-circle"></i>
+    });
     const [confirm, setConfirm] = useState({
         symbol: <i className="far fa-times-circle"></i>
     });
@@ -30,7 +32,7 @@ function Register(props) {
     const changePasswordConfirm = event => {
         event.preventDefault();
         setIsConfSymbol(true);
-        if (password !== event.target.value) {
+        if (password.value !== event.target.value) {
             setConfirm({
                 symbol: <i className="far fa-times-circle"></i>,
                 value: event.target.value
@@ -74,7 +76,7 @@ function Register(props) {
                 </div>
             </div>
             <div className="register__footer">
-                <input className="btn-general" type="submit" />
+                <input className="btn-general" type="submit" value="Confirm" />
             </div>
         </form>
     );

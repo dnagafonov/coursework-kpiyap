@@ -1,16 +1,18 @@
 import React from 'react';
 import './good.scss';
+import { ScrollToTop } from '../ScrollToTop';
 
 function Good ({ _id, name, price, description, currency, amount, url_name, type, colors }) {
     const notReady = (
         <div className="good">
-            <div className="wrapper good__wrapper">
+            <ScrollToTop />
+            <div className="good__wrapper wrapper">
                 <div className="good__image">
-                    <div className="image__wrapper shadow loading-row"></div>
+                    <div className="good__image__wrapper shadow loading-row"></div>
                 </div>
                 <div className="good__info">
                     <div className="info__wrapper">
-                        <h3 className="good__name loading-row">Name</h3>
+                        <h3 className="good__name loading-row"> </h3>
                         <div className="good__discription loading-row"></div>
                         <div className="good__operation loading-row"></div>
                     </div>
@@ -22,9 +24,10 @@ function Good ({ _id, name, price, description, currency, amount, url_name, type
         <>
         {false ? (
         <div className="good">
-            <div className="wrapper good__wrapper">
+            <ScrollToTop />
+            <div className="good__wrapper wrapper">
                 <div className="good__image">
-                    <div className="image__wrapper shadow">
+                    <div className="good__image__wrapper shadow">
                         <img src="#" alt="#" />
                     </div>
                 </div>
