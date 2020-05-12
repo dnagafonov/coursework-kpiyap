@@ -9,13 +9,7 @@ import { updateCurrencyInCart } from '../../../actions/actions';
 function CartItems({ items, currency }) {
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
-        if (toLoad) {
-            (async () => {
-                await updateCurrencyInCart(items, currency);
-            })()
-            setToLoad(false);
-            console.log(2121)
-        }
+        updateCurrencyInCart(items, currency);
     }, [items, currency]);
     return (
         <>
