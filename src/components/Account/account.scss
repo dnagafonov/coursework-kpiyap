@@ -24,6 +24,15 @@
     width: 70%;
 }
 
+select {
+    width: 50px;
+    background-color: #fff;
+}
+
+option {
+    height: 20px;
+}
+
 @media (max-width: 1000px){
     .account__info {
         width: 40%;

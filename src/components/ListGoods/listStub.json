@@ -1,12 +1,6 @@
 [
-    {
-        "name": "Doors",
-        "price": 3000
-    },
-    {
-        "name": "Bumper",
-        "price": 1000
-    },
+    {},
+    {},
     {
         "name": "Mirrors",
         "price": 600

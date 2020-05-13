@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { ListGood } from '../../ListGood';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { randomId } from '../../../tools/randomId';
 import './cart-items.scss'
-import { Redirect } from 'react-router-dom';
 import { updateCurrencyInCart } from '../../../actions/actions';
+import { ListGoods } from '../../ListGoods';
 
 function CartItems({ items, currency }) {
-    const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         updateCurrencyInCart(items, currency);
     }, [items, currency]);
+    const ready = <ListGoods list={items} />
     return (
-        <>
-            {items ?
-                <div className="cart-items">
-                    {items.map(e => <ListGood key={randomId()} name={e.name} price={e.currentPrice.price + " " + e.currentPrice.symbol} />)}
-                </div> : <Redirect to="/auth" />
-            }
-        </>
+        <div className="cart-items">
+            {items ? ready : <h3>Cart is empty</h3>}
+        </div>
     );
 }
 

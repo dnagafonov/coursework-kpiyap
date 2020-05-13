@@ -10,9 +10,9 @@ const NavAccount = ({ name, logOut }) => {
             <Link className="nav-account" to="/account">
                 <i className="fas fa-user"></i>
                 <nav className="nav-account__components shadow">
-                    <Link to="/account">{name}<i class="far fa-user"></i></Link>
+                    <Link to="/account">{name}<i className="far fa-user"></i></Link>
                     <Link to="/cart">cart<i className="fas fa-shopping-cart"></i></Link>
-                    <Link onClick={() => logOut()}>log out<i className="fas fa-sign-out-alt"></i></Link>
+                    <a  onClick={() => logOut()}>log out<i className="fas fa-sign-out-alt"></i></a>
                 </nav>
             </Link>
         );

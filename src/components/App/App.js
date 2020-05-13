@@ -13,12 +13,10 @@ import { AboutUs } from '../AboutUs';
 import { NotFound } from '../NotFound';
 import { ErrorBoundary } from '../ErrorBoundary';
 import { Good } from '../Good';
-import { connect } from 'react-redux';
-import spiresStub from './spires-stub.json';
 import { Account } from '../Account';
 import { Auth } from '../Auth';
 
-const App = props => {
+const App = () => {
   return (
     <Router>
       <div className="App">
@@ -36,7 +34,7 @@ const App = props => {
           </Route>
           <Route exact path="/spares">
             < ErrorBoundary >
-              <List items={spiresStub} />
+              <List />
             </ErrorBoundary>
           </Route>
           <Route exact path="/services">
@@ -55,18 +53,13 @@ const App = props => {
             </ErrorBoundary>
           </Route>
           <Route path="/services/:id">
-            <Good name="Back view mirrors"
-              price={2000}
-              currency="rub"
-              _id="dsad12d21d443t"
-              description="2 mirror for audi q5, black color, without mirrors"
-              amount={20}
-              url_name="back-view-mirrors-audi-q5"
-              type="spire" />
+            <ErrorBoundary>
+              <Good />
+            </ErrorBoundary>
           </Route>
           <Route path="/spares/:id">
             <ErrorBoundary>
-              <Good {...props.good} />
+              <Good />
             </ErrorBoundary>
           </Route>
           <Route path="*">
@@ -80,9 +73,4 @@ const App = props => {
     </Router >
   );
 }
-
-const mapStateToProps = state => ({
-  good: state.goodReducer.good
-})
-
-export default connect(mapStateToProps)(App);
+export default App;

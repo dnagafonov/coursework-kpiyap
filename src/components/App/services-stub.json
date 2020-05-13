@@ -1,161 +1,186 @@
 [
     {
-        "name": "Motor",
-        "price": 3000
-    },
-    {
-        "name": "Battery",
-        "price": 1000
-    },
-    {
-        "name": "Oil filter",
+        "id": 1,
+        "name": "Mirrors",
         "price": 600
     },
     {
+        "id": 2,
         "name": "Air filter",
         "price": 300
     },
     {
-        "name": "Disk brake",
+        "id": 3,
+        "name": "Hoods",
         "price": 1600
     },
     {
+        "id": 4,
         "name": "Tail light",
         "price": 1000
     },
     {
+        "id": 5,
         "name": "Seat",
         "price": 2000
     },
     {
+        "id": 6,
         "name": "Radiator",
         "price": 1100
     },
     {
-        "name": "Motor",
+        "id": 7,
+        "name": "Doors",
         "price": 3000
     },
     {
-        "name": "Battery",
+        "id": 8,
+        "name": "Bumper",
         "price": 1000
     },
     {
-        "name": "Oil filter",
+        "id": 9,
+        "name": "Mirrors",
         "price": 600
     },
     {
+        "id": 10,
         "name": "Air filter",
         "price": 300
     },
     {
-        "name": "Disk brake",
+        "id": 11,
+        "name": "Hoods",
         "price": 1600
     },
     {
+        "id": 12,
         "name": "Tail light",
         "price": 1000
     },
     {
+        "id": 13,
         "name": "Seat",
         "price": 2000
     },
     {
+        "id": 14,
         "name": "Radiator",
         "price": 1100
     },
     {
-        "name": "Motor",
+        "id": 15,
+        "name": "Doors",
         "price": 3000
     },
     {
-        "name": "Battery",
-        "price": 1000
-    },
-    {
+        "id": 16,
         "name": "Oil filter",
         "price": 600
     },
     {
+        "id": 17,
         "name": "Air filter",
         "price": 300
     },
     {
+        "id": 18,
         "name": "Disk brake",
         "price": 1600
     },
     {
+        "id": 19,
         "name": "Tail light",
         "price": 1000
     },
     {
+        "id": 20,
         "name": "Seat",
         "price": 2000
     },
     {
+        "id": 22,
         "name": "Radiator",
         "price": 1100
     },
     {
+        "id": 23,
         "name": "Motor",
         "price": 3000
     },
     {
+        "id": 24,
         "name": "Battery",
         "price": 1000
     },
     {
+        "id": 25,
         "name": "Oil filter",
         "price": 600
     },
     {
+        "id": 26,
         "name": "Air filter",
         "price": 300
     },
     {
+        "id": 27,
         "name": "Disk brake",
         "price": 1600
     },
     {
+        "id": 28,
         "name": "Tail light",
         "price": 1000
     },
     {
+        "id": 29,
         "name": "Seat",
         "price": 2000
     },
     {
+        "id": 30,
         "name": "Radiator",
         "price": 1100
     },
     {
+        "id": 31,
         "name": "Motor",
         "price": 3000
     },
     {
+        "id": 32,
         "name": "Battery",
         "price": 1000
     },
     {
+        "id": 33,
         "name": "Oil filter",
         "price": 600
     },
     {
+        "id": 34,
         "name": "Air filter",
         "price": 300
     },
     {
+        "id": 35,
         "name": "Disk brake",
         "price": 1600
     },
     {
+        "id": 36,
         "name": "Tail light",
         "price": 1000
     },
     {
+        "id": 37,
         "name": "Seat",
         "price": 2000
     },
     {
+        "id": 38,
         "name": "Radiator",
         "price": 1100
     }
