@@ -11,14 +11,14 @@ function CartItems({ items, currency }) {
     const ready = <ListGoods list={items} />
     return (
         <div className="cart-items">
-            {items ? ready : <h3>Cart is empty</h3>}
+            {items.length ? ready : <h3>Cart is empty</h3>}
         </div>
     );
 }
 
 const mapState = state => ({
     items: state.account.cart,
-    currency: state.goodReducer.currency
+    currency: state.account.currency
 });
 
 export default connect(mapState)(CartItems);

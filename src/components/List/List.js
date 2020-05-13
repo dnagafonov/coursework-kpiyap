@@ -38,7 +38,7 @@ function List(props) {
 
 const mapState = state => ({
     list: state.goodReducer.list,
-    currency: state.goodReducer.currency
+    currency: state.account.currency
 });
 
 const mapDisp = dispatch => ({

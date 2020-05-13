@@ -1,8 +1,20 @@
 import React from 'react';
 import './good.scss';
 import { ScrollToTop } from '../ScrollToTop';
+import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addGoodToCart } from '../../actions/actions';
 
-function Good ({ _id, name, price, description, currency, amount, url_name, type, colors }) {
+function Good({ list, addGoodToCart}) {
+    const { id } = useParams();
+    let item = null;
+    if (list) {
+        item = list.filter(e => e.id === +id)[0];
+    }
+    const handleClick = event => {
+        event.preventDefault();
+        addGoodToCart(item);
+    }
     const notReady = (
         <div className="good">
             <ScrollToTop />
@@ -22,30 +34,40 @@ function Good ({ _id, name, price, description, currency, amount, url_name, type
     );
     return (
         <>
-        {false ? (
-        <div className="good">
-            <ScrollToTop />
-            <div className="good__wrapper wrapper">
-                <div className="good__image">
-                    <div className="good__image__wrapper shadow">
-                        <img src="#" alt="#" />
+            {item ? (
+                <div className="good">
+                    <ScrollToTop />
+                    <div className="good__wrapper wrapper">
+                        <div className="good__image">
+                            <div className="good__image__wrapper shadow">
+                                <img src="#" alt="#" />
+                            </div>
+                        </div>
+                        <div className="good__info">
+                            <div className="info__wrapper">
+                                <h3 className="good__name">{item.name}</h3>
+                                <div className="good__discription"></div>
+                                <form className="good__operation">
+                                    <div className="good__price">{item.currentPrice.price + " " + item.currentPrice.symbol}</div>
+                                    <button className="btn-general" onClick={handleClick}>Add to cart</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="good__info">
-                    <div className="info__wrapper">
-                        <h3 className="good__name">{name}</h3>
-                        <div className="good__discription">{description}</div>
-                        <form className="good__operation">
-                            <div className="good__price">{price}</div>
-                            <button className="btn-general">Add to cart</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div >
-    ) : notReady}
+                </div >
+            ) : notReady}
         </>
     );
 }
 
-export default Good;
+const mapState = state => ({
+    list: state.goodReducer.list
+});
+
+const mapDispatch = dispatch => ({
+    addGoodToCart(good){
+        dispatch(addGoodToCart(good))
+    }
+})
+
+export default connect(mapState, mapDispatch)(Good);

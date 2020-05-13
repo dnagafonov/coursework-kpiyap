@@ -47,6 +47,11 @@ export const updateCurrency = currency => ({
     currency
 });
 
+export const addGoodToCart = good => ({
+    type: type.ADD_GOOD_TO_CART,
+    good
+});
+
 export const logOut = () => ({
     type: type.LOG_OUT
 });
