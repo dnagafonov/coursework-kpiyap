@@ -7,23 +7,23 @@ import { logOut } from '../../actions/actions';
 const NavAccount = ({ name, logOut }) => {
     if (name) {
         return (
-            <Link className="nav-account" to="/account">
+            <div className="dropdown-menu nav-link">
                 <i className="fas fa-user"></i>
-                <nav className="nav-account__components shadow">
-                    <Link to="/account">{name}<i className="far fa-user"></i></Link>
-                    <Link to="/cart">cart<i className="fas fa-shopping-cart"></i></Link>
-                    <a  onClick={() => logOut()}>log out<i className="fas fa-sign-out-alt"></i></a>
+                <nav className="dropdown-menu__components shadow">
+                    <Link to="/account" className="dropdown-menu__component">{name}<i className="far fa-user"></i></Link>
+                    <Link to="/cart" className="dropdown-menu__component">cart<i className="fas fa-shopping-cart"></i></Link>
+                    <div className="dropdown-menu__component" onClick={() => logOut()}>log out<i className="fas fa-sign-out-alt"></i></div>
                 </nav>
-            </Link>
+            </div>
         );
     }
     return (
-        <Link className="nav-account" to="/account">
+        <div className="dropdown-menu nav-link" >
             <i className="fas fa-user"></i>
-            <nav className="nav-account__components shadow">
-                <Link to="/auth">log in<i className="far fa-user"></i></Link>
+            <nav className="dropdown-menu__components shadow">
+                <Link to="/auth" className="dropdown-menu__component">log in<i className="far fa-user"></i></Link>
             </nav>
-        </Link>
+        </div>
     );
 }
 

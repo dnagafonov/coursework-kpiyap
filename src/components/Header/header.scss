@@ -33,7 +33,7 @@
     list-style: none;
 }
 
-.header__navigation a{
+.nav-link{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +42,7 @@
     text-transform: uppercase;
 }
 
-.header__navigation a:hover{
+.nav-link:hover{
     transition: ease-in 300ms;
     color: $color-secondary;
 }
@@ -52,16 +52,16 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-.nav-account {
+.dropdown-menu {
     width: 30px;
 }
 
-.nav-account:hover .nav-account__components {
+.dropdown-menu:hover .dropdown-menu__components {
     display: flex;
     flex-flow: column wrap,
 }
 
-.nav-account .nav-account__components {
+.dropdown-menu .dropdown-menu__components {
     position: absolute;
     top: 52px;
     display: none;
@@ -75,8 +75,8 @@ a:link, a:visited {
     border-radius: $br;
 }
 
-.nav-account__components::after,
-.nav-account__components::before {
+.dropdown-menu__components::after,
+.dropdown-menu__components::before {
     position: absolute;
     pointer-events: none;
     border: solid transparent;
@@ -87,39 +87,40 @@ a:link, a:visited {
     right: 14px;
 }
 
-.nav-account__components::before {
+.dropdown-menu__components::before {
     border-width: 6px;
     margin: 0 -6px;
     border-bottom-color: $border-color;
 }
 
-.nav-account__components::after {
+.dropdown-menu__components::after {
     border-width: 5px;
     margin: 0 -5px;
     border-bottom-color: $bg-primary;
 }
 
-.nav-account__components a {
+.dropdown-menu__component {
     display: inline;
     padding: 15px 30px;
     text-align: right;
     transition: 0.5s ease-in-out;
     white-space: nowrap;
+    cursor: pointer;
 }
 
-.nav-account__components a:first-child {
+.dropdown-menu__component:first-child {
     border-radius: $br $br 0 0;
 }
 
-.nav-account__components a:last-child {
+.dropdown-menu__component:last-child {
     border-radius: 0 0 $br $br;
 }
 
-.nav-account__components a:hover {
+.dropdown-menu__component:hover {
     background-color: $bg-secondary;
 }
 
-.nav-account__components a i {
+.dropdown-menu__component i {
     margin-left: 5px;
 }
 

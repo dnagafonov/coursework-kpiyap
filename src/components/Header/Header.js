@@ -22,6 +22,7 @@ const Header = ({ switchActive }) => {
 
     const links = topics.map(link => {
         const linkProps = {
+            className: "nav-link",
             key: link.name,
             to: link.url,
             onClick: () => switchActive(link.url)

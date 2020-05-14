@@ -9,6 +9,7 @@ function CartItems({ cart, currency, updateCurrencyInCart }) {
         if(cart.length){
             updateCurrencyInCart(cart, currency);
         }
+        // eslint-disable-next-line
     }, [currency]);
     const ready = <ListGoods list={cart} />
     return (
