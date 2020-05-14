@@ -27,13 +27,13 @@ const App = () => {
               <Welcome />
             </ErrorBoundary>
           </Route>
-          <Route path="/about-us">
+          <Route exact path="/about-us">
             <ErrorBoundary>
               <AboutUs />
             </ErrorBoundary>
           </Route>
           <Route exact path="/spares">
-            < ErrorBoundary >
+            <ErrorBoundary >
               <List />
             </ErrorBoundary>
           </Route>
@@ -57,7 +57,7 @@ const App = () => {
               <Good />
             </ErrorBoundary>
           </Route>
-          <Route path="/spares/:id">
+          <Route exact path="/spares/:id">
             <ErrorBoundary>
               <Good />
             </ErrorBoundary>

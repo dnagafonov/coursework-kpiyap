@@ -24,7 +24,7 @@ const Header = ({ switchActive }) => {
         const linkProps = {
             className: "nav-link",
             key: link.name,
-            to: link.url,
+            to: `/${link.url}`,
             onClick: () => switchActive(link.url)
         };
         return (<Link {...linkProps}>{link.name}</Link>)

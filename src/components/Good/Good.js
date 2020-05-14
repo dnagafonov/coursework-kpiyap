@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addGoodToCart } from '../../actions/actions';
 
-function Good({ list, addGoodToCart}) {
+function Good({ list, addGoodToCart, username }) {
     const { id } = useParams();
     let item = null;
     if (list) {
@@ -15,6 +15,8 @@ function Good({ list, addGoodToCart}) {
         event.preventDefault();
         addGoodToCart(item);
     }
+    const btn = <div className="shadow">To add you need to log in</div>;
+    const btnLog = <button className="btn-general" onClick={handleClick}>Add to cart</button>;
     const notReady = (
         <div className="good">
             <ScrollToTop />
@@ -49,7 +51,7 @@ function Good({ list, addGoodToCart}) {
                                 <div className="good__discription"></div>
                                 <form className="good__operation">
                                     <div className="good__price">{item.currentPrice.price + " " + item.currentPrice.symbol}</div>
-                                    <button className="btn-general" onClick={handleClick}>Add to cart</button>
+                                    {username ? btnLog : btn}
                                 </form>
                             </div>
                         </div>
@@ -61,11 +63,12 @@ function Good({ list, addGoodToCart}) {
 }
 
 const mapState = state => ({
-    list: state.goodReducer.list
+    list: state.goodReducer.list,
+    username: state.account.username
 });
 
 const mapDispatch = dispatch => ({
-    addGoodToCart(good){
+    addGoodToCart(good) {
         dispatch(addGoodToCart(good))
     }
 })

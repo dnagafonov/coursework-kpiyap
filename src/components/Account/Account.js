@@ -4,35 +4,40 @@ import { connect } from 'react-redux';
 import { ScrollToTop } from '../ScrollToTop';
 import { CartItems } from '../Cart/CartItems';
 import { updateCurrency } from '../../actions/actions';
+import { Redirect } from 'react-router-dom';
 
-function Account({account, updateCurrency, cur}) {
-    const {email, username} = account;
+function Account({ account, updateCurrency, cur }) {
+    const { email, username } = account;
     const changeCurrency = e => {
         e.preventDefault();
         updateCurrency(e.target.value)
     }
     return (
-        <div className="account">
-            <ScrollToTop />
-            <div className="account__wrapper wrapper">
-                <div className="account__info">
-                    <h3 className="account__header">{username}</h3>
-                    <div className="account__contacts">
-                        <div>Email:</div>
-                        <div className="account__email">{email}</div>
+        <>
+            {account.username ?
+                (<div className="account">
+                    <ScrollToTop />
+                    <div className="account__wrapper wrapper">
+                        <div className="account__info">
+                            <h3 className="account__header">{username}</h3>
+                            <div className="account__contacts">
+                                <div>Email:</div>
+                                <div className="account__email">{email}</div>
+                            </div>
+                            <select onChange={changeCurrency} value={cur}>
+                                <option value="byr" >Br</option>
+                                <option value="usd">$</option>
+                                <option value="eur">€</option>
+                                <option value="rub">₽</option>
+                            </select>
+                        </div>
+                        <div className="account__cart">
+                            <CartItems />
+                        </div>
                     </div>
-                    <select onChange={changeCurrency} value={cur}>
-                        <option value="byr" >Br</option>
-                        <option value="usd">$</option>
-                        <option value="eur">€</option>
-                        <option value="rub">₽</option>
-                    </select>
-                </div>
-                <div className="account__cart">
-                    <CartItems/>
-                </div>
-            </div>
-        </div>
+                </div>) : <Redirect to="/auth" />
+            }
+        </>
     );
 }
 
@@ -42,7 +47,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    updateCurrency(c){
+    updateCurrency(c) {
         dispatch(updateCurrency(c))
     }
 })
