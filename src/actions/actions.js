@@ -34,6 +34,12 @@ export const setList = (list, currency) => async dispatch => {
 export const updateCurrencyInCart = (list, currency) => async dispatch => {
     return await getExchangeRate().then(rate => {
         dispatch({
+            type: type.SET_RATE,
+            rate
+        });
+        return rate;
+    }).then(rate => {
+        dispatch({
             type: type.UPDATE_CURRENCY_IN_CART,
             list,
             currency,

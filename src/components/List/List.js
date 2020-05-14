@@ -6,8 +6,7 @@ import { setList } from '../../actions/actions';
 import stub from '../App/services-stub.json';
 import { ListGoods } from '../ListGoods';
 
-function List(props) {
-    const { list, currency, setList } = props;
+function List({ list, currency, setList }) {
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         if (toLoad) {

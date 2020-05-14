@@ -4,21 +4,29 @@ import './cart-items.scss'
 import { updateCurrencyInCart } from '../../../actions/actions';
 import { ListGoods } from '../../ListGoods';
 
-function CartItems({ items, currency }) {
+function CartItems({ cart, currency, updateCurrencyInCart }) {
     useEffect(() => {
-        updateCurrencyInCart(items, currency);
-    }, [items, currency]);
-    const ready = <ListGoods list={items} />
+        if(cart.length){
+            updateCurrencyInCart(cart, currency);
+        }
+    }, [currency]);
+    const ready = <ListGoods list={cart} />
     return (
         <div className="cart-items">
-            {items.length ? ready : <h3>Cart is empty</h3>}
+            {cart.length ? ready : <h3>Cart is empty</h3>}
         </div>
     );
 }
 
 const mapState = state => ({
-    items: state.account.cart,
+    cart: state.account.cart,
     currency: state.account.currency
 });
 
-export default connect(mapState)(CartItems);
+const mapDispatch = dispatch => ({
+    updateCurrencyInCart(cart, currency){
+        dispatch(updateCurrencyInCart(cart, currency))
+    }
+})
+
+export default connect(mapState, mapDispatch)(CartItems);

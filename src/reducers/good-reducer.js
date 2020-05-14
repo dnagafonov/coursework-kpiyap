@@ -16,10 +16,6 @@ const goodReducer = (state = initialState, action) => {
             return {
                 exchangeRate: action.rate
             };
-        case type.FETCH_RATE_DATA:
-            return {
-                fetched: action.rate
-            }
         case type.SET_LIST:
             return {
                 list: getConvertedList(action.list, action.currency, action.exchangeRate),
