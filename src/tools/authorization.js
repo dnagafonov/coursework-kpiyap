@@ -1,10 +1,8 @@
 import axios from "axios"
 
-export const authorization = async (url, login, password) => {
-    await axios.post(url, {
-        login,
-        password
-    }).then(res => {
+export const authorization = async (url, data) => {
+    await axios.post(url, data).then(res => {
+        console.log(res);
         if(res.data.status === "success"){
             return res.data;
         }

@@ -24,12 +24,10 @@ const account = (state = initialState, action) => {
         case type.LOG_OUT: 
             return {}
         case type.UPDATE_CURRENCY_IN_CART:
-            const l = {
+            return {
                 ...state,
                 cart: getConvertedList(action.list, action.currency, action.exchangeRate),
-            }
-            console.log(l);
-            return l;
+            };
         case type.UPDATE_CURRENCY:
             return {
                 ...state,

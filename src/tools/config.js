@@ -1,0 +1,1 @@
+export const accountPath = "http://localhost:44313/api/accounts";
