@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './list.scss'
 import { ScrollToTop } from '../ScrollToTop';
 import { connect } from 'react-redux';
-import { setList } from '../../actions/actions';
-import stub from '../App/services-stub.json';
+import { setList, getListData } from '../../actions/actions';
 import { ListGoods } from '../ListGoods';
 
-function List({ list, currency, setList }) {
+function List({ dataUrl, list, currency, setList, getListData }) {
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         if (toLoad) {
-            setList(stub, currency);
+            const data = getListData(dataUrl);
+            setList(data, currency);
             setToLoad(false);
         }
         // eslint-disable-next-line
@@ -43,6 +43,9 @@ const mapState = state => ({
 const mapDisp = dispatch => ({
     setList(list, currency) {
         dispatch(setList(list, currency));
+    },
+    getListData(url) {
+        dispatch(getListData(url))
     }
 })
 

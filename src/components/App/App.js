@@ -34,12 +34,12 @@ const App = () => {
           </Route>
           <Route exact path="/spares">
             <ErrorBoundary >
-              <List />
+              <List dataUrl="https://localhost:44313/api/spares"/>
             </ErrorBoundary>
           </Route>
           <Route exact path="/services">
             <ErrorBoundary>
-              <List />
+              <List dataUrl="https://localhost:44313/api/services"/>
             </ErrorBoundary>
           </Route>
           <Route exact path="/account">
@@ -70,7 +70,7 @@ const App = () => {
         </Switch>
         <Footer />
       </div>
-    </Router >
+    </Router>
   );
 }
 export default App;

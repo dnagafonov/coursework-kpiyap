@@ -1,1 +1,1 @@
-export const accountPath = "http://localhost:44313/api/accounts";
+export const registerPath = "https://localhost:44313/api/accounts/register";

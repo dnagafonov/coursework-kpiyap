@@ -2,14 +2,7 @@ import { getConvertedList } from '../tools/get-converted-list';
 
 const { type } = require('../actions/constants');
 
-const initialState = {
-    username: "someuser",
-    email: "someemail@mail.com",
-    cart: [],
-    currency: "byr"
-};
-
-const account = (state = initialState, action) => {
+const account = (state = {}, action) => {
     switch (action.type) {
         case type.ADD_GOOD_TO_CART:
             return {
@@ -20,7 +13,9 @@ const account = (state = initialState, action) => {
                 ]
             }
         case type.LOG_IN:
-            return {}
+            return {
+                ...action.account
+            }
         case type.LOG_OUT: 
             return {}
         case type.UPDATE_CURRENCY_IN_CART:

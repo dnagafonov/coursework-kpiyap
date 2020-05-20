@@ -2,25 +2,27 @@ import React, { useState } from 'react';
 import './register.scss';
 import { connect } from 'react-redux';
 import { checkPasswordsValidation } from '../../../tools/check-passwords-validation';
-import { authorization } from '../../../tools/authorization';
 import { checkPasswordValid } from '../../../tools/check-password-valid';
-import { accountPath } from '../../../tools/config';
+import { registerPath } from '../../../tools/config';
+import { postNewAccount } from '../../../actions/actions';
 
-function Register(props) {
+function Register({ postNewAccount }) {
     const [password, setPassword] = useState({
-        symbol: <i className="far fa-times-circle"></i>
+        symbol: <i className="far fa-times-circle"></i>,
+        value: ""
     });
     const [confirm, setConfirm] = useState({
-        symbol: <i className="far fa-times-circle"></i>
+        symbol: <i className="far fa-times-circle"></i>,
+        value: ""
     });
-    const [email, setEmail] = useState();
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [isConfSymbol, setIsConfSymbol] = useState(false);
     const [isPasSymbol, setIsPasSymbol] = useState(false);
     const changePassword = event => {
         event.preventDefault();
         setIsPasSymbol(true);
-        if(!checkPasswordValid(event.target.value)){
+        if (!checkPasswordValid(event.target.value)) {
             setPassword({
                 symbol: <i className="far fa-times-circle"></i>,
                 value: event.target.value
@@ -40,7 +42,6 @@ function Register(props) {
                 symbol: <i className="far fa-times-circle"></i>,
                 value: event.target.value
             })
-            console.log(event.target.value)
         }
         else setConfirm({
             symbol: <i className="far fa-check-circle"></i>,
@@ -58,18 +59,35 @@ function Register(props) {
         setUsername(e.target.value);
     }
 
+    const clearInputs = () => {
+        setUsername("");
+        setPassword({
+            symbol: <i className="far fa-times-circle"></i>,
+            value: ""
+        });
+        setConfirm({
+            symbol: <i className="far fa-times-circle"></i>,
+            value: ""
+        });
+        setEmail("");
+        setIsConfSymbol();
+        setIsPasSymbol();
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (checkPasswordsValidation(password.value, confirm.value)) {
-            console.log(2)
-            authorization( accountPath, {
+            const account = {
                 username,
                 password: password.value,
                 email,
-                currency: "byr"
-            }).then(res => {
-                console.log(res);;
-            }).catch(e => console.error(e))
+                currency: "byr",
+                cart: []
+            };
+            const a = postNewAccount(registerPath, account);
+            if(a)
+                return a;
+            clearInputs();
         }
     }
 
@@ -80,18 +98,18 @@ function Register(props) {
                 <div className="register__body__wrapper">
                     <div className="register__body_login">
                         <label htmlFor="register-username">Username:</label><br />
-                        <input id="register-username" type="text" onChange={changeUsername}/>
+                        <input id="register-username" type="text" onChange={changeUsername} value={username}/>
                     </div>
                     <div className="register__body_email">
                         <label htmlFor="register-email">Email:</label><br />
-                        <input id="register-email" type="email" onChange={changeEmail}/>
+                        <input id="register-email" type="email" onChange={changeEmail} value={email} />
                     </div>
                     <div className="register__body_password">
                         <label htmlFor="register-password">Password:</label><br />
-                        <input id="register-password" type="password" min={8} title="minimum 8 symbols, a least 1 uppercase, a least 1 special symbol" onChange={changePassword} />
+                        <input id="register-password" type="password" min={8} title="minimum 8 symbols, a least 1 uppercase, a least 1 special symbol" onChange={changePassword} value={password.value}/>
                         {isPasSymbol ? password.symbol : null} <br />
                         <label htmlFor="password-confirm">Confirm password:</label><br />
-                        <input id="password-confirm" type="password" min={8} onChange={changePasswordConfirm} />
+                        <input id="password-confirm" type="password" min={8} onChange={changePasswordConfirm} value={confirm.value}/>
                         {isConfSymbol ? confirm.symbol : null}
                     </div>
                 </div>
@@ -104,8 +122,8 @@ function Register(props) {
 }
 
 const mapDispatch = dispatch => ({
-    logIn(login, password) {
-        dispatch()
+    postNewAccount(url, account) {
+        dispatch(postNewAccount(url, account))
     }
 })
 
