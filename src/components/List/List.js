@@ -9,7 +9,10 @@ function List({ dataUrl, list, currency, setList, getListData }) {
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         if (toLoad) {
-            const data = getListData(dataUrl);
+            let data = {};
+            console.log(data);
+            data = getListData(dataUrl);
+            console.log(data);
             setList(data, currency);
             setToLoad(false);
         }

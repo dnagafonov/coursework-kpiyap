@@ -21,7 +21,7 @@ export const setRate = rate => ({
 });
 
 export const getListData = url => async dispatch => {
-    Axios.get(url).then(res => {
+    return await Axios.get(url).then(res => {
         dispatch({
             type: type.GET_LIST_DATA,
             rawList: res.data
