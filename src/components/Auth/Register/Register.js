@@ -84,9 +84,7 @@ function Register({ postNewAccount }) {
                 currency: "byr",
                 cart: []
             };
-            const a = postNewAccount(registerPath, account);
-            if(a)
-                return a;
+            postNewAccount(registerPath, account);
             clearInputs();
         }
     }

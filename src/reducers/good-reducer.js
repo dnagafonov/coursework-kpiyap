@@ -24,11 +24,6 @@ const goodReducer = (state = initialState, action) => {
                 list: getConvertedList(action.list, action.currency, action.exchangeRate),
                 exchangeRate: action.exchangeRate
             }
-        case type.GET_LIST_DATA:
-            return {
-                ...state,
-                rawList: action.rawList
-            }
         default:
             return state;
     }

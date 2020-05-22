@@ -5,19 +5,15 @@ import { connect } from 'react-redux';
 import { setList, getListData } from '../../actions/actions';
 import { ListGoods } from '../ListGoods';
 
-function List({ dataUrl, list, currency, setList, getListData }) {
+function List({ dataUrl, list, currency, getListData }) {
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
-        if (toLoad) {
-            let data = {};
-            console.log(data);
-            data = getListData(dataUrl);
-            console.log(data);
-            setList(data, currency);
+        if(toLoad){
+            getListData(dataUrl, currency)
             setToLoad(false);
         }
         // eslint-disable-next-line
-    }, [list, currency]);
+    }, [currency, list]);
 
     return (
         <>
@@ -44,11 +40,9 @@ const mapState = state => ({
 });
 
 const mapDisp = dispatch => ({
-    setList(list, currency) {
-        dispatch(setList(list, currency));
-    },
-    getListData(url) {
-        dispatch(getListData(url))
+
+    getListData(url, currency) {
+        dispatch(getListData(url, currency))
     }
 })
 

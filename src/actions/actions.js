@@ -1,8 +1,6 @@
 import { getExchangeRate } from '../tools/get-exchange-rate';
 import { type } from './constants';
 import { postRegistration } from '../tools/authorization';
-import React from 'react'
-import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
 export const switchActivePage = page => ({
@@ -20,14 +18,14 @@ export const setRate = rate => ({
     rate
 });
 
-export const getListData = url => async dispatch => {
+export const getListData = (url, currency) => async dispatch => {
     return await Axios.get(url).then(res => {
         dispatch({
-            type: type.GET_LIST_DATA,
-            rawList: res.data
+            type: type.GET_LIST_DATA
         });
-        return res.data;
-    }).catch(e => console.error(`Failed to get list data: ${e.message}`));
+        return res.data
+    }).then(list => dispatch(setList(list, currency)))
+    .catch(e => console.error(`Failed to get list data: ${e.message}`));
 }
 
 export const fetchRateData = () => async dispatch => {
@@ -47,19 +45,14 @@ export const setList = (list, currency) => async dispatch => {
 
 export const updateCurrencyInCart = (list, currency) => async dispatch => {
     return await getExchangeRate().then(rate => {
-        dispatch({
-            type: type.SET_RATE,
-            rate
-        });
+        dispatch(setRate(rate));
         return rate;
-    }).then(rate => {
-        dispatch({
+    }).then(rate => dispatch({
             type: type.UPDATE_CURRENCY_IN_CART,
             list,
             currency,
             exchangeRate: rate
-        })
-    }).catch(e => console.error(`Failed to update currency in cart: ${e.message}`));
+        })).catch(e => console.error(`Failed to update currency in cart: ${e.message}`));
 }
 
 export const updateCurrency = currency => ({
@@ -74,10 +67,8 @@ export const addGoodToCart = good => ({
 
 export const postNewAccount = (url, account) => async dispatch => {
     return await postRegistration(url, account).then(res => {
-        if(res.status === 302 ){
-            dispatch(logIn(res.account));
-            return <Redirect to="/account" />
-        }
+        if(res.status === 302)
+            dispatch(logIn(account));
     }).catch(e => console.error(e))
 }
 

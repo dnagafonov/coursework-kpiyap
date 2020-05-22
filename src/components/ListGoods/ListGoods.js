@@ -16,7 +16,7 @@ function ListGoods({ list, loading }) {
                         key: e.id,
                         name: e.name,
                         price: e.currentPrice.price + " " + e.currentPrice.symbol,
-                        redirectToGood: <Redirect to={`${location.pathname + "/" + e.id}`} />
+                        redirectToGood: <Redirect to={`${e.type + "/" + e.id}`} />
                     }
                     return <ListGood {...listProps} />
                 })
