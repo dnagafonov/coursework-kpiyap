@@ -52,12 +52,12 @@ const App = () => {
               <Auth />
             </ErrorBoundary>
           </Route>
-          <Route path="/services/:id">
+          <Route path="/:type/:id">
             <ErrorBoundary>
               <Good />
             </ErrorBoundary>
           </Route>
-          <Route exact path="/spares/:id">
+          <Route path="/:type/:id">
             <ErrorBoundary>
               <Good />
             </ErrorBoundary>

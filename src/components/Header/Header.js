@@ -1,11 +1,9 @@
 import React from 'react';
 import './header.scss';
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
-import { switchActivePage } from '../../actions/actions';
 import NavAccount from './NavAccount';
 
-const Header = ({ switchActive }) => {
+const Header = () => {
     const topics = [
         {
             url: "about-us",
@@ -25,7 +23,6 @@ const Header = ({ switchActive }) => {
             className: "nav-link",
             key: link.name,
             to: `/${link.url}`,
-            onClick: () => switchActive(link.url)
         };
         return (<Link {...linkProps}>{link.name}</Link>)
     });
@@ -45,10 +42,4 @@ const Header = ({ switchActive }) => {
     );
 }
 
-const mapDispatchToProps = dispatch => ({
-    switchActive(page) {
-        dispatch(switchActivePage(page))
-    }
-});
-
-export default connect(null, mapDispatchToProps)(Header);
+export default Header;

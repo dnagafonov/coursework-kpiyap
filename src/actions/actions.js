@@ -1,27 +1,18 @@
 import { getExchangeRate } from '../tools/get-exchange-rate';
 import { type } from './constants';
 import { postRegistration } from '../tools/authorization';
+import { apiPath } from '../tools/config';
 import Axios from 'axios';
-
-export const switchActivePage = page => ({
-    type: type.SWITCH_ACTIVE_PAGE,
-    activePage: page
-});
-
-export const setGoodData = good => ({
-    type: type.SET_GOOD_DATA,
-    good
-});
 
 export const setRate = rate => ({
     type: type.SET_RATE,
     rate
 });
 
-export const getListData = (url, currency) => async dispatch => {
+export const fetchListData = (url, currency) => async dispatch => {
     return await Axios.get(url).then(res => {
         dispatch({
-            type: type.GET_LIST_DATA
+            type: type.FETCH_LIST_DATA
         });
         return res.data
     }).then(list => dispatch(setList(list, currency)))
@@ -30,6 +21,19 @@ export const getListData = (url, currency) => async dispatch => {
 
 export const fetchRateData = () => async dispatch => {
     return getExchangeRate().then(rate => dispatch(setRate(rate)));
+}
+
+export const fetchGoodData = () => ({
+    type: type.FETCH_GOOD_DATA
+});
+
+export const setGoodData = (goodType, id) => async dispatch => {
+    dispatch(fetchGoodData());
+    return await Axios.get(`${apiPath}/${goodType}/${id}`)
+    .then(good => dispatch({
+        type: type.SET_GOOD_DATA,
+        good: good.data
+    }));
 }
 
 export const setList = (list, currency) => async dispatch => {

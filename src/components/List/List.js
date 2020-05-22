@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './list.scss'
 import { ScrollToTop } from '../ScrollToTop';
 import { connect } from 'react-redux';
-import { setList, getListData } from '../../actions/actions';
+import { fetchListData } from '../../actions/actions';
 import { ListGoods } from '../ListGoods';
 
-function List({ dataUrl, list, currency, getListData }) {
+function List({ dataUrl, list, currency, fetchListData }) {
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
         if(toLoad){
-            getListData(dataUrl, currency)
+            fetchListData(dataUrl, currency)
             setToLoad(false);
         }
         // eslint-disable-next-line
@@ -41,8 +41,8 @@ const mapState = state => ({
 
 const mapDisp = dispatch => ({
 
-    getListData(url, currency) {
-        dispatch(getListData(url, currency))
+    fetchListData(url, currency) {
+        dispatch(fetchListData(url, currency))
     }
 })
 
