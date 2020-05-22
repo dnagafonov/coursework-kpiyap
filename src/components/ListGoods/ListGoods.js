@@ -3,10 +3,9 @@ import './list-goods.scss'
 import { ListGood } from '../ListGood';
 import listStub from './listStub.json';
 import { randomId } from '../../tools/randomId';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-function ListGoods({ list, loading }) {
-    const location = useLocation();
+function  ListGoods({ list, loading }) {
     const notReady = listStub.map(e => <ListGood loading={true} key={randomId()} />);
     return (
         <>

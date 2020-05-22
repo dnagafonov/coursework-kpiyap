@@ -11,7 +11,10 @@ const goodReducer = (state = initialState, action) => {
         case type.SET_GOOD_DATA:
             return {
                 ...state,
-                good: action.good
+                good: {
+                    ...action.good,
+                    currentPrice: action.currentPrice
+                }
             };
         case type.SET_RATE:
             return {

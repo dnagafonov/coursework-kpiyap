@@ -4,15 +4,18 @@ import { ScrollToTop } from '../ScrollToTop';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addGoodToCart, setGoodData } from '../../actions/actions';
+import { getExchangeRate } from '../../tools/get-exchange-rate';
 
-function Good({ good, addGoodToCart, setGoodData, username }) {
+function Good({ good, addGoodToCart, setGoodData, username, currency }) {
     const { type, id } = useParams();
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
-        console.log("Good:", good)
         if(toLoad){
-            setGoodData(type, id)
-            setToLoad(false);
+            (async () => {
+                const rate = await getExchangeRate();
+                setGoodData(type, id, rate, currency)
+                setToLoad(false);
+            })();
         }
     },[good]);
     const handleClick = event => {
@@ -54,7 +57,7 @@ function Good({ good, addGoodToCart, setGoodData, username }) {
                                 <h3 className="good__name">{good.name}</h3>
                                 <div className="good__discription"></div>
                                 <form className="good__operation">
-                                    <div className="good__price">{good.price}</div>
+                                    <div className="good__price">{good.currentPrice.price + " " + good.currentPrice.symbol}</div>
                                     {username ? btnLog : btn}
                                 </form>
                             </div>
@@ -68,12 +71,13 @@ function Good({ good, addGoodToCart, setGoodData, username }) {
 
 const mapState = state => ({
     good: state.goodReducer.good,
-    username: state.account.username
+    username: state.account.username,
+    currency: state.account.currency
 });
 
 const mapDispatch = dispatch => ({
-    setGoodData(type, id){
-        dispatch(setGoodData(type, id))
+    setGoodData(type, id, rate, currency){
+        dispatch(setGoodData(type, id, rate, currency))
     },
     addGoodToCart(good) {
         dispatch(addGoodToCart(good))

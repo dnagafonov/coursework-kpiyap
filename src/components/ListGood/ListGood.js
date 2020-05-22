@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './list-good.scss';
-import { connect } from 'react-redux';
-import { setGoodData } from '../../actions/actions';
 
 function ListGood(props) {
     const { name, price, loading, redirectToGood } = props;
@@ -33,11 +31,5 @@ function ListGood(props) {
     );
 }
 
-const mapDispatch = dispatch => ({
-    setGoodData(goodInfo, currentPrice) {
-        dispatch(setGoodData(goodInfo, currentPrice));
-    }
-});
 
-
-export default connect(null, mapDispatch)(ListGood);
+export default ListGood;

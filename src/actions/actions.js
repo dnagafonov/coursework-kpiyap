@@ -3,6 +3,7 @@ import { type } from './constants';
 import { postRegistration } from '../tools/authorization';
 import { apiPath } from '../tools/config';
 import Axios from 'axios';
+import { getCurrentPrice } from '../tools/get-current-price';
 
 export const setRate = rate => ({
     type: type.SET_RATE,
@@ -27,13 +28,17 @@ export const fetchGoodData = () => ({
     type: type.FETCH_GOOD_DATA
 });
 
-export const setGoodData = (goodType, id) => async dispatch => {
+export const setGoodData = (goodType, id, rate, currency) => async dispatch => {
     dispatch(fetchGoodData());
     return await Axios.get(`${apiPath}/${goodType}/${id}`)
-    .then(good => dispatch({
-        type: type.SET_GOOD_DATA,
-        good: good.data
-    }));
+    .then(good => {
+        const currentPrice = getCurrentPrice(currency, good.data.price, rate);
+        dispatch({
+            type: type.SET_GOOD_DATA,
+            good: good.data,
+            currentPrice
+        })
+    });
 }
 
 export const setList = (list, currency) => async dispatch => {

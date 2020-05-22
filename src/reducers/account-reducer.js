@@ -5,38 +5,7 @@ const { type } = require('../actions/constants');
 const init = {
     username: "fdfd",
     currency: "byr",
-    cart: [
-        {
-            "id": 3,
-            "name": "Hoods",
-            "price": 1600,
-            "type": "spares",
-            currentPrice: {
-                price: 123123,
-                symbol: ""
-            }
-        },
-        {
-            "id": 4,
-            "name": "Tail light",
-            "price": 1000,
-            "type": "spares",
-            currentPrice: {
-                price: 123123,
-                symbol: ""
-            }
-        },
-        {
-            "id": 5,
-            "name": "Seat",
-            "price": 2000,
-            "type": "spares",
-            currentPrice: {
-                price: 123123,
-                symbol: ""
-            }
-        },
-    ]
+    cart: []
 }
 
 const account = (state = init, action) => {
