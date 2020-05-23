@@ -12,7 +12,7 @@ function  ListGoods({ list, loading }) {
             {loading ? notReady : (
                 list.map(e => {
                     const listProps = {
-                        key: e.id,
+                        key: randomId(),
                         name: e.name,
                         price: e.currentPrice.price + " " + e.currentPrice.symbol,
                         redirectToGood: <Redirect to={`${e.type + "/" + e.id}`} />
