@@ -6,13 +6,4 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-
-    animation: info-container;
-    animation-duration: 0.6s;
-}
-
-@keyframes info-container {
-    0%{
-        opacity: 0;
-    }
 }

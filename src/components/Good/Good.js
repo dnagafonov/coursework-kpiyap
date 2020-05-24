@@ -17,6 +17,7 @@ function Good({ good, addGoodToCart, setGoodData, username, currency }) {
                 setToLoad(false);
             })();
         }
+    // eslint-disable-next-line
     },[good]);
     const handleClick = event => {
         event.preventDefault();
@@ -39,7 +40,7 @@ function Good({ good, addGoodToCart, setGoodData, username, currency }) {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
     return (
         <>
@@ -63,7 +64,7 @@ function Good({ good, addGoodToCart, setGoodData, username, currency }) {
                             </div>
                         </div>
                     </div>
-                </div >
+                </div>
             ) : notReady}
         </>
     );

@@ -69,10 +69,9 @@ export const updateCurrency = currency => ({
     currency
 });
 
-export const addGoodToCart = good => ({
-    type: type.ADD_GOOD_TO_CART,
-    good
-});
+export const addGoodToCart = good => async dispatch => {
+    return Axios.get()
+};
 
 export const postNewAccount = (url, account) => async dispatch => {
     return await postRegistration(url, account).then(res => {

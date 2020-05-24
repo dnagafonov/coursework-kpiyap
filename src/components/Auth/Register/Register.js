@@ -5,6 +5,7 @@ import { checkPasswordsValidation } from '../../../tools/check-passwords-validat
 import { checkPasswordValid } from '../../../tools/check-password-valid';
 import { registerPath } from '../../../tools/config';
 import { postNewAccount } from '../../../actions/actions';
+import { Redirect } from 'react-router-dom';
 
 function Register({ postNewAccount }) {
     const [password, setPassword] = useState({
@@ -19,6 +20,7 @@ function Register({ postNewAccount }) {
     const [username, setUsername] = useState("");
     const [isConfSymbol, setIsConfSymbol] = useState(false);
     const [isPasSymbol, setIsPasSymbol] = useState(false);
+    const [redirect, setRedirect] = useState(false);
     const changePassword = event => {
         event.preventDefault();
         setIsPasSymbol(true);
@@ -86,36 +88,40 @@ function Register({ postNewAccount }) {
             };
             postNewAccount(registerPath, account);
             clearInputs();
+            setRedirect(<Redirect to="/account" />);
         }
     }
 
     return (
-        <form className="register shadow" onSubmit={handleSubmit}>
-            <div className="register__header shadow">sing up</div>
-            <div className="register__body">
-                <div className="register__body__wrapper">
-                    <div className="register__body_login">
-                        <label htmlFor="register-username">Username:</label><br />
-                        <input id="register-username" type="text" onChange={changeUsername} value={username}/>
-                    </div>
-                    <div className="register__body_email">
-                        <label htmlFor="register-email">Email:</label><br />
-                        <input id="register-email" type="email" onChange={changeEmail} value={email} />
-                    </div>
-                    <div className="register__body_password">
-                        <label htmlFor="register-password">Password:</label><br />
-                        <input id="register-password" type="password" min={8} title="minimum 8 symbols, a least 1 uppercase, a least 1 special symbol" onChange={changePassword} value={password.value}/>
-                        {isPasSymbol ? password.symbol : null} <br />
-                        <label htmlFor="password-confirm">Confirm password:</label><br />
-                        <input id="password-confirm" type="password" min={8} onChange={changePasswordConfirm} value={confirm.value}/>
-                        {isConfSymbol ? confirm.symbol : null}
+        <>
+            {redirect ? redirect : null}
+            <form className="register shadow" onSubmit={handleSubmit}>
+                <div className="register__header shadow">sing up</div>
+                <div className="register__body">
+                    <div className="register__body__wrapper">
+                        <div className="register__body_login">
+                            <label htmlFor="register-username">Username:</label><br />
+                            <input id="register-username" type="text" onChange={changeUsername} value={username} />
+                        </div>
+                        <div className="register__body_email">
+                            <label htmlFor="register-email">Email:</label><br />
+                            <input id="register-email" type="email" onChange={changeEmail} value={email} />
+                        </div>
+                        <div className="register__body_password">
+                            <label htmlFor="register-password">Password:</label><br />
+                            <input id="register-password" type="password" min={8} title="minimum 8 symbols, a least 1 uppercase, a least 1 special symbol" onChange={changePassword} value={password.value} />
+                            {isPasSymbol ? password.symbol : null} <br />
+                            <label htmlFor="password-confirm">Confirm password:</label><br />
+                            <input id="password-confirm" type="password" min={8} onChange={changePasswordConfirm} value={confirm.value} />
+                            {isConfSymbol ? confirm.symbol : null}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="register__footer">
-                <input className="btn-general" type="submit" value="Confirm" />
-            </div>
-        </form>
+                <div className="register__footer">
+                    <input className="btn-general" type="submit" value="Confirm" />
+                </div>
+            </form>
+        </>
     );
 }
 

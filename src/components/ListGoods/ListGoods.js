@@ -15,7 +15,7 @@ function  ListGoods({ list, loading }) {
                         key: randomId(),
                         name: e.name,
                         price: e.currentPrice.price + " " + e.currentPrice.symbol,
-                        redirectToGood: <Redirect to={`${e.type + "/" + e.id}`} />
+                        redirectToGood: <Redirect to={`${e.type + "/" + e._id}`} />
                     }
                     return <ListGood {...listProps} />
                 })

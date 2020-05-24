@@ -3,7 +3,7 @@ import { getConvertedList } from '../tools/get-converted-list';
 const { type } = require('../actions/constants');
 
 const init = {
-    username: "fdfd",
+    username: "someUser",
     currency: "byr",
     cart: []
 }
@@ -23,7 +23,9 @@ const account = (state = init, action) => {
                 ...action.account
             }
         case type.LOG_OUT: 
-            return {}
+            return {
+                currency: "byr"
+            }
         case type.UPDATE_CURRENCY_IN_CART:
             return {
                 ...state,
