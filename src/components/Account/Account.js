@@ -14,7 +14,7 @@ function Account({ account, updateCurrency, cur }) {
     }
     return (
         <>
-            {account.username ?
+            {account._id ?
                 (<div className="account">
                     <ScrollToTop />
                     <div className="account__wrapper wrapper">

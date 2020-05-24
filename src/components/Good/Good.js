@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { addGoodToCart, setGoodData } from '../../actions/actions';
 import { getExchangeRate } from '../../tools/get-exchange-rate';
 
-function Good({ good, addGoodToCart, setGoodData, username, currency }) {
+function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
     const { type, id } = useParams();
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
@@ -21,7 +21,7 @@ function Good({ good, addGoodToCart, setGoodData, username, currency }) {
     },[good]);
     const handleClick = event => {
         event.preventDefault();
-        addGoodToCart(good);
+        addGoodToCart(userId, good);
     }
     const btn = <div className="shadow">To add you need to log in</div>;
     const btnLog = <button className="btn-general" onClick={handleClick}>Add to cart</button>;
@@ -59,7 +59,7 @@ function Good({ good, addGoodToCart, setGoodData, username, currency }) {
                                 <div className="good__discription"></div>
                                 <form className="good__operation">
                                     <div className="good__price">{good.currentPrice.price + " " + good.currentPrice.symbol}</div>
-                                    {username ? btnLog : btn}
+                                    {userId ? btnLog : btn}
                                 </form>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ function Good({ good, addGoodToCart, setGoodData, username, currency }) {
 
 const mapState = state => ({
     good: state.goodReducer.good,
-    username: state.account.username,
+    userId: state.account._id,
     currency: state.account.currency
 });
 
@@ -80,8 +80,8 @@ const mapDispatch = dispatch => ({
     setGoodData(type, id, rate, currency){
         dispatch(setGoodData(type, id, rate, currency))
     },
-    addGoodToCart(good) {
-        dispatch(addGoodToCart(good))
+    addGoodToCart(id, good) {
+        dispatch(addGoodToCart(id, good))
     }
 })
 

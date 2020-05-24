@@ -1,7 +1,7 @@
 import { getExchangeRate } from '../tools/get-exchange-rate';
 import { type } from './constants';
 import { postRegistration } from '../tools/authorization';
-import { apiPath } from '../tools/config';
+import { apiPath, accountsPath } from '../tools/config';
 import Axios from 'axios';
 import { getCurrentPrice } from '../tools/get-current-price';
 
@@ -69,15 +69,27 @@ export const updateCurrency = currency => ({
     currency
 });
 
-export const addGoodToCart = good => async dispatch => {
-    return Axios.get()
+export const addGoodToCart = (accountId, good) => async dispatch => {
+    dispatch({
+        type: type.POST_GOOD_TO_CART
+    });
+    return Axios.post(`${accountsPath}/cart/add`, {
+        id: accountId,
+        service: good 
+    }).then(res => {
+        if(res.status === 201)
+            dispatch({
+                type: type.ADD_GOOD_TO_CART,
+                cart: res.account.cart
+            });
+    }).catch(e => console.error(`Failed to add product to cart: ${e.message}`))
 };
 
 export const postNewAccount = (url, account) => async dispatch => {
     return await postRegistration(url, account).then(res => {
         if(res.status === 302)
             dispatch(logIn(account));
-    }).catch(e => console.error(e))
+    }).catch(e => console.error(`Failed to create neew account: ${e.message}`))
 }
 
 export const logOut = () => ({

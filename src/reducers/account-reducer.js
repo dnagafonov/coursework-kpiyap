@@ -3,9 +3,7 @@ import { getConvertedList } from '../tools/get-converted-list';
 const { type } = require('../actions/constants');
 
 const init = {
-    username: "someUser",
     currency: "byr",
-    cart: []
 }
 
 const account = (state = init, action) => {
@@ -13,10 +11,7 @@ const account = (state = init, action) => {
         case type.ADD_GOOD_TO_CART:
             return {
                 ...state,
-                cart: [
-                    action.good,
-                    ...state.cart,
-                ]
+                cart: action.cart
             }
         case type.LOG_IN:
             return {
