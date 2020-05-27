@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './list.scss'
 import { ScrollToTop } from '../ScrollToTop';
 import { connect } from 'react-redux';
-import { fetchListData } from '../../actions/actions';
+import { fetchListData, clearList } from '../../actions/actions';
 import { ListGoods } from '../ListGoods';
+import { useLocation } from 'react-router-dom';
 
 function List({ dataUrl, list, currency, fetchListData }) {
-    const [toLoad, setToLoad] = useState(true);
+    const location = useLocation().pathname;
     useEffect(() => {
-        if(toLoad){
-            fetchListData(dataUrl, currency)
-            setToLoad(false);
-        }
+        fetchListData(dataUrl, currency)
         // eslint-disable-next-line
-    }, [currency, list]);
+    }, [dataUrl, currency, location]);
 
     return (
         <>
@@ -40,7 +38,9 @@ const mapState = state => ({
 });
 
 const mapDisp = dispatch => ({
-
+    clearList(){
+        dispatch(clearList())
+    },
     fetchListData(url, currency) {
         dispatch(fetchListData(url, currency))
     }

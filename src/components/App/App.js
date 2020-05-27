@@ -34,12 +34,12 @@ const App = () => {
           </Route>
           <Route exact path="/spares">
             <ErrorBoundary >
-              <List dataUrl="https://localhost:44313/api/spares"/>
+              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/spares"/>
             </ErrorBoundary>
           </Route>
           <Route exact path="/services">
             <ErrorBoundary>
-              <List dataUrl="https://localhost:44313/api/services"/>
+              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/services"/>
             </ErrorBoundary>
           </Route>
           <Route exact path="/account">
