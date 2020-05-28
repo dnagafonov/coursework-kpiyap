@@ -83,10 +83,11 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
         id: accountId,
         service: good
     }).then(res => {
-        if (res.status === 201)
+        //FIX ON BACKEND
+        if (res.data.value.status === 201)
             dispatch({
                 type: type.ADD_GOOD_TO_CART,
-                cart: res.account.cart
+                cart: res.data.value.cart
             });
     }).catch(e => console.error(`Failed to add product to cart: ${e.message}`))
 };
@@ -117,4 +118,9 @@ export const logOut = () => ({
 export const logIn = (account) => ({
     type: type.LOG_IN,
     account
+})
+
+export const redirect = path => ({
+    type: type.REDIRECT,
+    path
 })
