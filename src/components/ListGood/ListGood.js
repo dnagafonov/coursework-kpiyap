@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './list-good.scss';
+import { connect } from 'react-redux';
+import { deleteGoodFromCart } from '../../actions/actions';
 
 function ListGood(props) {
-    const { name, price, loading, redirectToGood } = props;
+    const { name, price, loading, redirectToGood, good, enableDelete, deleteGoodFromCart, accountId} = props;
     const [redirect, setRedirect] = useState(false);
     const notReady = (
         <div className="list-good shadow" >
@@ -14,6 +16,11 @@ function ListGood(props) {
             </div>
         </div>
     );
+    const handleDelete = e => {
+        e.stopPropagation();
+        deleteGoodFromCart(accountId, good)
+    }
+    const deleteButton = <div className="btn-delete" onClick={handleDelete}><i className="fa fa-trash"></i></div>
     return (
         <>
             {redirect ? redirectToGood : null}
@@ -25,11 +32,22 @@ function ListGood(props) {
                     <div className="list-good__description">
                         <div className="list-good__price">{price}</div>
                     </div>
+                    {enableDelete ? deleteButton : null}
                 </div>
             )}
         </>
     );
 }
 
+const mapState = state => ({
+    accountId: state.account._id
+});
 
-export default ListGood;
+
+const mapDispatch = dispatch => ({
+    deleteGoodFromCart(id, service){
+        dispatch(deleteGoodFromCart(id, service))
+    }
+})
+
+export default connect(mapState, mapDispatch)(ListGood);

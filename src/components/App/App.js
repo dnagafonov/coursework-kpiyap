@@ -15,11 +15,14 @@ import { ErrorBoundary } from '../ErrorBoundary';
 import { Good } from '../Good';
 import { Account } from '../Account';
 import { Auth } from '../Auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <Router>
       <div className="App">
+        <ToastContainer />
         <Header />
         <Switch>
           <Route exact path="/">
@@ -34,12 +37,12 @@ const App = () => {
           </Route>
           <Route exact path="/spares">
             <ErrorBoundary >
-              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/spares"/>
+              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/spares" />
             </ErrorBoundary>
           </Route>
           <Route exact path="/services">
             <ErrorBoundary>
-              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/services"/>
+              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/services" />
             </ErrorBoundary>
           </Route>
           <Route exact path="/account">

@@ -25,7 +25,8 @@ function Account({ account, updateCurrency, cur }) {
                                 <div className="account__email">{email}</div>
                             </div>
                             <select onChange={changeCurrency} value={cur}>
-                                <option value="byr" >Br</option>
+                                <option value="byr">currency</option>
+                                <option value="byr">Br</option>
                                 <option value="usd">$</option>
                                 <option value="eur">€</option>
                                 <option value="rub">₽</option>

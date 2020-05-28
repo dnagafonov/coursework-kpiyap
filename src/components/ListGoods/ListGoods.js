@@ -5,13 +5,15 @@ import listStub from './listStub.json';
 import { randomId } from '../../tools/randomId';
 import { Redirect } from 'react-router-dom';
 
-function  ListGoods({ list, loading }) {
+function  ListGoods({ list, loading, enableDelete }) {
     const notReady = listStub.map(e => <ListGood loading={true} key={randomId()} />);
     return (
         <>
             {loading ? notReady : (
                 list.map(e => {
                     const listProps = {
+                        enableDelete,
+                        good: e,
                         key: randomId(),
                         name: e.name,
                         price: e.currentPrice.price + " " + e.currentPrice.symbol,

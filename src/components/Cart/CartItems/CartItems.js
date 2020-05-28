@@ -11,7 +11,7 @@ function CartItems({ cart, currency, updateCurrencyInCart }) {
         }
         // eslint-disable-next-line
     }, [currency]);
-    const ready = <ListGoods list={cart} />
+    const ready = <ListGoods enableDelete={true} list={cart} />
     return (
         <div className="cart-items">
             {cart.length ? ready : <h3>Cart is empty</h3>}

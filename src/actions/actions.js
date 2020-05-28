@@ -4,11 +4,39 @@ import { postRegistration } from '../tools/authorization';
 import { apiPath, accountsPath } from '../tools/config';
 import Axios from 'axios';
 import { getCurrentPrice } from '../tools/get-current-price';
+import { successToast } from '../tools/toasts';
 
 export const setRate = rate => ({
     type: type.SET_RATE,
     rate
 });
+
+export const fetchGoodData = () => ({
+    type: type.FETCH_GOOD_DATA
+});
+
+export const fetchExistAccount = () => ({
+    type: type.FETCH_EXIST_ACCOUNT
+});
+
+export const clearList = () => ({
+    type: type.CLEAR_LIST
+});
+
+
+export const logOut = () => ({
+    type: type.LOG_OUT
+});
+
+export const logIn = (account) => ({
+    type: type.LOG_IN,
+    account
+})
+
+export const redirect = path => ({
+    type: type.REDIRECT,
+    path
+})
 
 export const fetchListData = (url, currency) => async dispatch => {
     return await Axios.get(url).then(res => {
@@ -23,18 +51,6 @@ export const fetchListData = (url, currency) => async dispatch => {
 export const fetchRateData = () => async dispatch => {
     return getExchangeRate().then(rate => dispatch(setRate(rate)));
 }
-
-export const fetchGoodData = () => ({
-    type: type.FETCH_GOOD_DATA
-});
-
-export const fetchExistAccount = () => ({
-    type: type.FETCH_EXIST_ACCOUNT
-});
-
-export const clearList = () => ({
-    type: type.CLEAR_LIST
-});
 
 export const setGoodData = (goodType, id, rate, currency) => async dispatch => {
     dispatch(fetchGoodData());
@@ -83,14 +99,28 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
         id: accountId,
         service: good
     }).then(res => {
-        //FIX ON BACKEND
-        if (res.data.value.status === 201)
+        if (res.data.status === 201)
             dispatch({
                 type: type.ADD_GOOD_TO_CART,
-                cart: res.data.value.cart
+                cart: res.data.cart
             });
     }).catch(e => console.error(`Failed to add product to cart: ${e.message}`))
 };
+
+export const deleteGoodFromCart = (accountId, good) => async dispatch => {
+    dispatch({ type: type.POST_GOOD_TO_CART });
+    return Axios.post(`${accountsPath}/cart/delete`, {
+        id: accountId,
+        service: good
+    }).then(res => {
+        if (res.data.status === 200)
+            dispatch({
+                type: type.DELETE_GOOD_FROM_CART,
+                cart: res.data.cart
+            });
+    }).catch(e => console.error(`Failed to add product to cart: ${e.message}`))
+};
+
 
 export const setExistAccount = (username, password) => async dispatch => {
     dispatch(fetchExistAccount());
@@ -98,9 +128,10 @@ export const setExistAccount = (username, password) => async dispatch => {
         username,
         password
     }).then(res => {
-        console.log(res)
-        if(res.data.status === 200)
+        if(res.data.status === 200){
+            successToast("You ate loggined in!");
             dispatch(logIn(res.data.account))
+        }
     })
 }
 
@@ -110,17 +141,3 @@ export const postNewAccount = (url, account) => async dispatch => {
             dispatch(logIn(res.account));
     }).catch(e => console.error(`Failed to create neew account: ${e.message}`))
 }
-
-export const logOut = () => ({
-    type: type.LOG_OUT
-});
-
-export const logIn = (account) => ({
-    type: type.LOG_IN,
-    account
-})
-
-export const redirect = path => ({
-    type: type.REDIRECT,
-    path
-})

@@ -16,30 +16,28 @@
 }
 
 .account__info {
-    width: 30%;
+    width: 15%;
     word-wrap: pre;
+    padding: 5px;
 }
 
 .account__cart {
-    width: 70%;
+    width: 85%;
 }
 
-select {
-    width: 50px;
+.account__info select {
+    width: 80px;
     background-color: #fff;
-}
-
-option {
-    height: 20px;
+    border-radius: 3px;
 }
 
 @media (max-width: 1000px){
     .account__info {
-        width: 40%;
+        width: 30%;
     }
     
     .account__cart {
-        width: 60%;
+        width: 70%;
     }
 }
 

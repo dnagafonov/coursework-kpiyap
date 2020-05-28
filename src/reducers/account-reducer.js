@@ -31,6 +31,11 @@ const account = (state = init, action) => {
                 ...state,
                 currency: action.currency
             }
+        case type.DELETE_GOOD_FROM_CART:
+            return {
+                ...state,
+                cart: action.cart
+            }
         default:
             return state;
     }
