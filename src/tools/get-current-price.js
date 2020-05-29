@@ -8,7 +8,7 @@ export const getCurrentPrice = (currency, price, exchangeRates) => {
             const rub_scale = exchangeRates[index].Cur_Scale;
             return {
                 symbol: "₽",
-                price: currencyConvert(price, rub_rate, rub_scale)
+                price: +currencyConvert(price, rub_rate, rub_scale)
             }
 
         case "byr":
@@ -22,7 +22,7 @@ export const getCurrentPrice = (currency, price, exchangeRates) => {
             const eur_scale = exchangeRates[index].Cur_Scale;
             return {
                 symbol: "€",
-                price: currencyConvert(price, eur_rate, eur_scale)
+                price: +currencyConvert(price, eur_rate, eur_scale)
             }
 
         case "cny":
@@ -30,7 +30,7 @@ export const getCurrentPrice = (currency, price, exchangeRates) => {
             const cny_scale = exchangeRates[index].Cur_Scale;
             return {
                 symbol: "¥",
-                price: currencyConvert(price, cny_rate, cny_scale)
+                price: +currencyConvert(price, cny_rate, cny_scale)
             }
 
         default:
@@ -38,7 +38,7 @@ export const getCurrentPrice = (currency, price, exchangeRates) => {
             const usd_scale = exchangeRates[index].Cur_Scale;
             return {
                 symbol: "$",
-                price: currencyConvert(price, usd_rate, usd_scale)
+                price: +currencyConvert(price, usd_rate, usd_scale)
             };
     }
 }

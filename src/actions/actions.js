@@ -4,7 +4,7 @@ import { postRegistration } from '../tools/authorization';
 import { apiPath, accountsPath } from '../tools/config';
 import Axios from 'axios';
 import { getCurrentPrice } from '../tools/get-current-price';
-import { successToast } from '../tools/toasts';
+import { successToast, errorToast, warningToast } from '../tools/toasts';
 
 export const setRate = rate => ({
     type: type.SET_RATE,
@@ -45,11 +45,11 @@ export const fetchListData = (url, currency) => async dispatch => {
         });
         return res.data
     }).then(list => dispatch(setList(list, currency)))
-        .catch(e => console.error(`Failed to get list data: ${e.message}`));
+        .catch(e => errorToast(`Failed to get list data: ${e.message}`));
 }
 
 export const fetchRateData = () => async dispatch => {
-    return getExchangeRate().then(rate => dispatch(setRate(rate)));
+    return getExchangeRate().then(rate => dispatch(setRate(rate))).catch(e => errorToast(`Failed to fetch rate data: ${e.message}`));
 }
 
 export const setGoodData = (goodType, id, rate, currency) => async dispatch => {
@@ -62,7 +62,7 @@ export const setGoodData = (goodType, id, rate, currency) => async dispatch => {
                 good: good.data,
                 currentPrice
             })
-        });
+        }).catch(e => errorToast(`Failled to set good data: ${e.message}`))
 }
 
 export const setList = (list, currency) => async dispatch => {
@@ -73,7 +73,7 @@ export const setList = (list, currency) => async dispatch => {
             currency,
             exchangeRate: rate
         })
-    }).catch(e => console.error(`Failed to set list: ${e.message}`));
+    }).catch(e => errorToast(`Failed to set list: ${e.message}`));
 }
 
 export const updateCurrencyInCart = (list, currency) => async dispatch => {
@@ -85,7 +85,7 @@ export const updateCurrencyInCart = (list, currency) => async dispatch => {
         list,
         currency,
         exchangeRate: rate
-    })).catch(e => console.error(`Failed to update currency in cart: ${e.message}`));
+    })).catch(e => errorToast(`Failed to update currency in cart: ${e.message}`));
 }
 
 export const updateCurrency = currency => ({
@@ -104,11 +104,12 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
                 type: type.ADD_GOOD_TO_CART,
                 cart: res.data.cart
             });
-    }).catch(e => console.error(`Failed to add product to cart: ${e.message}`))
+    }).catch(e => errorToast(`Failed to add product to cart: ${e.message}`))
 };
 
 export const deleteGoodFromCart = (accountId, good) => async dispatch => {
     dispatch({ type: type.POST_GOOD_TO_CART });
+     console.log(good)
     return Axios.post(`${accountsPath}/cart/delete`, {
         id: accountId,
         service: good
@@ -118,7 +119,7 @@ export const deleteGoodFromCart = (accountId, good) => async dispatch => {
                 type: type.DELETE_GOOD_FROM_CART,
                 cart: res.data.cart
             });
-    }).catch(e => console.error(`Failed to add product to cart: ${e.message}`))
+    }).catch(e => errorToast(`Failed to add product to cart: ${e.message}`))
 };
 
 
@@ -129,15 +130,19 @@ export const setExistAccount = (username, password) => async dispatch => {
         password
     }).then(res => {
         if(res.data.status === 200){
-            successToast("You ate loggined in!");
+            successToast("You are loggined in!");
             dispatch(logIn(res.data.account))
         }
-    })
+        if(res.data.status === 404)
+            warningToast("Oops, some data is incorrect!")
+    }).catch(e => errorToast(`Failed to login: ${e.message}`))
 }
 
 export const postNewAccount = (url, account) => async dispatch => {
     return await postRegistration(url, account).then(res => {
-        if (res.status === 201)
+        if (res.status === 201){
+            successToast("Your account was succesfully registred!");
             dispatch(logIn(res.account));
-    }).catch(e => console.error(`Failed to create neew account: ${e.message}`))
+        }
+    }).catch(e => errorToast(`Failed to create neew account: ${e.message}`))
 }
