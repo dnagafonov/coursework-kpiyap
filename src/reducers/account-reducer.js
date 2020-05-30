@@ -36,6 +36,12 @@ const account = (state = init, action) => {
                 ...state,
                 cart: action.cart
             }
+        case type.UPDATE_WITHDRAW_DATA:
+            const totalPrice = action.cart.reduce((prev, cur) => prev + cur.currentPrice.price, 0);
+            return {
+                ...state,
+                totalPrice
+            }
         default:
             return state;
     }

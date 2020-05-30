@@ -17,6 +17,8 @@
 
 .account__info {
     width: 15%;
+    display: flex;
+    flex-direction: column;
     word-wrap: pre;
     padding: 5px;
 }
@@ -29,6 +31,10 @@
     width: 80px;
     background-color: #fff;
     border-radius: 3px;
+}
+
+.account__info .cart-withdraw {
+    margin: 10px 0;
 }
 
 @media (max-width: 1000px){
@@ -44,8 +50,13 @@
 @media (max-width: 700px){
     .account__info {
         width: 100%;
+        flex-direction: row;
     }
-    
+    .cart-withdraw {
+        height: 70%;
+        max-width: 200px;
+        margin: 0 10px !important;
+    }
     .account__cart {
         width: 100%;
     }

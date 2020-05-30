@@ -27,7 +27,7 @@ function ListGood(props) {
             {loading ? notReady : (
                 <div className="list-good shadow" onClick={() => setRedirect(true)}>
                     <div className="list-good__image">
-                        <div className="list-good__name text-container">{name}</div>
+                        <div className="list-good__name text-container" >{name}</div>
                     </div>
                     <div className="list-good__description">
                         <div className="list-good__price">{price}</div>

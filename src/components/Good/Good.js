@@ -50,7 +50,7 @@ function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
                     <div className="good__wrapper wrapper">
                         <div className="good__image">
                             <div className="good__image__wrapper shadow">
-                                <img src="#" alt="#" />
+                                <img href="#" alt="#" />
                             </div>
                         </div>
                         <div className="good__info">

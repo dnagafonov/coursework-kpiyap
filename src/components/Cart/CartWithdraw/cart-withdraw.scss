@@ -1,0 +1,9 @@
+@import '../../../scss/constants.scss';
+
+.cart-withdraw {
+    padding: 5px;
+    display: flex;
+    flex-flow: column wrap;
+    background-color: $bg-secondary;
+    border-radius: 5px;
+}

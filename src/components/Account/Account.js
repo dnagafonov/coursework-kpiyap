@@ -5,6 +5,7 @@ import { ScrollToTop } from '../ScrollToTop';
 import { CartItems } from '../Cart/CartItems';
 import { updateCurrency } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
+import { CartWithdraw } from '../Cart/CartWithdraw';
 
 function Account({ account, updateCurrency, cur }) {
     const { email, username } = account;
@@ -19,18 +20,21 @@ function Account({ account, updateCurrency, cur }) {
                     <ScrollToTop />
                     <div className="account__wrapper wrapper">
                         <div className="account__info">
-                            <h3 className="account__header">{username}</h3>
-                            <div className="account__contacts">
-                                <div>Email:</div>
-                                <div className="account__email">{email}</div>
+                            <div className="account__info__wrapper">
+                                <h3 className="account__header">{username}</h3>
+                                <div className="account__contacts">
+                                    <div>Email:</div>
+                                    <div className="account__email">{email}</div>
+                                </div>
+                                <select onChange={changeCurrency} value={cur}>
+                                    <option value="byr">currency</option>
+                                    <option value="byr">Br</option>
+                                    <option value="usd">$</option>
+                                    <option value="eur">€</option>
+                                    <option value="rub">₽</option>
+                                </select>
                             </div>
-                            <select onChange={changeCurrency} value={cur}>
-                                <option value="byr">currency</option>
-                                <option value="byr">Br</option>
-                                <option value="usd">$</option>
-                                <option value="eur">€</option>
-                                <option value="rub">₽</option>
-                            </select>
+                            <CartWithdraw />
                         </div>
                         <div className="account__cart">
                             <CartItems />

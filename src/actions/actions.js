@@ -146,3 +146,8 @@ export const postNewAccount = (url, account) => async dispatch => {
         }
     }).catch(e => errorToast(`Failed to create neew account: ${e.message}`))
 }
+
+export const updateWithdrawData = (cart) => ({
+    type: type.UPDATE_WITHDRAW_DATA,
+    cart
+})
