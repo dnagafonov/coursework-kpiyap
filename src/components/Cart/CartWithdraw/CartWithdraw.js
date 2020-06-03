@@ -5,12 +5,12 @@ import './cart-withdraw.scss'
 
 const CartWithdraw = ({ cart, updateWithdrawData, totalPrice, currency }) => {
     useEffect(() => {
-        if(cart.length > 0)
+        if (cart.length > 0)
             updateWithdrawData(cart);
     }, [cart, updateWithdrawData])
     return (
         <div className="cart-withdraw">
-            <div className="cart-withdraw__total">Total: {totalPrice + " " + currency}</div>
+            <div className="cart-withdraw__total">Total: { cart.length ? totalPrice : 0 + " " + currency}</div>
             <button className="btn-general">Checkout!</button>
         </div>
     )
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updateWithdrawData(cart){
+    updateWithdrawData(cart) {
         dispatch(updateWithdrawData(cart))
     }
 })

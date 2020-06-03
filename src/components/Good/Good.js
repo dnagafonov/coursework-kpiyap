@@ -10,20 +10,20 @@ function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
     const { type, id } = useParams();
     const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
-        if(toLoad){
+        if (toLoad) {
             (async () => {
                 const rate = await getExchangeRate();
                 setGoodData(type, id, rate, currency)
                 setToLoad(false);
             })();
         }
-    // eslint-disable-next-line
-    },[good]);
+        // eslint-disable-next-line
+    }, [good]);
     const handleClick = event => {
         event.preventDefault();
         addGoodToCart(userId, good);
     }
-    const btn = <div className="shadow">To add you need to log in</div>;
+    const btn = <div className="text-container">To add you need to log in</div>;
     const btnLog = <button className="btn-general" onClick={handleClick}>Add to cart</button>;
     const notReady = (
         <div className="good">
@@ -33,11 +33,9 @@ function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
                     <div className="good__image__wrapper shadow loading-row"></div>
                 </div>
                 <div className="good__info">
-                    <div className="info__wrapper">
-                        <h3 className="good__name loading-row"> </h3>
-                        <div className="good__discription loading-row"></div>
-                        <div className="good__operation loading-row"></div>
-                    </div>
+                    <h3 className="good__name loading-row"> </h3>
+                    <div className="good__discription loading-row"></div>
+                    <div className="good__operation loading-row"></div>
                 </div>
             </div>
         </div>
@@ -49,14 +47,12 @@ function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
                     <ScrollToTop />
                     <div className="good__wrapper wrapper">
                         <div className="good__image">
-                            <div className="good__image__wrapper shadow">
-                                <img href="#" alt="#" />
-                            </div>
+                            <div className="good__image__wrapper shadow"></div>
                         </div>
                         <div className="good__info">
                             <div className="info__wrapper">
                                 <h3 className="good__name">{good.name}</h3>
-                                <div className="good__discription"></div>
+                                <div className="good__discription">{good.description}</div>
                                 <form className="good__operation">
                                     <div className="good__price">{good.currentPrice.price + " " + good.currentPrice.symbol}</div>
                                     {userId ? btnLog : btn}
@@ -77,7 +73,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-    setGoodData(type, id, rate, currency){
+    setGoodData(type, id, rate, currency) {
         dispatch(setGoodData(type, id, rate, currency))
     },
     addGoodToCart(id, good) {
