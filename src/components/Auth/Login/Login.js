@@ -8,8 +8,11 @@ function Login({ setExistAccount }) {
     const [password, setPassword] = useState("");
     const handleSubmit = e => {
         e.preventDefault();
-        if(password.length > 0 && username.length > 0)
+        if(password.length > 0 && username.length > 0){
             setExistAccount(username, password);
+            setUsername("");
+            setPassword("");
+        }
     }
     const changeUsername = e => {
         e.preventDefault();
@@ -25,11 +28,11 @@ function Login({ setExistAccount }) {
             <div className="login__body">
                 <div className="login__body_login">
                     <label htmlFor="login-username">Login:</label><br />
-                    <input id="login-username" type="text" onChange={changeUsername}/>
+                    <input id="login-username" type="text" value={username} onChange={changeUsername}/>
                 </div>
                 <div className="login__body_password">
                     <label htmlFor="login-password">Password:</label><br />
-                    <input id="login-password" type="password" min={8} onChange={changePassword} />
+                    <input id="login-password" type="password" value={password} min={8} onChange={changePassword} />
                 </div>
             </div>
             <div className="login__footer">

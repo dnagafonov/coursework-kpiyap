@@ -22,7 +22,9 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <ToastContainer />
+        <ToastContainer 
+          limit={3}
+        />
         <Header />
         <Switch>
           <Route exact path="/">
