@@ -17,15 +17,16 @@ import { Account } from '../Account';
 import { Auth } from '../Auth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { connect } from 'react-redux';
+import { Modal } from '../Modal';
 
-const App = () => {
+const App = ({ child }) => {
+  console.log(child)
   return (
     <Router>
       <div className="App">
-        <ToastContainer 
-          limit={3}
-        />
         <Header />
+        { child ? <Modal /> : null }
         <Switch>
           <Route exact path="/">
             <ErrorBoundary>
@@ -74,8 +75,15 @@ const App = () => {
           </Route>
         </Switch>
         <Footer />
+        <ToastContainer 
+          limit={3}
+        />
       </div>
     </Router>
   );
 }
-export default App;
+const mapState = state => ({
+  child: state.other.modalChild
+});
+
+export default connect(mapState)(App);

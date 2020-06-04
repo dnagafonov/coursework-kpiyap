@@ -32,11 +32,20 @@ export const logOut = () => ({
 export const logIn = (account) => ({
     type: type.LOG_IN,
     account
-})
+});
 
 export const redirect = path => ({
     type: type.REDIRECT,
     path
+});
+
+export const openModal = child => ({
+    type: type.OPEN_MODAL,
+    child
+});
+
+export const closeModal = () => ({
+    type: type.CLOSE_MODAL
 })
 
 export const fetchListData = (url, currency) => async dispatch => {
@@ -158,4 +167,4 @@ export const postNewAccount = (url, account) => async dispatch => {
 export const updateWithdrawData = (cart) => ({
     type: type.UPDATE_WITHDRAW_DATA,
     cart
-})
+});

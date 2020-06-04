@@ -31,6 +31,7 @@ const ExportToExcel = ({list, totalPrice}) => {
 }
 
 const mapState = state => ({
+    list: state.account.cart,
     totalPrice: state.account.totalPrice
 })
 

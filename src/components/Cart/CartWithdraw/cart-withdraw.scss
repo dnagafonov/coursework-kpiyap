@@ -7,3 +7,11 @@
     background-color: $bg-secondary;
     border-radius: 5px;
 }
+
+.thanks-for-order {
+    padding: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    box-sizing: border-box;
+}
