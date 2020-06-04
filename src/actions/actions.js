@@ -4,7 +4,7 @@ import { postRegistration } from '../tools/authorization';
 import { apiPath, accountsPath } from '../tools/config';
 import Axios from 'axios';
 import { getCurrentPrice } from '../tools/get-current-price';
-import { errorToast } from '../tools/toasts';
+import { errorToast, infoToast } from '../tools/toasts';
 import { toast } from 'react-toastify';
 
 export const setRate = rate => ({
@@ -104,7 +104,7 @@ export const updateCurrency = currency => ({
 });
 
 export const addGoodToCart = (accountId, good) => async dispatch => {
-    const toastId = toast("Please wait...", { autoClose: false, type: toast.TYPE.INFO, position: toast.POSITION.TOP_CENTER });
+    const toastId = infoToast("Please wait...");
     dispatch({ type: type.POST_GOOD_TO_CART });
     return Axios.post(`${accountsPath}/cart/add`, {
         id: accountId,
@@ -117,11 +117,11 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
                 cart: res.data.cart
             });
         }
-    }).catch(e => errorToast(`Failed to add product to cart: ${e.message}`))
+    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to add product to cart: ${e.message}`, autoClose: 5000 }))
 };
 
 export const deleteGoodFromCart = (accountId, good) => async dispatch => {
-    const toastId = toast("Please wait...", { autoClose: false, type: toast.TYPE.INFO, position: toast.POSITION.TOP_CENTER });
+    const toastId = infoToast("Please wait...");
     dispatch({ type: type.POST_GOOD_TO_CART });
     return Axios.post(`${accountsPath}/cart/delete`, {
         id: accountId,
@@ -134,12 +134,12 @@ export const deleteGoodFromCart = (accountId, good) => async dispatch => {
                 cart: res.data.cart
             });
         }
-    }).catch(e => errorToast(`Failed to add product to cart: ${e.message}`))
+    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to delete product from cart: ${e.message}`, autoClose: 5000 }))
 };
 
 
 export const setExistAccount = (username, password) => async dispatch => {
-    const toastId = toast("Please wait...", { autoClose: false, type: toast.TYPE.INFO, position: toast.POSITION.TOP_CENTER });
+    const toastId = infoToast("Please wait...");
     dispatch(fetchExistAccount());
     Axios.post(`${accountsPath}/login`, {
         username,
@@ -151,11 +151,11 @@ export const setExistAccount = (username, password) => async dispatch => {
         }
         if (res.data.status === 404)
             toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Oops, some data is incorrect!", autoClose: 5000 });
-    }).catch(e => errorToast(`Failed to login: ${e.message}`))
+    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to login: ${e.message}`, autoClose: 5000 }))
 }
 
 export const postNewAccount = (url, account) => async dispatch => {
-    const toastId = toast("Please wait...", { autoClose: false, type: toast.TYPE.INFO, position: toast.POSITION.TOP_CENTER });
+    const toastId = infoToast("Please wait...");
     return await postRegistration(url, account).then(res => {
         if (res.status === 201) {
             toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Your account was succesfully registred!", autoClose: 5000 });
