@@ -164,6 +164,28 @@ export const postNewAccount = (url, account) => async dispatch => {
     }).catch(e => errorToast(`Failed to create neew account: ${e.message}`))
 }
 
+export const createNewOffer = account => async dispatch => {
+    const toastId = infoToast("Please wait...");
+    const requestData = {
+        _id: account._id,
+        username: account.username,
+        email: account.email,
+        currency: account.currency,
+        cart: account.cart,
+        date: new Date(),
+        expectedDeliveryDate: this.date.getDate() + 2
+    };
+    dispatch({ type: type.POST_NEW_OFFER });
+    return await Axios.post(`${apiPath}/offers`, requestData).then(res => {
+        if (res.data.status === 201) {
+            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Your offer was succesfully created!", autoClose: 5000 });
+            dispatch({
+                type: type.NEW_OFFER_CREATED
+            });
+        }
+    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to create offer: ${e.message}`, autoClose: 5000 }))
+}
+
 export const updateWithdrawData = (cart) => ({
     type: type.UPDATE_WITHDRAW_DATA,
     cart
