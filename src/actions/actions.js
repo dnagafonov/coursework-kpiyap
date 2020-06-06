@@ -4,7 +4,7 @@ import { postRegistration } from '../tools/authorization';
 import { apiPath, accountsPath } from '../tools/config';
 import Axios from 'axios';
 import { getCurrentPrice } from '../tools/get-current-price';
-import { errorToast, infoToast } from '../tools/toasts';
+import { errorToast, infoToast, updateSuccessToast, updateErrorToast, updateWarningToast } from '../tools/toasts';
 import { toast } from 'react-toastify';
 
 export const setRate = rate => ({
@@ -111,13 +111,13 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
         service: good
     }).then(res => {
         if (res.data.status === 201) {
-            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Added!", autoClose: 5000 });
+            updateSuccessToast(toastId, "Added!")
             dispatch({
                 type: type.ADD_GOOD_TO_CART,
                 cart: res.data.cart
             });
         }
-    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to add product to cart: ${e.message}`, autoClose: 5000 }))
+    }).catch(e => updateErrorToast(toastId, `Failed to add product to cart: ${e.message}`))
 };
 
 export const deleteGoodFromCart = (accountId, good) => async dispatch => {
@@ -128,13 +128,13 @@ export const deleteGoodFromCart = (accountId, good) => async dispatch => {
         service: good
     }).then(res => {
         if (res.data.status === 200) {
-            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Deleted!", autoClose: 5000 });
+            updateSuccessToast(toastId, "Deleted!");
             dispatch({
                 type: type.DELETE_GOOD_FROM_CART,
                 cart: res.data.cart
             });
         }
-    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to delete product from cart: ${e.message}`, autoClose: 5000 }))
+    }).catch(e => updateErrorToast(toastId, `Failed to delete product from cart: ${e.message}`));
 };
 
 
@@ -146,22 +146,22 @@ export const setExistAccount = (username, password) => async dispatch => {
         password
     }).then(res => {
         if (res.data.status === 200) {
-            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "You are loggined in!", autoClose: 5000 });
+            updateSuccessToast(toastId, "You are loggined in!");
             dispatch(logIn(res.data.account))
         }
         if (res.data.status === 404)
-            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Oops, some data is incorrect!", autoClose: 5000 });
-    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to login: ${e.message}`, autoClose: 5000 }))
+            updateWarningToast(toastId, "Oops, some data is incorrect!");
+    }).catch(e => updateErrorToast(toastId, `Failed to login: ${e.message}`));
 }
 
 export const postNewAccount = (url, account) => async dispatch => {
     const toastId = infoToast("Please wait...");
     return await postRegistration(url, account).then(res => {
         if (res.status === 201) {
-            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Your account was succesfully registred!", autoClose: 5000 });
+            updateSuccessToast(toastId, "Your account was succesfully registred!");
             dispatch(logIn(res.account));
         }
-    }).catch(e => errorToast(`Failed to create neew account: ${e.message}`))
+    }).catch(e => updateErrorToast(toastId, `Failed to create neew account: ${e.message}`))
 }
 
 export const createNewOffer = account => async dispatch => {
@@ -178,12 +178,12 @@ export const createNewOffer = account => async dispatch => {
     dispatch({ type: type.POST_NEW_OFFER });
     return await Axios.post(`${apiPath}/offers`, requestData).then(res => {
         if (res.data.status === 201) {
-            toast.update(toastId, { type: toast.TYPE.SUCCESS, render: "Your offer was succesfully created!", autoClose: 5000 });
+            updateSuccessToast(toastId, "Your offer was succesfully created!");
             dispatch({
                 type: type.NEW_OFFER_CREATED
             });
         }
-    }).catch(e => toast.update(toastId, { type: toast.TYPE.ERROR, render: `Failed to create offer: ${e.message}`, autoClose: 5000 }))
+    }).catch(e => updateErrorToast(toastId, `Failed to create offer: ${e.message}`));
 }
 
 export const updateWithdrawData = (cart) => ({
