@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { updateWithdrawData, openModal } from '../../../actions/actions'
+import { updateWithdrawData, createNewOffer } from '../../../actions/actions'
 import './cart-withdraw.scss'
 import { ExportToExcel } from '../../ExportToExcel'
 
-const CartWithdraw = ({ cart, updateWithdrawData, totalPrice, currency, openModal }) => {
+const CartWithdraw = ({ updateWithdrawData, createNewOffer, account }) => {
+    const { cart, currency, totalPrice } = account;
     useEffect(() => {
         if (cart.length > 0)
             updateWithdrawData(cart);
@@ -17,7 +18,9 @@ const CartWithdraw = ({ cart, updateWithdrawData, totalPrice, currency, openModa
     );
     const handleClicked = e => {
         e.preventDefault();
-        openModal(message);
+        if(cart.length > 0){
+            createNewOffer(account, message);
+        }
     }
     return (
         <div className="cart-withdraw">
@@ -29,17 +32,15 @@ const CartWithdraw = ({ cart, updateWithdrawData, totalPrice, currency, openModa
 
 
 const mapStateToProps = state => ({
-    cart: state.account.cart,
-    currency: state.account.currency,
-    totalPrice: state.account.totalPrice
+    account: state.account
 })
 
 const mapDispatchToProps = dispatch => ({
     updateWithdrawData(cart) {
         dispatch(updateWithdrawData(cart));
     },
-    openModal(child) {
-        dispatch(openModal(child));
+    createNewOffer(account, modalMessage){
+        dispatch(createNewOffer(account, modalMessage));
     }
 })
 

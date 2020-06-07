@@ -5,12 +5,6 @@ import { apiPath, accountsPath } from '../tools/config';
 import Axios from 'axios';
 import { getCurrentPrice } from '../tools/get-current-price';
 import { errorToast, infoToast, updateSuccessToast, updateErrorToast, updateWarningToast } from '../tools/toasts';
-import { toast } from 'react-toastify';
-
-export const setRate = rate => ({
-    type: type.SET_RATE,
-    rate
-});
 
 export const fetchGoodData = () => ({
     type: type.FETCH_GOOD_DATA
@@ -29,6 +23,15 @@ export const logOut = () => ({
     type: type.LOG_OUT
 });
 
+export const closeModal = () => ({
+    type: type.CLOSE_MODAL
+});
+
+export const setRate = rate => ({
+    type: type.SET_RATE,
+    rate
+});
+
 export const logIn = (account) => ({
     type: type.LOG_IN,
     account
@@ -44,9 +47,10 @@ export const openModal = child => ({
     child
 });
 
-export const closeModal = () => ({
-    type: type.CLOSE_MODAL
-})
+export const updateWithdrawData = (cart) => ({
+    type: type.UPDATE_WITHDRAW_DATA,
+    cart
+});
 
 export const fetchListData = (url, currency) => async dispatch => {
     return await Axios.get(url).then(res => {
@@ -164,16 +168,17 @@ export const postNewAccount = (url, account) => async dispatch => {
     }).catch(e => updateErrorToast(toastId, `Failed to create neew account: ${e.message}`))
 }
 
-export const createNewOffer = account => async dispatch => {
+export const createNewOffer = (account, modalMessage) => async dispatch => {
     const toastId = infoToast("Please wait...");
+    const date = new Date();
     const requestData = {
-        _id: account._id,
+        accountId: account._id,
         username: account.username,
         email: account.email,
         currency: account.currency,
         cart: account.cart,
-        date: new Date(),
-        expectedDeliveryDate: this.date.getDate() + 2
+        date,
+        expectedDeliveryDate: new Date(date.setDate(date.getDate() + 2))
     };
     dispatch({ type: type.POST_NEW_OFFER });
     return await Axios.post(`${apiPath}/offers`, requestData).then(res => {
@@ -182,11 +187,17 @@ export const createNewOffer = account => async dispatch => {
             dispatch({
                 type: type.NEW_OFFER_CREATED
             });
+            dispatch(openModal(modalMessage));
+            dispatch(clearCart());
         }
     }).catch(e => updateErrorToast(toastId, `Failed to create offer: ${e.message}`));
 }
 
-export const updateWithdrawData = (cart) => ({
-    type: type.UPDATE_WITHDRAW_DATA,
-    cart
-});
+export const clearCart = account => async dispatch => {
+    dispatch({ type: type.POST_CLEAR_CART });
+    return await Axios.post(`${apiPath}/account/cart/drop`, account._id).then(res => {
+        if(res.data.status === 200){
+            dispatch({ type: type.CLEAR_CART });
+        }
+    }).catch(e => errorToast(`Failed to clear cart: ${e.message}`))
+};

@@ -42,6 +42,11 @@ const account = (state = init, action) => {
                 ...state,
                 totalPrice
             }
+        case type.CLEAR_CART:
+            return {
+                ...state,
+                cart: []
+            }
         default:
             return state;
     }
