@@ -19,9 +19,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 import { Modal } from '../Modal';
+import PropTypes from 'prop-types';
 
 const App = ({ child }) => {
-  console.log(child)
   return (
     <Router>
       <div className="App">
@@ -82,6 +82,11 @@ const App = ({ child }) => {
     </Router>
   );
 }
+
+App.propTypes = {
+  child: PropTypes.node
+}
+
 const mapState = state => ({
   child: state.other.modalChild
 });

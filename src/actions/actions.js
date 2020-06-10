@@ -121,6 +121,9 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
                 cart: res.data.cart
             });
         }
+        if (res.data.status === 400) {
+            updateWarningToast(toastId, "Ooops, something went wrong!!");
+        }
     }).catch(e => updateErrorToast(toastId, `Failed to add product to cart: ${e.message}`))
 };
 

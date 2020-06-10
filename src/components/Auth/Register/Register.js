@@ -6,6 +6,7 @@ import { checkPasswordValid } from '../../../tools/check-password-valid';
 import { registerPath } from '../../../tools/config';
 import { postNewAccount } from '../../../actions/actions';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Register({ postNewAccount }) {
     const [password, setPassword] = useState({
@@ -123,6 +124,10 @@ function Register({ postNewAccount }) {
             </form>
         </>
     );
+}
+
+Register.propTypes = {
+    postNewAccount: PropTypes.func.isRequired
 }
 
 const mapDispatch = dispatch => ({

@@ -6,6 +6,7 @@ import { CartItems } from '../Cart/CartItems';
 import { updateCurrency } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
 import { CartWithdraw } from '../Cart/CartWithdraw';
+import PropTypes from 'prop-types';
 
 function Account({ account, updateCurrency, cur }) {
     const { email, username } = account;
@@ -46,15 +47,39 @@ function Account({ account, updateCurrency, cur }) {
     );
 }
 
+Account.propTypes = {
+    account: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        currency: PropTypes.string.isRequired,
+        totalPrice: PropTypes.number,
+        cart: PropTypes.arrayOf(PropTypes.exact({
+           _id: PropTypes.string.isRequired,
+           serviceId: PropTypes.string.isRequired,
+           name: PropTypes.string.isRequired,
+           type: PropTypes.string.isRequired,
+           price: PropTypes.number.isRequired,
+           description: PropTypes.string.isRequired,
+           currentPrice: PropTypes.exact({
+               price: PropTypes.number.isRequired,
+               symbol: PropTypes.string.isRequired
+           })
+        }))
+    }),
+    cur: PropTypes.string.isRequired,
+    updateCurrency: PropTypes.func.isRequired
+}
+
 const mapState = state => ({
     account: state.account,
     cur: state.goodReducer.currency
-})
+});
 
 const mapDispatch = dispatch => ({
     updateCurrency(c) {
         dispatch(updateCurrency(c))
     }
-})
+});
 
 export default connect(mapState, mapDispatch)(Account);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './login.scss';
 import { connect } from 'react-redux';
 import { setExistAccount } from '../../../actions/actions';
+import PropTypes from 'prop-types';
 
 function Login({ setExistAccount }) {
     const [username, setUsername] = useState("");
@@ -40,6 +41,10 @@ function Login({ setExistAccount }) {
             </div>
         </form>
     );
+}
+
+Login.propTypes = {
+    setExistAccount: PropTypes.func.isRequired
 }
 
 const mapDispatch = dispatch => ({
