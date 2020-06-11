@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addGoodToCart, setGoodData } from '../../actions/actions';
 import { getExchangeRate } from '../../tools/get-exchange-rate';
+import PropTypes from 'prop-types'
 
 function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
     const { type, id } = useParams();
@@ -66,6 +67,25 @@ function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
     );
 }
 
+Good.propTypes = {
+    good: PropTypes.exact({
+        _id: PropTypes.string.isRequired,
+        serviceId: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        currentPrice: PropTypes.exact({
+            price: PropTypes.number.isRequired,
+            symbol: PropTypes.string.isRequired
+        })
+    }),
+    userId: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
+    setGoodData: PropTypes.func.isRequired,
+    addGoodToCart: PropTypes.func.isRequired  
+};
+
 const mapState = state => ({
     good: state.goodReducer.good,
     userId: state.account._id,
@@ -79,6 +99,6 @@ const mapDispatch = dispatch => ({
     addGoodToCart(id, good) {
         dispatch(addGoodToCart(id, good))
     }
-})
+});
 
 export default connect(mapState, mapDispatch)(Good);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { InfoContainer } from '../InfoContainer';
 import './error-boundary.scss'
+import PropTypes from 'prop-types'
 
 export default class ErrorBoundary extends React.Component {
     state = {
@@ -28,3 +29,9 @@ export default class ErrorBoundary extends React.Component {
         return this.props.children;
     }
 }
+
+ErrorBoundary.propTypes = {
+    props: PropTypes.shape({
+        children: PropTypes.node
+    })
+};

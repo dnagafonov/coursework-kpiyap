@@ -4,6 +4,7 @@ import { ListGood } from '../ListGood';
 import listStub from './listStub.json';
 import { randomId } from '../../tools/randomId';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 function  ListGoods({ list, loading, enableDelete }) {
     const notReady = listStub.map(e => <ListGood loading={true} key={randomId()} />);
@@ -25,5 +26,21 @@ function  ListGoods({ list, loading, enableDelete }) {
         </>
     );
 }
+
+ListGoods.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.exact({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        currentPrice: PropTypes.exact({
+            price: PropTypes.number.isRequired,
+            symbol: PropTypes.string.isRequired
+        })
+    })),
+    loading: PropTypes.bool,
+    enableDelete: PropTypes.bool
+};
 
 export default ListGoods;

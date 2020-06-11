@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './cart-items.scss'
 import { updateCurrencyInCart } from '../../../actions/actions';
 import { ListGoods } from '../../ListGoods';
+import PropTypes from 'prop-types'
 
 function CartItems({ cart, currency, updateCurrencyInCart }) {
     useEffect(() => {
@@ -17,6 +18,23 @@ function CartItems({ cart, currency, updateCurrencyInCart }) {
             {cart.length ? ready : <h3>Cart is empty</h3>}
         </div>
     );
+}
+
+CartItems.propTypes = {
+    cart: PropTypes.arrayOf(PropTypes.exact({
+        _id: PropTypes.string.isRequired,
+        serviceId: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        currentPrice: PropTypes.exact({
+            price: PropTypes.number.isRequired,
+            symbol: PropTypes.string.isRequired
+        })
+     })),
+     currency: PropTypes.string.isRequired,
+     updateCurrencyInCart: PropTypes.func.isRequired
 }
 
 const mapState = state => ({

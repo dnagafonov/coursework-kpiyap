@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactExport from "react-data-export";
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -35,6 +37,24 @@ const ExportToExcel = ({list, totalPrice, username, email}) => {
         </ExcelFile>
     )    
 }
+
+ExportToExcel.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.exact({
+        _id: PropTypes.string.isRequired,
+        serviceId: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        currentPrice: PropTypes.exact({
+            price: PropTypes.number.isRequired,
+            symbol: PropTypes.string.isRequired
+        })
+     })),
+    totalPrice: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+};
 
 const mapState = state => ({
     list: state.account.cart,

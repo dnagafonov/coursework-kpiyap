@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import './list-good.scss';
 import { connect } from 'react-redux';
 import { deleteGoodFromCart } from '../../actions/actions';
+import PropTypes from 'prop-types'
 
 function ListGood(props) {
-    const { name, price, loading, redirectToGood, good, enableDelete, deleteGoodFromCart, accountId} = props;
+    const { name, price, loading, redirectToGood, good, enableDelete, deleteGoodFromCart, accountId } = props;
     const [redirect, setRedirect] = useState(false);
     const notReady = (
         <div className="list-good shadow" >
@@ -39,13 +40,39 @@ function ListGood(props) {
     );
 }
 
+ListGood.propTypes = {
+    accountId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    loading: PropTypes.bool,
+    redirectToGood: PropTypes.node.isRequired,
+    good: PropTypes.exact({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        currentPrice: PropTypes.exact({
+            price: PropTypes.number.isRequired,
+            symbol: PropTypes.string.isRequired
+        })
+    }),
+    enableDelete: PropTypes.bool,
+    deleteGoodFromCart: PropTypes.func.isRequired,
+    description: PropTypes.string.isRequired,
+    currentPrice: PropTypes.exact({
+        price: PropTypes.number.isRequired,
+        symbol: PropTypes.string.isRequired
+    })
+}
+
 const mapState = state => ({
     accountId: state.account._id
 });
 
 
 const mapDispatch = dispatch => ({
-    deleteGoodFromCart(id, service){
+    deleteGoodFromCart(id, service) {
         dispatch(deleteGoodFromCart(id, service))
     }
 })

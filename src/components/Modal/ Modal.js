@@ -2,6 +2,7 @@ import React from 'react'
 import './modal.scss';
 import { closeModal } from '../../actions/actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 
 const Modal = ({ closeModal, child }) => {
     return (
@@ -11,6 +12,11 @@ const Modal = ({ closeModal, child }) => {
             </div>
         </div>
     )
+}
+
+Modal.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+    child: PropTypes.node.isRequired
 }
 
 const mapState = state => ({

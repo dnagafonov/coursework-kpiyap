@@ -1,6 +1,7 @@
 import React from 'react';
 import './info-container.scss'
 import { ScrollToTop } from '../ScrollToTop';
+import PropTypes from 'prop-types'
 
 const InfoContainer = props => {
     return (
@@ -12,5 +13,11 @@ const InfoContainer = props => {
         </div>
     )
 }
+
+InfoContainer.propTypes = {
+    props: PropTypes.shape({
+        children: PropTypes.node
+    })
+};
 
 export default InfoContainer;
