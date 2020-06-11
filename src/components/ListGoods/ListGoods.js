@@ -28,7 +28,7 @@ function  ListGoods({ list, loading, enableDelete }) {
 }
 
 ListGoods.propTypes = {
-    list: PropTypes.arrayOf(PropTypes.exact({
+    list: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,

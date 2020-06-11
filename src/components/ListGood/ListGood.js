@@ -41,13 +41,14 @@ function ListGood(props) {
 }
 
 ListGood.propTypes = {
-    accountId: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    accountId: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.string,
     loading: PropTypes.bool,
-    redirectToGood: PropTypes.node.isRequired,
+    redirectToGood: PropTypes.node,
     good: PropTypes.exact({
         _id: PropTypes.string.isRequired,
+        serviceId: PropTypes.string,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
@@ -59,7 +60,7 @@ ListGood.propTypes = {
     }),
     enableDelete: PropTypes.bool,
     deleteGoodFromCart: PropTypes.func.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     currentPrice: PropTypes.exact({
         price: PropTypes.number.isRequired,
         symbol: PropTypes.string.isRequired

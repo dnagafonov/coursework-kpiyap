@@ -70,7 +70,6 @@ function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
 Good.propTypes = {
     good: PropTypes.exact({
         _id: PropTypes.string.isRequired,
-        serviceId: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
@@ -80,7 +79,7 @@ Good.propTypes = {
             symbol: PropTypes.string.isRequired
         })
     }),
-    userId: PropTypes.string.isRequired,
+    userId: PropTypes.string,
     currency: PropTypes.string.isRequired,
     setGoodData: PropTypes.func.isRequired,
     addGoodToCart: PropTypes.func.isRequired  

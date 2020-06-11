@@ -34,9 +34,8 @@ function List({ dataUrl, list, currency, fetchListData }) {
 }
 
 List.propTypes = {
-    list: PropTypes.arrayOf(PropTypes.exact({
+    list: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string.isRequired,
-        serviceId: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
