@@ -191,14 +191,14 @@ export const createNewOffer = (account, modalMessage) => async dispatch => {
                 type: type.NEW_OFFER_CREATED
             });
             dispatch(openModal(modalMessage));
-            dispatch(clearCart());
+            dispatch(clearCart(account._id));
         }
     }).catch(e => updateErrorToast(toastId, `Failed to create offer: ${e.message}`));
 }
 
-export const clearCart = account => async dispatch => {
+export const clearCart = id => async dispatch => {
     dispatch({ type: type.POST_CLEAR_CART });
-    return await Axios.post(`${apiPath}/account/cart/drop`, account._id).then(res => {
+    return await Axios.post(`${apiPath}/accounts/cart/drop`, {id}).then(res => {
         if(res.data.status === 200){
             dispatch({ type: type.CLEAR_CART });
         }

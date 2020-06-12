@@ -49,9 +49,9 @@ function Account({ account, updateCurrency, cur }) {
 
 Account.propTypes = {
     account: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
+        _id: PropTypes.string,
+        username: PropTypes.string,
+        email: PropTypes.string,
         currency: PropTypes.string.isRequired,
         totalPrice: PropTypes.number,
         cart: PropTypes.arrayOf(PropTypes.exact({
