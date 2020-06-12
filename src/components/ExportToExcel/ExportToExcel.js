@@ -25,14 +25,10 @@ const ExportToExcel = ({list, totalPrice, username, email}) => {
                 <ExcelColumn label="Price" value="price"/>
                 <ExcelColumn label="Currency" value="currency"/>
             </ExcelSheet>
-            <ExcelSheet data={[{username}]} name="Username">
+            <ExcelSheet data={[{username, email, totalPrice }]} name="Other">
                 <ExcelColumn label="Username" value="username"/>
-            </ExcelSheet>
-            <ExcelSheet data={[{email}]} name="Email">
                 <ExcelColumn label="Email" value="email"/>
-            </ExcelSheet>
-            <ExcelSheet data={[{total: totalPrice}]} name="Total">
-                <ExcelColumn label="Total" value="total"/>
+                <ExcelColumn label="Total" value="totalPrice"/>
             </ExcelSheet>
         </ExcelFile>
     )    
