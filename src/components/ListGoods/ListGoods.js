@@ -12,13 +12,14 @@ function  ListGoods({ list, loading, enableDelete }) {
         <>
             {loading ? notReady : (
                 list.map(e => {
+                    const id = enableDelete ? e.serviceId : e._id;
                     const listProps = {
                         enableDelete,
                         good: e,
                         key: randomId(),
                         name: e.name,
                         price: e.currentPrice.price + " " + e.currentPrice.symbol,
-                        redirectToGood: <Redirect to={`${e.type + "/" + e._id}`} />
+                        redirectToGood: <Redirect to={`${e.type + "/" + id}`} />
                     }
                     return <ListGood {...listProps} />
                 })

@@ -200,7 +200,7 @@ export const clearCart = id => async dispatch => {
     dispatch({ type: type.POST_CLEAR_CART });
     return await Axios.post(`${apiPath}/accounts/cart/drop`, {id}).then(res => {
         if(res.data.status === 200){
-            dispatch({ type: type.CLEAR_CART });
+            dispatch({ type: type.CLEAR_CART, cart: res.data.cart });
         }
     }).catch(e => errorToast(`Failed to clear cart: ${e.message}`))
 };

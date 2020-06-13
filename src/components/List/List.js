@@ -7,10 +7,11 @@ import { ListGoods } from '../ListGoods';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
-function List({ dataUrl, list, currency, fetchListData }) {
+function List({ dataUrl, list, currency, fetchListData, clearList }) {
     const location = useLocation().pathname;
     useEffect(() => {
         fetchListData(dataUrl, currency)
+        return () => clearList();
         // eslint-disable-next-line
     }, [dataUrl, currency, location]);
 
