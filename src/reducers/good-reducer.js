@@ -32,6 +32,11 @@ const goodReducer = (state = initialState, action) => {
                 ...state,
                 list: null
             }
+        case type.CLEAR_GOOD:
+            return {
+                ...state,
+                good: null
+            }
         default:
             return state;
     }

@@ -18,6 +18,9 @@ export const clearList = () => ({
     type: type.CLEAR_LIST
 });
 
+export const clearGood = () => ({
+    type: type.CLEAR_GOOD
+})
 
 export const logOut = () => ({
     type: type.LOG_OUT

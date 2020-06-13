@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './good.scss';
 import { ScrollToTop } from '../ScrollToTop';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addGoodToCart, setGoodData } from '../../actions/actions';
+import { addGoodToCart, setGoodData, clearGood } from '../../actions/actions';
 import { getExchangeRate } from '../../tools/get-exchange-rate';
 import PropTypes from 'prop-types'
 
-function Good({ good, addGoodToCart, setGoodData, userId, currency }) {
+function Good({ good, addGoodToCart, setGoodData, userId, currency, clearGood }) {
     const { type, id } = useParams();
-    const [toLoad, setToLoad] = useState(true);
     useEffect(() => {
-        if (toLoad) {
-            (async () => {
-                const rate = await getExchangeRate();
-                setGoodData(type, id, rate, currency)
-                setToLoad(false);
-            })();
-        }
+        getExchangeRate().then(rate => setGoodData(type, id, rate, currency));
+        return () => clearGood();
         // eslint-disable-next-line
-    }, [good]);
+    }, [userId, currency]);
     const handleClick = event => {
         event.preventDefault();
         addGoodToCart(userId, good);
@@ -82,7 +76,8 @@ Good.propTypes = {
     userId: PropTypes.string,
     currency: PropTypes.string.isRequired,
     setGoodData: PropTypes.func.isRequired,
-    addGoodToCart: PropTypes.func.isRequired  
+    addGoodToCart: PropTypes.func.isRequired,
+    clearGood: PropTypes.func.isRequired
 };
 
 const mapState = state => ({
@@ -97,6 +92,9 @@ const mapDispatch = dispatch => ({
     },
     addGoodToCart(id, good) {
         dispatch(addGoodToCart(id, good))
+    },
+    clearGood() {
+        dispatch(clearGood())
     }
 });
 
