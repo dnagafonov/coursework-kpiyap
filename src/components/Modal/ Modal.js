@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 
 const Modal = ({ closeModal, child }) => {
     return (
-        <div className="modal">
-            <div className="modal-wrapper" onClick={() => closeModal()}>
+        <div className="modal" onClick={() => closeModal()}>
+            <div className="modal-wrapper" onClick={e => e.stopPropagation()}>
                 {child}
             </div>
         </div>

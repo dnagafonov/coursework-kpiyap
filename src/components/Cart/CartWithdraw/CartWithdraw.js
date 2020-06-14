@@ -25,7 +25,7 @@ const CartWithdraw = ({ updateWithdrawData, createNewOffer, account }) => {
     }
     return (
         <div className="cart-withdraw">
-            <div className="cart-withdraw__total">Total: {cart.length ? totalPrice : 0 + " " + currency}</div>
+            <div className="cart-withdraw__total">Total: {(cart.length ? totalPrice : 0 )+ " " + currency}</div>
             <button className="btn-general" onClick={handleClicked}>Checkout!</button>
         </div>
     )
