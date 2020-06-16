@@ -186,7 +186,10 @@ export const createNewOffer = (account, modalMessage) => async dispatch => {
         date,
         expectedDeliveryDate: new Date(date.setDate(date.getDate() + 2))
     };
-    dispatch({ type: type.POST_NEW_OFFER });
+    dispatch({ 
+        type: type.POST_NEW_OFFER,
+        list: account.cart
+    });
     return await Axios.post(`${apiPath}/offers`, requestData).then(res => {
         if (res.data.status === 201) {
             updateSuccessToast(toastId, "Your offer was succesfully created!");

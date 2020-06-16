@@ -53,7 +53,7 @@ ExportToExcel.propTypes = {
 };
 
 const mapState = state => ({
-    list: state.account.cart,
+    list: state.other.offerList,
     totalPrice: state.account.totalPrice,
     username: state.account.username,
     email: state.account.email

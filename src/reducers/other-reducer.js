@@ -14,6 +14,11 @@ const other = (state = init, action) => {
                 ...state,
                 modalChild: null
             }
+        case type.POST_NEW_OFFER:
+            return {
+                ...state,
+                offerList: action.list
+            }
         default:
             return state;
     }
