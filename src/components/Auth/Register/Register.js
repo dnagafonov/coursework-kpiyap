@@ -97,7 +97,7 @@ function Register({ postNewAccount }) {
         <>
             {redirect ? redirect : null}
             <form className="register shadow" onSubmit={handleSubmit}>
-                <div className="register__header shadow">sing up</div>
+                <div className="register__header shadow">Register</div>
                 <div className="register__body">
                     <div className="register__body__wrapper">
                         <div className="register__body_login">

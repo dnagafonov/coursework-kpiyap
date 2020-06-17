@@ -10,7 +10,7 @@ const Welcome = () => {
             <div className="welcome__wrapper wrapper">
                 <div className="welcome__header">
                     <ScrollToTop/>
-                    <h1>Welcome</h1>
+                    <h1>Welcome!</h1>
                     <ScrollLink 
                         className="arrow-down" 
                         to="down"

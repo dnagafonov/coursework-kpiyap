@@ -25,7 +25,7 @@ function Login({ setExistAccount }) {
     }
     return (
         <form className="login shadow">
-            <div className="login__header shadow">sing in</div>
+            <div className="login__header shadow">Login</div>
             <div className="login__body">
                 <div className="login__body_login">
                     <label htmlFor="login-username">Login:</label><br />
