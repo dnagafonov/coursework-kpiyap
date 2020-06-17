@@ -171,6 +171,10 @@ export const postNewAccount = (url, account) => async dispatch => {
             updateSuccessToast(toastId, "Your account was succesfully registred!");
             dispatch(logIn(res.account));
         }
+        if (res.status === 400) {
+            updateErrorToast(toastId, `Oops... ${res.error}`);
+            dispatch(logIn(res.account));
+        }
     }).catch(e => updateErrorToast(toastId, `Failed to create neew account: ${e.message}`))
 }
 
