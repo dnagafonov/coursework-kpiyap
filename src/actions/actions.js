@@ -55,8 +55,13 @@ export const updateWithdrawData = (cart) => ({
     cart
 });
 
-export const fetchListData = (url, currency) => async dispatch => {
-    return await Axios.get(url).then(res => {
+export const updateCurrency = currency => ({
+    type: type.UPDATE_CURRENCY,
+    currency
+});
+
+export const fetchListData = (url, currency) => dispatch => {
+    Axios.get(url).then(res => {
         dispatch({
             type: type.FETCH_LIST_DATA
         });
@@ -65,13 +70,13 @@ export const fetchListData = (url, currency) => async dispatch => {
         .catch(e => errorToast(`Failed to get list data: ${e.message}`));
 }
 
-export const fetchRateData = () => async dispatch => {
-    return getExchangeRate().then(rate => dispatch(setRate(rate))).catch(e => errorToast(`Failed to fetch rate data: ${e.message}`));
+export const fetchRateData = () => dispatch => {
+    getExchangeRate().then(rate => dispatch(setRate(rate))).catch(e => errorToast(`Failed to fetch rate data: ${e.message}`));
 }
 
-export const setGoodData = (goodType, id, rate, currency) => async dispatch => {
+export const setGoodData = (goodType, id, rate, currency) => dispatch => {
     dispatch(fetchGoodData());
-    return await Axios.get(`${apiPath}/${goodType}/${id}`)
+    Axios.get(`${apiPath}/${goodType}/${id}`)
         .then(good => {
             const currentPrice = getCurrentPrice(currency, good.data.price, rate);
             dispatch({
@@ -82,8 +87,8 @@ export const setGoodData = (goodType, id, rate, currency) => async dispatch => {
         }).catch(e => errorToast(`Failled to set good data: ${e.message}`))
 }
 
-export const setList = (list, currency) => async dispatch => {
-    return await getExchangeRate().then(rate => {
+export const setList = (list, currency) => dispatch => {
+    getExchangeRate().then(rate => {
         dispatch({
             type: type.SET_LIST,
             list,
@@ -93,8 +98,8 @@ export const setList = (list, currency) => async dispatch => {
     }).catch(e => errorToast(`Failed to set list: ${e.message}`));
 }
 
-export const updateCurrencyInCart = (list, currency) => async dispatch => {
-    return await getExchangeRate().then(rate => {
+export const updateCurrencyInCart = (list, currency) => dispatch => {
+    getExchangeRate().then(rate => {
         dispatch(setRate(rate));
         return rate;
     }).then(rate => dispatch({
@@ -105,15 +110,10 @@ export const updateCurrencyInCart = (list, currency) => async dispatch => {
     })).catch(e => errorToast(`Failed to update currency in cart: ${e.message}`));
 }
 
-export const updateCurrency = currency => ({
-    type: type.UPDATE_CURRENCY,
-    currency
-});
-
-export const addGoodToCart = (accountId, good) => async dispatch => {
+export const addGoodToCart = (accountId, good) => dispatch => {
     const toastId = infoToast("Please wait...");
     dispatch({ type: type.POST_GOOD_TO_CART });
-    return Axios.post(`${accountsPath}/cart/add`, {
+    Axios.post(`${accountsPath}/cart/add`, {
         id: accountId,
         service: good
     }).then(res => {
@@ -130,10 +130,10 @@ export const addGoodToCart = (accountId, good) => async dispatch => {
     }).catch(e => updateErrorToast(toastId, `Failed to add product to cart: ${e.message}`))
 };
 
-export const deleteGoodFromCart = (accountId, good) => async dispatch => {
+export const deleteGoodFromCart = (accountId, good) => dispatch => {
     const toastId = infoToast("Please wait...");
     dispatch({ type: type.POST_GOOD_TO_CART });
-    return Axios.post(`${accountsPath}/cart/delete`, {
+    Axios.post(`${accountsPath}/cart/delete`, {
         id: accountId,
         service: good
     }).then(res => {
@@ -148,7 +148,7 @@ export const deleteGoodFromCart = (accountId, good) => async dispatch => {
 };
 
 
-export const setExistAccount = (username, password) => async dispatch => {
+export const setExistAccount = (username, password) => dispatch => {
     const toastId = infoToast("Please wait...");
     dispatch(fetchExistAccount());
     Axios.post(`${accountsPath}/login`, {
@@ -164,9 +164,9 @@ export const setExistAccount = (username, password) => async dispatch => {
     }).catch(e => updateErrorToast(toastId, `Failed to login: ${e.message}`));
 }
 
-export const postNewAccount = (url, account) => async dispatch => {
+export const postNewAccount = (url, account) => dispatch => {
     const toastId = infoToast("Please wait...");
-    return await postRegistration(url, account).then(res => {
+    postRegistration(url, account).then(res => {
         if (res.status === 201) {
             updateSuccessToast(toastId, "Your account was succesfully registred!");
             dispatch(logIn(res.account));
@@ -178,7 +178,7 @@ export const postNewAccount = (url, account) => async dispatch => {
     }).catch(e => updateErrorToast(toastId, `Failed to create neew account: ${e.message}`))
 }
 
-export const createNewOffer = (account, modalMessage) => async dispatch => {
+export const createNewOffer = (account, modalMessage) => dispatch => {
     const toastId = infoToast("Please wait...");
     const date = new Date();
     const requestData = {
@@ -194,7 +194,7 @@ export const createNewOffer = (account, modalMessage) => async dispatch => {
         type: type.POST_NEW_OFFER,
         list: account.cart
     });
-    return await Axios.post(`${apiPath}/offers`, requestData).then(res => {
+    Axios.post(`${apiPath}/offers`, requestData).then(res => {
         if (res.data.status === 201) {
             updateSuccessToast(toastId, "Your offer was succesfully created!");
             dispatch({
@@ -206,9 +206,9 @@ export const createNewOffer = (account, modalMessage) => async dispatch => {
     }).catch(e => updateErrorToast(toastId, `Failed to create offer: ${e.message}`));
 }
 
-export const clearCart = id => async dispatch => {
+export const clearCart = id => dispatch => {
     dispatch({ type: type.POST_CLEAR_CART });
-    return await Axios.post(`${apiPath}/accounts/cart/drop`, {id}).then(res => {
+    Axios.post(`${apiPath}/accounts/cart/drop`, {id}).then(res => {
         if(res.data.status === 200){
             dispatch({ type: type.CLEAR_CART, cart: res.data.cart });
         }
