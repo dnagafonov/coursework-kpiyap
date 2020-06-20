@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './list-good.scss';
-import { connect } from 'react-redux';
-import { deleteGoodFromCart } from '../../actions/actions';
 import PropTypes from 'prop-types'
 
 function ListGood(props) {
@@ -59,7 +57,7 @@ ListGood.propTypes = {
         })
     }),
     enableDelete: PropTypes.bool,
-    deleteGoodFromCart: PropTypes.func.isRequired,
+    deleteGoodFromCart: PropTypes.func,
     description: PropTypes.string,
     currentPrice: PropTypes.exact({
         price: PropTypes.number.isRequired,
@@ -67,15 +65,4 @@ ListGood.propTypes = {
     })
 }
 
-const mapState = state => ({
-    accountId: state.account._id
-});
-
-
-const mapDispatch = dispatch => ({
-    deleteGoodFromCart(id, service) {
-        dispatch(deleteGoodFromCart(id, service))
-    }
-})
-
-export default connect(mapState, mapDispatch)(ListGood);
+export default ListGood;

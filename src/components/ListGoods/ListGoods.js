@@ -1,20 +1,23 @@
 import React from 'react';
 import './list-goods.scss'
 import { ListGood } from '../ListGood';
-import listStub from './listStub.json';
 import { randomId } from '../../tools/randomId';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { deleteGoodFromCart } from '../../actions/actions';
 
-function  ListGoods({ list, loading, enableDelete }) {
-    const notReady = listStub.map(e => <ListGood loading={true} key={randomId()} />);
+function  ListGoods({ list, loading, enableDelete, accountId, deleteGoodFromCart }) {
+    const notReady = Array(30).fill(0).map(e => <ListGood loading={true} key={randomId()} />);
     return (
         <>
             {loading ? notReady : (
                 list.map(e => {
                     const id = enableDelete ? e.serviceId : e._id;
                     const listProps = {
+                        accountId,
                         enableDelete,
+                        deleteGoodFromCart,
                         good: e,
                         key: randomId(),
                         name: e.name,
@@ -40,8 +43,21 @@ ListGoods.propTypes = {
             symbol: PropTypes.string.isRequired
         })
     })),
+    accountId: PropTypes.string,
     loading: PropTypes.bool,
-    enableDelete: PropTypes.bool
+    enableDelete: PropTypes.bool,
+    deleteGoodFromCart: PropTypes.func.isRequired,
 };
 
-export default ListGoods;
+const mapState = state => ({
+    accountId: state.account._id
+});
+
+
+const mapDispatch = dispatch => ({
+    deleteGoodFromCart(id, service) {
+        dispatch(deleteGoodFromCart(id, service))
+    }
+})
+
+export default connect(mapState, mapDispatch)(ListGoods);
