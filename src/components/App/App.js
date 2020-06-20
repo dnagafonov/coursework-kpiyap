@@ -18,6 +18,7 @@ import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 import { Modal } from '../Modal';
 import PropTypes from 'prop-types';
+import { apiPath } from '../../tools/config'
 
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,12 +42,12 @@ const App = ({ child }) => {
           </Route>
           <Route exact path="/spares">
             <ErrorBoundary >
-              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/spares" />
+              <List dataUrl={`${apiPath}/spares`} />
             </ErrorBoundary>
           </Route>
           <Route exact path="/services">
             <ErrorBoundary>
-              <List dataUrl="https://coursework-kpiyap.conveyor.cloud/api/services" />
+              <List dataUrl={`${apiPath}/services`} />
             </ErrorBoundary>
           </Route>
           <Route exact path="/account">
@@ -76,7 +77,7 @@ const App = ({ child }) => {
           </Route>
         </Switch>
         <Footer />
-        <ToastContainer 
+        <ToastContainer
           limit={3}
         />
       </div>

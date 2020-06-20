@@ -5,7 +5,8 @@ import { ScrollToTop } from '../ScrollToTop';
 
 import './welcome.scss'
 
-const Welcome = () => {
+const Welcome = (props) => {
+    console.log(props)
     return (
         <div className="welcome">
             <div className="welcome__wrapper wrapper">
