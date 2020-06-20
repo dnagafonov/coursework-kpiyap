@@ -1,6 +1,7 @@
 import React from 'react';
-import './not-found.scss'
 import { InfoContainer } from '../InfoContainer';
+
+import './not-found.scss'
 
 const NotFound = () => {
     return (

@@ -1,7 +1,8 @@
 import React from 'react';
-import './header.scss';
 import { Link } from "react-router-dom";
 import NavAccount from './NavAccount';
+
+import './header.scss';
 
 const Header = () => {
     const topics = [

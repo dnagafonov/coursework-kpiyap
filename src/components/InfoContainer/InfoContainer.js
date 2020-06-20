@@ -1,7 +1,8 @@
 import React from 'react';
-import './info-container.scss'
 import { ScrollToTop } from '../ScrollToTop';
 import PropTypes from 'prop-types'
+
+import './info-container.scss'
 
 const InfoContainer = props => {
     return (

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './register.scss';
 import { connect } from 'react-redux';
 import { checkPasswordsValidation } from '../../../tools/check-passwords-validation';
 import { checkPasswordValid } from '../../../tools/check-password-valid';
@@ -7,6 +6,8 @@ import { registerPath } from '../../../tools/config';
 import { postNewAccount } from '../../../actions/actions';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import './register.scss';
 
 function Register({ postNewAccount }) {
     const [password, setPassword] = useState({

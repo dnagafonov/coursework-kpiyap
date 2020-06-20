@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import { Header } from '../Header';
 import { List } from '../List';
 import { Footer } from '../Footer';
@@ -16,10 +15,12 @@ import { Good } from '../Good';
 import { Account } from '../Account';
 import { Auth } from '../Auth';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 import { Modal } from '../Modal';
 import PropTypes from 'prop-types';
+
+import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = ({ child }) => {
   return (

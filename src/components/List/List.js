@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import './list.scss'
 import { ScrollToTop } from '../ScrollToTop';
 import { connect } from 'react-redux';
 import { fetchListData, clearList } from '../../actions/actions';
 import { ListGoods } from '../ListGoods';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types'
+
+import './list.scss'
 
 function List({ dataUrl, list, currency, fetchListData, clearList }) {
     const location = useLocation().pathname;

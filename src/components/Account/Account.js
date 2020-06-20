@@ -1,5 +1,4 @@
 import React from 'react';
-import './account.scss';
 import { connect } from 'react-redux';
 import { ScrollToTop } from '../ScrollToTop';
 import { CartItems } from '../Cart/CartItems';
@@ -7,6 +6,8 @@ import { updateCurrency } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
 import { CartWithdraw } from '../Cart/CartWithdraw';
 import PropTypes from 'prop-types';
+
+import './account.scss';
 
 function Account({ account, updateCurrency, cur }) {
     const { email, username } = account;

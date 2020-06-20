@@ -1,8 +1,9 @@
 import React from 'react'
-import './modal.scss';
 import { closeModal } from '../../actions/actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
+
+import './modal.scss';
 
 const Modal = ({ closeModal, child }) => {
     return (

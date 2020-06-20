@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import './good.scss';
 import { ScrollToTop } from '../ScrollToTop';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addGoodToCart, setGoodData, clearGood } from '../../actions/actions';
 import { getExchangeRate } from '../../tools/get-exchange-rate';
 import PropTypes from 'prop-types'
+
+import './good.scss';
 
 function Good({ good, addGoodToCart, setGoodData, userId, currency, clearGood }) {
     const { type, id } = useParams();

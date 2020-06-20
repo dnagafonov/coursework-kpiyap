@@ -1,7 +1,8 @@
 import React from 'react';
 import { InfoContainer } from '../InfoContainer';
-import './error-boundary.scss'
 import PropTypes from 'prop-types'
+
+import './error-boundary.scss'
 
 export default class ErrorBoundary extends React.Component {
     state = {

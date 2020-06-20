@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import './cart-items.scss'
 import { updateCurrencyInCart } from '../../../actions/actions';
 import { ListGoods } from '../../ListGoods';
 import PropTypes from 'prop-types'
+
+import './cart-items.scss'
 
 function CartItems({ cart, currency, updateCurrencyInCart }) {
     useEffect(() => {

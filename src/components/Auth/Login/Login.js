@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './login.scss';
 import { connect } from 'react-redux';
 import { setExistAccount } from '../../../actions/actions';
 import PropTypes from 'prop-types';
+
+import './login.scss';
 
 function Login({ setExistAccount }) {
     const [username, setUsername] = useState("");

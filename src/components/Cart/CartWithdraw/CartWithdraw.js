@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { updateWithdrawData, createNewOffer } from '../../../actions/actions'
-import './cart-withdraw.scss'
 import { ExportToExcel } from '../../ExportToExcel'
 import PropTypes from 'prop-types'
+
+import './cart-withdraw.scss'
 
 const CartWithdraw = ({ updateWithdrawData, createNewOffer, account }) => {
     const { cart, currency, totalPrice } = account;

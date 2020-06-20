@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './list-good.scss';
 import PropTypes from 'prop-types'
+
+import './list-good.scss';
 
 function ListGood(props) {
     const { name, price, loading, redirectToGood, good, enableDelete, deleteGoodFromCart, accountId } = props;

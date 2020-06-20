@@ -1,11 +1,12 @@
 import React from 'react';
-import './list-goods.scss'
 import { ListGood } from '../ListGood';
 import { randomId } from '../../tools/randomId';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { deleteGoodFromCart } from '../../actions/actions';
+
+import './list-goods.scss'
 
 function  ListGoods({ list, loading, enableDelete, accountId, deleteGoodFromCart }) {
     const notReady = Array(30).fill(0).map(e => <ListGood loading={true} key={randomId()} />);
