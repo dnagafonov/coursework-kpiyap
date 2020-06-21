@@ -1,45 +1,35 @@
 import { getConvertedList } from '../tools/get-converted-list';
+import produce from "immer";
+
 const { type } = require('../actions/constants');
 
-const initialState = {
-    good: null,
-    currency: "byr"
-};
-
-const goodReducer = (state = initialState, action) => {
+const goodReducer = produce((draft, action) => {
     switch (action.type) {
         case type.SET_GOOD_DATA:
-            return {
-                ...state,
-                good: {
-                    ...action.good,
-                    currentPrice: action.currentPrice
-                }
+            draft.good = {
+                ...action.good,
+                currentPrice: action.currentPrice
             };
+            return draft;
         case type.SET_RATE:
-            return {
-                ...state,
-                exchangeRate: action.rate
-            };
+            draft.exchangeRate = action.rate;
+            return draft;
         case type.SET_LIST:
-            return {
-                ...state,
-                list: getConvertedList(action.list, action.currency, action.exchangeRate),
-                exchangeRate: action.exchangeRate
-            }
+            draft.list = getConvertedList(action.list, action.currency, action.exchangeRate);
+            draft.exchangeRate = action.exchangeRate;
+            return draft;
         case type.CLEAR_LIST:
-            return {
-                ...state,
-                list: null
-            }
+            draft.list = null;
+            return draft;
         case type.CLEAR_GOOD:
-            return {
-                ...state,
-                good: null
-            }
+            draft.good = null;
+            return draft;
         default:
-            return state;
+            return draft;
     }
-}
+}, {
+    good: null,
+    currency: "byr"
+})
 
 export default goodReducer;

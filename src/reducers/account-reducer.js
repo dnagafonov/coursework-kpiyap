@@ -1,55 +1,38 @@
+import produce from "immer";
 import { getConvertedList } from '../tools/get-converted-list';
 
 const { type } = require('../actions/constants');
 
-const init = {
-    currency: "byr",
-}
-
-const account = (state = init, action) => {
+const account = produce((draft, action) => {
     switch (action.type) {
         case type.ADD_GOOD_TO_CART:
-            return {
-                ...state,
-                cart: action.cart
-            }
+            draft.cart = action.cart;
+            return draft;
         case type.LOG_IN:
-            return {
-                ...action.account
-            }
+            draft = action.account;
+            return draft; 
         case type.LOG_OUT: 
-            return {
-                currency: "byr"
-            }
+            draft = { currency: "byr" };
+            return draft;
         case type.UPDATE_CURRENCY_IN_CART:
-            return {
-                ...state,
-                cart: getConvertedList(action.list, action.currency, action.exchangeRate),
-            };
+            draft.cart = getConvertedList(action.list, action.currency, action.exchangeRate);
+            return draft;
         case type.UPDATE_CURRENCY:
-            return {
-                ...state,
-                currency: action.currency
-            }
+            draft.currency = action.currency;
+            return draft;
         case type.DELETE_GOOD_FROM_CART:
-            return {
-                ...state,
-                cart: action.cart
-            }
+            draft.cart = action.cart;
+            return draft;
         case type.UPDATE_WITHDRAW_DATA:
             const totalPrice = action.cart.reduce((prev, cur) => prev + cur.currentPrice.price, 0);
-            return {
-                ...state,
-                totalPrice
-            }
+            draft.totalPrice = totalPrice;
+            return draft;
         case type.CLEAR_CART:
-            return {
-                ...state,
-                cart: action.cart
-            }
+            draft.cart = action.cart;
+            return draft;
         default:
-            return state;
+            return draft;
     }
-}
+}, { currency: "byr" })
 
 export default account;

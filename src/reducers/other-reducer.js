@@ -1,27 +1,21 @@
+import produce from "immer";
+
 const { type } = require('../actions/constants');
 
-const init = {};
-
-const other = (state = init, action) => {
+const other = produce((draft, action) => {
     switch (action.type) {
         case type.OPEN_MODAL:
-            return {
-                ...state,
-                modalChild: action.child
-            }
+            draft.modalChild = action.child
+            return draft;
         case type.CLOSE_MODAL:
-            return {
-                ...state,
-                modalChild: null
-            }
+            draft.modalChild = null;
+            return draft;
         case type.POST_NEW_OFFER:
-            return {
-                ...state,
-                offerList: action.list
-            }
+            draft.offerList = action.list
+            return draft;
         default:
-            return state;
+            return draft;
     }
-}
+}, {});
 
 export default other;
