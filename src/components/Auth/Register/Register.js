@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { checkPasswordsValidation } from '../../../tools/check-passwords-validation';
 import { checkPasswordValid } from '../../../tools/check-password-valid';
 import { registerPath } from '../../../tools/config';
-import { postNewAccount } from '../../../actions/actions';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './register.scss';
@@ -22,7 +19,6 @@ function Register({ postNewAccount }) {
     const [username, setUsername] = useState("");
     const [isConfSymbol, setIsConfSymbol] = useState(false);
     const [isPasSymbol, setIsPasSymbol] = useState(false);
-    const [redirect, setRedirect] = useState(false);
     const changePassword = event => {
         event.preventDefault();
         setIsPasSymbol(true);
@@ -90,13 +86,11 @@ function Register({ postNewAccount }) {
             };
             postNewAccount(registerPath, account);
             clearInputs();
-            setRedirect(<Redirect to="/account" />);
         }
     }
 
     return (
         <>
-            {redirect ? redirect : null}
             <form className="register shadow" onSubmit={handleSubmit}>
                 <div className="register__header shadow">Register</div>
                 <div className="register__body">
@@ -131,10 +125,4 @@ Register.propTypes = {
     postNewAccount: PropTypes.func.isRequired
 }
 
-const mapDispatch = dispatch => ({
-    postNewAccount(url, account) {
-        dispatch(postNewAccount(url, account))
-    }
-})
-
-export default connect(null, mapDispatch)(Register);
+export default Register;

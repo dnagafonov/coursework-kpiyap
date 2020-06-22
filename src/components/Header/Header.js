@@ -4,21 +4,22 @@ import NavAccount from './NavAccount';
 
 import './header.scss';
 
-const Header = () => {
-    const topics = [
-        {
-            url: "about-us",
-            name: "about us"
-        },
-        {
-            url: "spares",
-            name: "spares"
-        },
-        {
-            url: "services",
-            name: "services"
-        }];
+const topics = [
+    {
+        url: "about-us",
+        name: "about us"
+    },
+    {
+        url: "spares",
+        name: "spares"
+    },
+    {
+        url: "services",
+        name: "services"
+    }
+];
 
+const Header = () => {
     const links = topics.map(link => {
         const linkProps = {
             className: "nav-link",

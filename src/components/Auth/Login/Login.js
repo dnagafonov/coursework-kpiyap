@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { setExistAccount } from '../../../actions/actions';
 import PropTypes from 'prop-types';
 
 import './login.scss';
@@ -48,10 +46,4 @@ Login.propTypes = {
     setExistAccount: PropTypes.func.isRequired
 }
 
-const mapDispatch = dispatch => ({
-    setExistAccount(username, password) {
-        dispatch(setExistAccount(username, password))
-    }
-})
-
-export default connect(null, mapDispatch)(Login);
+export default Login;

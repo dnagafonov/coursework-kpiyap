@@ -10,6 +10,7 @@ import './good.scss';
 
 function Good({ good, addGoodToCart, setGoodData, userId, currency, clearGood }) {
     const { type, id } = useParams();
+    console.log("Export");
     useEffect(() => {
         getExchangeRate().then(rate => setGoodData(type, id, rate, currency));
         return () => clearGood();
