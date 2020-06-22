@@ -20,7 +20,7 @@ const CartWithdraw = ({ updateWithdrawData, createNewOffer, account }) => {
     );
     const handleClicked = e => {
         e.preventDefault();
-        if(cart.length > 0){
+        if (cart.length > 0) {
             createNewOffer(account, message);
         }
     }
@@ -40,16 +40,16 @@ CartWithdraw.propTypes = {
         currency: PropTypes.string.isRequired,
         totalPrice: PropTypes.number,
         cart: PropTypes.arrayOf(PropTypes.exact({
-           _id: PropTypes.string.isRequired,
-           serviceId: PropTypes.string.isRequired,
-           name: PropTypes.string.isRequired,
-           type: PropTypes.string.isRequired,
-           price: PropTypes.number.isRequired,
-           description: PropTypes.string.isRequired,
-           currentPrice: PropTypes.exact({
-               price: PropTypes.number.isRequired,
-               symbol: PropTypes.string.isRequired
-           })
+            _id: PropTypes.string.isRequired,
+            serviceId: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            description: PropTypes.string.isRequired,
+            currentPrice: PropTypes.exact({
+                price: PropTypes.number.isRequired,
+                symbol: PropTypes.string.isRequired
+            })
         }))
     }),
     updateWithdrawData: PropTypes.func.isRequired,
@@ -60,13 +60,4 @@ const mapStateToProps = state => ({
     account: state.account
 });
 
-const mapDispatchToProps = dispatch => ({
-    updateWithdrawData(cart) {
-        dispatch(updateWithdrawData(cart));
-    },
-    createNewOffer(account, modalMessage){
-        dispatch(createNewOffer(account, modalMessage));
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartWithdraw)
+export default connect(mapStateToProps, { updateWithdrawData, createNewOffer })(CartWithdraw)

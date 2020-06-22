@@ -8,7 +8,7 @@ import { deleteGoodFromCart } from '../../actions/actions';
 
 import './list-goods.scss'
 
-function  ListGoods({ list, loading, enableDelete, accountId, deleteGoodFromCart }) {
+function ListGoods({ list, loading, enableDelete, accountId, deleteGoodFromCart }) {
     const notReady = Array(30).fill(0).map(e => <ListGood loading={true} key={randomId()} />);
     return (
         <>
@@ -54,11 +54,4 @@ const mapState = state => ({
     accountId: state.account._id
 });
 
-
-const mapDispatch = dispatch => ({
-    deleteGoodFromCart(id, service) {
-        dispatch(deleteGoodFromCart(id, service))
-    }
-})
-
-export default connect(mapState, mapDispatch)(ListGoods);
+export default connect(mapState, { deleteGoodFromCart })(ListGoods);

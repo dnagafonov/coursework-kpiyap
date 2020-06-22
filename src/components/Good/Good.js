@@ -88,16 +88,4 @@ const mapState = state => ({
     currency: state.account.currency
 });
 
-const mapDispatch = dispatch => ({
-    setGoodData(type, id, rate, currency) {
-        dispatch(setGoodData(type, id, rate, currency))
-    },
-    addGoodToCart(id, good) {
-        dispatch(addGoodToCart(id, good))
-    },
-    clearGood() {
-        dispatch(clearGood())
-    }
-});
-
-export default connect(mapState, mapDispatch)(Good);
+export default connect(mapState, { setGoodData, addGoodToCart, clearGood })(Good);

@@ -14,18 +14,10 @@ function Auth({ setExistAccount, postNewAccount }) {
             <div className="auth__wrapper wrapper">
                 <ScrollToTop />
                 <Login setExistAccount={setExistAccount} />
-                <Register postNewAccount={postNewAccount}/>
+                <Register postNewAccount={postNewAccount} />
             </div>
         </div>
     );
 }
-const mapDispatch = dispatch => ({
-    setExistAccount(username, password) {
-        dispatch(setExistAccount(username, password))
-    },
-    postNewAccount(url, account) {
-        dispatch(postNewAccount(url, account))
-    }
-})
 
-export default connect(null, mapDispatch)(Auth);
+export default connect(null, { setExistAccount, postNewAccount })(Auth);

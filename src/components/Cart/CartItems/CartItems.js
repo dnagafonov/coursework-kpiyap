@@ -8,7 +8,7 @@ import './cart-items.scss'
 
 function CartItems({ cart, currency, updateCurrencyInCart }) {
     useEffect(() => {
-        if(cart.length){
+        if (cart.length) {
             updateCurrencyInCart(cart, currency);
         }
         // eslint-disable-next-line
@@ -33,9 +33,9 @@ CartItems.propTypes = {
             price: PropTypes.number.isRequired,
             symbol: PropTypes.string.isRequired
         })
-     })),
-     currency: PropTypes.string.isRequired,
-     updateCurrencyInCart: PropTypes.func.isRequired
+    })),
+    currency: PropTypes.string.isRequired,
+    updateCurrencyInCart: PropTypes.func.isRequired
 }
 
 const mapState = state => ({
@@ -43,10 +43,4 @@ const mapState = state => ({
     currency: state.account.currency
 });
 
-const mapDispatch = dispatch => ({
-    updateCurrencyInCart(cart, currency){
-        dispatch(updateCurrencyInCart(cart, currency))
-    }
-})
-
-export default connect(mapState, mapDispatch)(CartItems);
+export default connect(mapState, { updateCurrencyInCart })(CartItems);

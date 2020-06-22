@@ -46,10 +46,10 @@ List.propTypes = {
             price: PropTypes.number.isRequired,
             symbol: PropTypes.string.isRequired
         })
-     })),
-     currency: PropTypes.string.isRequired,
-     clearList: PropTypes.func.isRequired,
-     fetchListData: PropTypes.func.isRequired
+    })),
+    currency: PropTypes.string.isRequired,
+    clearList: PropTypes.func.isRequired,
+    fetchListData: PropTypes.func.isRequired
 }
 
 const mapState = state => ({
@@ -57,13 +57,4 @@ const mapState = state => ({
     currency: state.account.currency
 });
 
-const mapDisp = dispatch => ({
-    clearList(){
-        dispatch(clearList())
-    },
-    fetchListData(url, currency) {
-        dispatch(fetchListData(url, currency))
-    }
-})
-
-export default connect(mapState, mapDisp)(List);
+export default connect(mapState, { clearList, fetchListData })(List);

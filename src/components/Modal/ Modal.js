@@ -24,10 +24,4 @@ const mapState = state => ({
     child: state.other.modalChild
 })
 
-const mapDispatch = dispatch => ({
-    closeModal() {
-        dispatch(closeModal());
-    }
-});
-
-export default connect(mapState, mapDispatch)(Modal);
+export default connect(mapState, { closeModal })(Modal);
