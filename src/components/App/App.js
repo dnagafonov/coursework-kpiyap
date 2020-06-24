@@ -12,7 +12,6 @@ import { AboutUs } from '../AboutUs';
 import { NotFound } from '../NotFound';
 import { ErrorBoundary } from '../ErrorBoundary';
 import { Good } from '../Good';
-import { Account } from '../Account';
 import { Auth } from '../Auth';
 import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
@@ -22,6 +21,9 @@ import { apiPath } from '../../tools/config'
 
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import { InfoContainer } from '../InfoContainer';
+
+const Account = React.lazy(() => import('../Account/Account'));
 
 const App = ({ child }) => {
   return (
@@ -52,7 +54,9 @@ const App = ({ child }) => {
           </Route>
           <Route exact path="/account">
             <ErrorBoundary>
-              <Account />
+              <React.Suspense fallback={<InfoContainer><div>Loading...</div></InfoContainer>}>
+                <Account />
+              </React.Suspense>
             </ErrorBoundary>
           </Route>
           <Route exact path="/auth">
@@ -65,17 +69,12 @@ const App = ({ child }) => {
               <Good />
             </ErrorBoundary>
           </Route>
-          <Route path="/:type/:id">
-            <ErrorBoundary>
-              <Good />
-            </ErrorBoundary>
-          </Route>
           <Route path="*">
             <ErrorBoundary>
               <NotFound />
             </ErrorBoundary>
           </Route>
-        </Switch>
+          </Switch>
         <Footer />
         <ToastContainer
           limit={3}

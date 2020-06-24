@@ -8,12 +8,17 @@ import { CartWithdraw } from '../Cart/CartWithdraw';
 import PropTypes from 'prop-types';
 
 import './account.scss';
+import { infoToastAutoclose } from '../../tools/toasts';
 
 function Account({ account, updateCurrency, cur }) {
     const { email, username } = account;
     const changeCurrency = e => {
         e.preventDefault();
         updateCurrency(e.target.value)
+    }
+    const redirect = () => {
+        infoToastAutoclose("You need to authorize.")
+        return <Redirect to="/auth" />
     }
     return (
         <>
@@ -42,7 +47,7 @@ function Account({ account, updateCurrency, cur }) {
                             <CartItems />
                         </div>
                     </div>
-                </div>) : <Redirect to="/auth" />
+                </div>) : redirect()
             }
         </>
     );

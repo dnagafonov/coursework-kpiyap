@@ -20,7 +20,8 @@ const NavAccount = ({ name, logOut }) => {
         <div className="dropdown-menu nav-link" >
             <i className="fas fa-user"></i>
             <nav className="dropdown-menu__components shadow">
-                <Link to="/auth" className="dropdown-menu__component">log in<i className="fas fa-user"></i></Link>
+                <Link to="/account" className="dropdown-menu__component">account<i className="fas fa-user"></i></Link>
+                <Link to="/auth" className="dropdown-menu__component">sing in<i className="fas fa-sign-in-alt"></i></Link>
             </nav>
         </div>
     );
@@ -31,7 +32,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-    logOut(){
+    logOut() {
         dispatch(logOut())
     }
 })

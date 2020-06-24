@@ -43,3 +43,8 @@ export const updateErrorToast = (toastId, message) => toast.update(toastId, {
    render: message,
    autoClose: 5000 
 });
+
+export const infoToastAutoclose = message => toast.info(message, { 
+   position: toast.POSITION.TOP_CENTER,
+   autoClose: 5000
+});
